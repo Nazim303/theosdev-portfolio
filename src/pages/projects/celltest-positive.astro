@@ -1,0 +1,155 @@
+---
+const pageTitle = "CELLTEST POSİTİVE | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body {
+        background-color: #0f1115;
+        color: #e2e8f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+      
+      /* Geri Dön Butonu */
+      .back-btn {
+        display: inline-block;
+        color: #00e676;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 40px;
+        transition: transform 0.2s;
+      }
+      .back-btn:hover { transform: translateX(-5px); }
+
+      /* Başlık Alanı */
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+
+      /* İçerik Düzeni (Sol: Detaylar, Sağ: Teknik Künye) */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        opacity: 0;
+      }
+      
+      @media (max-width: 768px) {
+        .content-grid { grid-template-columns: 1fr; }
+      }
+
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; }
+      
+      /* Sağ Sidebar (Teknik Künye) */
+      .tech-sidebar {
+        background: rgba(255,255,255,0.03);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+        height: fit-content;
+      }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+
+      /* Devlog Alanı */
+      .devlog-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+      .devlog-card {
+        background: rgba(0,230,118,0.05);
+        border-left: 4px solid #00e676;
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+
+      <div class="project-header anim-element">
+        <h1>CELLTEST POSİTİVE</h1>
+        <p class="subtitle">Asimetrik 1v1 Çevrimiçi Strateji Kart Oyunu</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <!-- SOL ALAN: Oyun Tasarımı ve Detaylar -->
+        <div class="main-content">
+          <h2>Core Gameplay (Temel Oynanış)</h2>
+          <p>Geleneksel enerji veya mana sistemlerini reddeden bu yapımda, tek kaynağınız kendi yaşam gücünüzdür. Oyuncular oyuna 10 can ile başlar ve tur başı yenilenen bir kaynak havuzu bulunmaz. Sahaya sürülen her kartın bedeli, doğrudan oyuncunun kendi canından ödenir.</p>
+
+          <h2>Asimetrik Tasarım (Host vs Client)</h2>
+          <p>Oyun, mikroskobik düzeyde gerçekleşen ölümcül bir biyolojik savaşı temel alır. Oyunu kuran taraf (Host), organizmayı ele geçirmeye çalışan kanser hücresini yönetirken; katılan taraf (Client), bu yayılımı durdurmaya programlanmış bir antikoru temsil eder. Bu durum sadece görsel değil, mekaniksel bir asimetri de yaratır.</p>
+
+          <h2>Savaş Alanı ve Taktik</h2>
+          <p>Savaş alanı "Ön" ve "Arka" olmak üzere iki satırdan oluşur. Yeni kartlar arka satıra yerleştirilir ve doğrudan çatışma için ön satıra ilerletilmeleri gerekir. Savunma hattı kırılıp oyuncuya hasar verildiğinde, rakibin sadece mevcut canı değil, maksimum can kapasitesi de kalıcı olarak düşer.</p>
+
+          <!-- DEVLOG BÖLÜMÜ -->
+          <div class="devlog-section">
+            <h2>Geliştirici Günlükleri (Devlogs)</h2>
+            
+            <div class="devlog-card">
+              <h3>Devlog #1: Yaşam Gücü Mekaniğinin Kod Mimarisi</h3>
+              <p>Can havuzunu hem bir sağlık barı hem de mana (harcama) birimi olarak kullanmanın getirdiği UI ve senkronizasyon zorluklarını nasıl aştığımı anlattığım teknik analiz.</p>
+              <a href="#" style="color:#00e676; text-decoration:none; font-weight:bold;">Makaleyi Oku ➜</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SAĞ ALAN: Teknik Künye -->
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          
+          <div class="tech-item">
+            <h4>Geliştirici Rolü</h4>
+            <p>Game Programmer</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Oyun Motoru</h4>
+            <p>Unity3D (C#)</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Network Altyapısı</h4>
+            <p>Netcode for GameObjects (NGO)</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Öne Çıkan Sistemler</h4>
+            <p>Özel Lobi Sistemi (Oda Kodu), Asimetrik State Senkronizasyonu, Tur Tabanlı Eylem Yöneticisi</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Proje Durumu</h4>
+            <p>Tamamlandı (Game Jam Projesi)</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GSAP ANİMASYONLARI -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

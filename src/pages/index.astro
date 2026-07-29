@@ -1,17 +1,206 @@
 ---
-
+import ProjectCard from '../components/ProjectCard.astro';
+const pageTitle = "TheosDev | Game Programmer";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body {
+        background-color: #0f1115;
+        color: #e2e8f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      
+      /* Hero ve Linkler */
+      .hero-section {
+        padding: 100px 20px 50px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      h1 { font-size: 4rem; margin-bottom: 10px; color: #00e676; opacity: 0; }
+      .hero-subtitle { font-size: 1.5rem; color: #94a3b8; opacity: 0; margin-bottom: 30px; }
+      
+      /* Linktree Alanı */
+      .link-tree {
+        display: flex;
+        gap: 15px;
+        opacity: 0;
+      }
+      .link-btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.1);
+        color: #e2e8f0;
+        transition: all 0.2s;
+        border: 1px solid rgba(255,255,255,0.2);
+      }
+      .link-btn:hover {
+        background: #00e676;
+        color: #0f1115;
+        border-color: #00e676;
+      }
+
+      /* Ortak Bölüm Tasarımı */
+      .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #f8fafc;
+        border-bottom: 2px solid rgba(0, 230, 118, 0.3);
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+
+      /* Yenilikler (What's New) Kartı */
+      .update-card {
+        background: linear-gradient(145deg, rgba(0, 230, 118, 0.1), rgba(15, 17, 21, 0.9));
+        border: 1px solid #00e676;
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        opacity: 0;
+      }
+      .update-tag { background: #00e676; color: #0f1115; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 15px;}
+      .update-text { color: #f8fafc; font-size: 1.1rem; }
+      .update-link { color: #00e676; text-decoration: none; font-weight: bold; }
+      .update-link:hover { text-decoration: underline; }
+
+      /* Proje Grid */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+      }
+
+	  /* Dil Şalteri (Top Right) */
+      .lang-switch {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        padding: 4px;
+        z-index: 100;
+        opacity: 0; /* Animasyon için */
+      }
+      .lang-btn {
+        padding: 6px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #94a3b8;
+        font-size: 0.85rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .lang-btn.active {
+        background: #00e676;
+        color: #0f1115;
+      }
+      .lang-btn:hover:not(.active) {
+        color: #f8fafc;
+      }
+    </style>
+  </head>
+  <body>
+
+  <!-- DİL ŞALTERİ -->
+    <div class="lang-switch anim-hero">
+      <a href="/" class="lang-btn active">TR</a>
+      <a href="/en" class="lang-btn">EN</a>
+    </div>
+
+    <!-- HERO & LINKTREE -->
+    <section class="hero-section">
+      <h1 class="anim-hero">TheosDev</h1>
+      <p class="hero-subtitle anim-hero">Unity & C# Game Programmer</p>
+      
+      <div class="link-tree anim-hero">
+        <a href="#" class="link-btn">GitHub</a>
+        <a href="#" class="link-btn">Itch.io</a>
+        <a href="#" class="link-btn">LinkedIn</a>
+        <a href="#" class="link-btn">Özgeçmiş (CV)</a>
+      </div>
+    </section>
+
+    <div class="section-container">
+      
+      <!-- YENİLİKLER BÖLÜMÜ -->
+      <h2 class="section-title">Son Gelişmeler</h2>
+      <div class="update-card anim-update">
+        <div>
+          <span class="update-tag">YENİ YAZI</span>
+          <span class="update-text">Devlog: CELLTEST POSİTİVE için Asimetrik Ağ Mimarisi Kurulumu</span>
+        </div>
+        <a href="/projects/celltest-positive" class="update-link">Oku ➜</a>
+      </div>
+
+      <!-- ANA PROJELER VİTRİNİ -->
+      <h2 class="section-title">Önemli Projeler</h2>
+      <div class="project-grid">
+        
+        <ProjectCard 
+          title="CELLTEST POSİTİVE"
+          description="1v1 çevrimiçi asimetrik strateji kart oyunu. Oyuncuların can havuzunu kaynak olarak kullandığı, Host (Kanser) ve Client (Antikor) mimarisi üzerine kurulu sistem."
+          tags={["Unity", "Networking", "Asymmetric", "Card Game"]}
+          link="/projects/celltest-positive" 
+        />
+
+        <ProjectCard 
+          title="Eternal Debt: Grave Shift"
+          description="Vivox destekli sesli iletişim barındıran, takım çalışması odaklı Co-op hayatta kalma oyunu. Kazıcı, Büyücü ve Taşıyıcı rolleri için özel yetenek mekanikleri."
+          tags={["C#", "Co-op", "Vivox", "Multiplayer"]}
+          link="/projects/eternal-debt"
+        />
+
+        <ProjectCard 
+          title="Story About Fall"
+          description="Roguelike zindan ilerlemesi ve klasik JRPG savaş mekaniklerini birleştiren sıra tabanlı RPG. Yoldaş evrim sistemleri ve Hub kaynak yönetimi (farming) içerir."
+          tags={["Turn-Based", "RPG", "State Machine"]}
+          link="/projects/story-about-fall"
+        />
+
+        <ProjectCard 
+          title="Craps With The Devil"
+          description="Zarların atış şiddetine ve açısına dayalı fizik tabanlı atmosferik oyun. Karanlık büyü mekanikleri ile dinamik risk/ödül döngüsü kurgulandı."
+          tags={["Physics", "Game Juice", "Atmospheric"]}
+          link="/projects/craps-with-the-devil"
+        />
+
+      </div>
+    </div>
+
+	
+
+    <!-- GSAP ANİMASYONLARI -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Hero bölümü elemanları sırayla gelir
+        gsap.to(".anim-hero", { opacity: 1, y: -20, duration: 0.8, stagger: 0.2, ease: "power3.out" });
+        // Yenilikler kartı biraz gecikmeli gelir
+        gsap.to(".anim-update", { opacity: 1, x: 20, duration: 1, delay: 0.8, ease: "power3.out" });
+      });
+    </script>
+  </body>
 </html>
