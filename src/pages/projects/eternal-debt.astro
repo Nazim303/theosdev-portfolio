@@ -1,0 +1,162 @@
+---
+const pageTitle = "Eternal Debt: Grave Shift | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body {
+        background-color: #0f1115;
+        color: #e2e8f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+      
+      /* Geri Dön Butonu */
+      .back-btn {
+        display: inline-block;
+        color: #00e676;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 40px;
+        transition: transform 0.2s;
+      }
+      .back-btn:hover { transform: translateX(-5px); }
+
+      /* Başlık Alanı */
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+
+      /* İçerik Düzeni (Sol: Detaylar, Sağ: Teknik Künye) */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        opacity: 0;
+      }
+      
+      @media (max-width: 768px) {
+        .content-grid { grid-template-columns: 1fr; }
+      }
+
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      
+      /* Sağ Sidebar (Teknik Künye) */
+      .tech-sidebar {
+        background: rgba(255,255,255,0.03);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+        height: fit-content;
+      }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+
+      /* Devlog Alanı */
+      .devlog-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
+      .devlog-card {
+        background: rgba(0,230,118,0.05);
+        border-left: 4px solid #00e676;
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+
+      <div class="project-header anim-element">
+        <h1>Eternal Debt: Grave Shift</h1>
+        <p class="subtitle">Takım Odaklı Co-op Hayatta Kalma ve İşbirliği Oyunu</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <!-- SOL ALAN: Oyun Tasarımı ve Detaylar -->
+        <div class="main-content">
+          <h2>Core Gameplay (Temel Oynanış)</h2>
+          <p>Gecenin zifiri karanlığında, lanetli bir mezarlıkta geçen co-op hayatta kalma deneyimi. Takımın temel amacı mezarları kazıp değerli ganimetleri çıkarmak, arabaya yüklemek ve hedef paraya ulaşıp kaçmaktır. Ancak çıkarılan her ses ve yakılan her fener, mezarlık bekçilerini daha da öfkelendirir.</p>
+
+          <h2>Roller ve Asimetrik Yetenekler</h2>
+          <p>Oyuncular oyuna sivil başlar ancak yerdeki eşyalarla takım çalışmasını zorunlu kılan 3 farklı rolden birini üstlenirler:</p>
+          <ul>
+            <li><strong>Kazıcı:</strong> Radarı ile değerli mezarları hisseder (küreği titrer) ve ganimetleri çıkarır. Stamina (enerji) yönetimi kritiktir.</li>
+            <li><strong>Büyücü:</strong> Takımın korumasıdır. Seri ateş topları, alan hasarı (Aura) ve yıkıcı ağır ateş topları ile canavarları uzak tutar.</li>
+            <li><strong>Taşıyıcı:</strong> Takımın kasasıdır. Ganimetleri topladıkça hareket hızı yavaşlar, acil durumlarda kısa süreliğine görünmez olabilir.</li>
+          </ul>
+
+          <h2>Lobi ve İletişim Altyapısı</h2>
+          <p>Oyun, oyuncuların 6 haneli oda kodunu kopyalayıp arkadaşlarına göndermesiyle (Host-Client) çalışan pürüzsüz bir lobi sistemine sahiptir. Takım içi koordinasyonu sağlamak ve gerilimi artırmak için entegre edilen sesli iletişim (Voice Chat) sistemi, oyunculara anlık strateji kurma imkanı tanır.</p>
+
+          <!-- DEVLOG BÖLÜMÜ -->
+          <div class="devlog-section">
+            <h2>Geliştirici Günlükleri (Devlogs)</h2>
+            
+            <div class="devlog-card">
+              <h3>Devlog #2: Vivox ile Co-op Oyunlarda Sesli İletişim (Voice Chat) Kurulumu</h3>
+              <p>M tuşu ile kontrol edilebilen, oyuncuların mikrofon verilerini anlık senkronize eden Vivox altyapısının Unity projesine nasıl entegre edildiğini anlattığım teknik günlük.</p>
+              <a href="#" style="color:#00e676; text-decoration:none; font-weight:bold;">Yakında Eklenecek...</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SAĞ ALAN: Teknik Künye -->
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          
+          <div class="tech-item">
+            <h4>Geliştirici Rolü</h4>
+            <p>Game Programmer</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Oyun Motoru</h4>
+            <p>Unity3D (C#)</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Network & İletişim</h4>
+            <p>Multiplayer Sync, Vivox Voice Chat</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Öne Çıkan Sistemler</h4>
+            <p>Oda Kodu Sistemi, Rol Tabanlı State Yönetimi, Radar Entegrasyonu</p>
+          </div>
+          
+          <div class="tech-item">
+            <h4>Proje Durumu</h4>
+            <p>Tamamlandı (Sakura Game Jam)</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GSAP ANİMASYONLARI -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

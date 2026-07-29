@@ -1,0 +1,68 @@
+---
+const pageTitle = "Story About Fall | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+
+      <div class="project-header anim-element">
+        <h1>Story About Fall</h1>
+        <p class="subtitle">Taktiksel Sıra Tabanlı RPG & Roguelite Zindan Deneyimi</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Taktiksel JRPG Savaş Sistemi</h2>
+          <p>Nostaljik retro geçişlerle desteklenen, derinlemesine taktiksel ve sıra tabanlı bir savaş sistemi. Oyuncuların HP/Mana yönetimini dengelemesi ve düşman zayıflıklarını kullanarak ölümcül yetenekleri serbest bırakması gereken bir State Machine (Durum Makinesi) mimarisi kurgulandı.</p>
+
+          <h2>Roguelike Zindan İlerlemesi</h2>
+          <p>Procedural (rastgele) olarak oluşturulan zindanlar, her seferinde farklı bir deneyim sunar. Gizli portallar, tehlikeli atlama kapakları ve acımasız çevre koşulları, oyuncunun kaynaklarını dikkatli kullanmasını gerektirir.</p>
+
+          <h2>Yoldaş (Companion) ve Hub Sistemi</h2>
+          <p>Zindanda ilerledikçe farklı yaratıklar partiye dahil edilir ve savaşlarda hayatta kaldıkça evrimleşerek yeni statlara kavuşurlar. Zindan koşuları arasında dönülen Merkez (Hub) bölgesinde ise tarım (farming) mekanikleri ile kaynak toplanıp parti iyileştirilir.</p>
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          <div class="tech-item"><h4>Geliştirici Rolü</h4><p>Game Programmer</p></div>
+          <div class="tech-item"><h4>Oyun Motoru</h4><p>Unity3D (C#)</p></div>
+          <div class="tech-item"><h4>Öne Çıkan Sistemler</h4><p>Sıra Tabanlı Savaş Motoru, Prosedürel Üretim, Evrim ve Farming Mimarisi</p></div>
+          <div class="tech-item"><h4>Proje Durumu</h4><p>Tamamlandı (Loot Jam 2026)</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

@@ -1,9 +1,9 @@
 ---
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 const pageTitle = "TheosDev | Game Programmer";
 ---
 
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -19,7 +19,7 @@ const pageTitle = "TheosDev | Game Programmer";
         overflow-x: hidden;
       }
       
-      /* Dil Şalteri */
+      /* Language Switcher */
       .lang-switch { position: absolute; top: 24px; right: 24px; display: flex; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; padding: 4px; z-index: 100; opacity: 0; }
       .lang-btn { padding: 6px 16px; border-radius: 20px; text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: bold; transition: all 0.3s ease; }
       .lang-btn.active { background: #00e676; color: #0f1115; }
@@ -37,11 +37,11 @@ const pageTitle = "TheosDev | Game Programmer";
       .section-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
       .section-title { font-size: 2rem; margin-bottom: 30px; color: #f8fafc; border-bottom: 2px solid rgba(0, 230, 118, 0.3); padding-bottom: 10px; display: inline-block; }
 
-      /* Hakkımda Bölümü */
+      /* About Me */
       .about-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; margin-bottom: 60px; line-height: 1.8; font-size: 1.1rem; opacity: 0;}
       .about-section span { color: #00e676; font-weight: bold; }
 
-      /* Yenilikler */
+      /* Latest Updates */
       .update-card { background: linear-gradient(145deg, rgba(0, 230, 118, 0.1), rgba(15, 17, 21, 0.9)); border: 1px solid #00e676; border-radius: 12px; padding: 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; opacity: 0; }
       .update-tag { background: #00e676; color: #0f1115; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 15px;}
       .update-text { color: #f8fafc; font-size: 1.1rem; }
@@ -49,7 +49,7 @@ const pageTitle = "TheosDev | Game Programmer";
       
       .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
       
-      /* Tümünü Gör Butonu */
+      /* View All Button */
       .view-all-container { text-align: center; margin-top: 40px; margin-bottom: 60px; opacity: 0; }
       .view-all-btn { display: inline-block; padding: 12px 28px; background: transparent; color: #00e676; border: 1px solid #00e676; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s; }
       .view-all-btn:hover { background: #00e676; color: #0f1115; }
@@ -58,8 +58,8 @@ const pageTitle = "TheosDev | Game Programmer";
   <body>
 
     <div class="lang-switch anim-hero">
-      <a href="/" class="lang-btn active">TR</a>
-      <a href="/en" class="lang-btn">EN</a>
+      <a href="/" class="lang-btn">TR</a>
+      <a href="/en" class="lang-btn active">EN</a>
     </div>
 
     <section class="hero-section">
@@ -70,69 +70,69 @@ const pageTitle = "TheosDev | Game Programmer";
         <a href="#" class="link-btn">GitHub</a>
         <a href="#" class="link-btn">Itch.io</a>
         <a href="#" class="link-btn">LinkedIn</a>
-        <a href="#" class="link-btn">CV</a>
+        <a href="#" class="link-btn">Resume (CV)</a>
       </div>
     </section>
 
     <div class="section-container">
       
-      <!-- HAKKIMDA BÖLÜMÜ -->
+      <!-- ABOUT ME SECTION -->
       <div class="about-section anim-update">
-        <h2 class="section-title">Hakkımda</h2>
-        <p>Merhaba, ben <span>Nazım Beyaz</span>. Dört yıllık üniversite eğitimimin ilk iki yılını geride bırakmış, oyun geliştirme süreçlerinde sağlam kod mimarileri kurmaya ve hızlı prototipleme yapmaya odaklanan bir Oyun Programcısıyım (Gameplay & Systems Programmer).</p>
-        <p>Bir fikri kağıt üzerinden alıp, oynanabilir ve ölçeklenebilir bir sisteme dönüştürmek en büyük tutkum. C# ve Unity motorundaki tecrübemle; çok oyunculu (multiplayer) altyapılar, asimetrik network sistemleri, state machine mimarileri ve özel editör araçları geliştiriyorum. Önümdeki iki yıl boyunca, bu temelin üzerine inşa ederek sektörde fark yaratan mühendislik çözümleri üretmeyi hedefliyorum.</p>
+        <h2 class="section-title">About Me</h2>
+        <p>Hello, I am <span>Nazım Beyaz</span>. Having completed the first two years of my four-year university degree, I am a Gameplay & Systems Programmer focused on building robust code architectures and rapid prototyping in game development processes.</p>
+        <p>Taking an idea from paper and transforming it into a playable, scalable system is my biggest passion. With my experience in C# and the Unity engine, I develop multiplayer infrastructures, asymmetric network systems, state machine architectures, and custom editor tools. Over the next two years, I aim to build upon this foundation and produce engineering solutions that make a difference in the industry.</p>
       </div>
 
-      <!-- YENİLİKLER BÖLÜMÜ -->
-      <h2 class="section-title">Son Gelişmeler</h2>
+      <!-- LATEST UPDATES SECTION -->
+      <h2 class="section-title">Latest Updates</h2>
       <div class="update-card anim-update">
         <div>
-          <span class="update-tag">YENİ YAZI</span>
-          <span class="update-text">Devlog: CELLTEST POSİTİVE için Asimetrik Ağ Mimarisi Kurulumu</span>
+          <span class="update-tag">NEW POST</span>
+          <span class="update-text">Devlog: Asymmetric Network Architecture for CELLTEST POSITIVE</span>
         </div>
-        <a href="/blog/network-mimarisi" class="update-link">Oku ➜</a>
+        <a href="/en/blog/network-architecture" class="update-link">Read ➜</a>
       </div>
       
       <div class="view-all-container anim-update">
-        <a href="/blog" class="view-all-btn">Tüm Devlog ve Yazıları Gör</a>
+        <a href="/en/blog" class="view-all-btn">View All Devlogs & Articles</a>
       </div>
 
-      <!-- ANA PROJELER VİTRİNİ -->
-      <h2 class="section-title">Önemli Projeler</h2>
+      <!-- FEATURED PROJECTS SHOWCASE -->
+      <h2 class="section-title">Featured Projects</h2>
       <div class="project-grid">
         
         <ProjectCard 
-          title="CELLTEST POSİTİVE"
-          description="1v1 çevrimiçi asimetrik strateji kart oyunu. Oyuncuların can havuzunu kaynak olarak kullandığı, Host (Kanser) ve Client (Antikor) mimarisi üzerine kurulu sistem."
+          title="CELLTEST POSITIVE"
+          description="1v1 online asymmetric strategy card game. Built on Host (Cancer) and Client (Antibody) architecture where players use their health pool as a resource."
           tags={["Unity", "Networking", "Asymmetric"]}
-          link="/projects/celltest-positive" 
+          link="/en/projects/celltest-positive" 
         />
 
         <ProjectCard 
           title="Eternal Debt: Grave Shift"
-          description="Vivox destekli sesli iletişim barındıran, takım çalışması odaklı Co-op hayatta kalma oyunu. Kazıcı, Büyücü ve Taşıyıcı rolleri için özel yetenek mekanikleri."
+          description="Team-oriented Co-op survival game featuring Vivox voice chat integration. Includes custom abilities for Digger, Mage, and Carrier roles."
           tags={["C#", "Co-op", "Vivox", "Multiplayer"]}
-          link="/projects/eternal-debt"
+          link="/en/projects/eternal-debt"
         />
 
         <ProjectCard 
           title="Story About Fall"
-          description="Roguelike zindan ilerlemesi ve klasik JRPG savaş mekaniklerini birleştiren sıra tabanlı RPG. Yoldaş evrim sistemleri ve Hub kaynak yönetimi (farming) içerir."
+          description="Turn-based RPG combining roguelike dungeon progression with classic JRPG combat mechanics. Features companion evolution and Hub resource management."
           tags={["Turn-Based", "RPG", "State Machine"]}
-          link="/projects/story-about-fall"
+          link="/en/projects/story-about-fall"
         />
 
         <ProjectCard 
           title="Craps With The Devil"
-          description="Zarların atış şiddetine ve açısına dayalı fizik tabanlı atmosferik oyun. Karanlık büyü mekanikleri ile dinamik risk/ödül döngüsü kurgulandı."
+          description="Physics-based atmospheric gambling game depending on the force and angle of the dice. Features a dynamic risk/reward loop with dark magic mechanics."
           tags={["Physics", "Game Juice", "Atmospheric"]}
-          link="/projects/craps-with-the-devil"
+          link="/en/projects/craps-with-the-devil"
         />
 
       </div>
 
       <div class="view-all-container anim-update">
-        <a href="/projects" class="view-all-btn">Tüm Projelerimi (Arşiv) Gör</a>
+        <a href="/en/projects" class="view-all-btn">View All Projects (Archive)</a>
       </div>
 
     </div>

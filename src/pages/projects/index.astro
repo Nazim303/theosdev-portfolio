@@ -1,0 +1,271 @@
+---
+const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      
+      h1 { font-size: 3rem; color: #f8fafc; margin-bottom: 40px; }
+
+      /* Filtreleme Paneli */
+      .filter-panel {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .filter-group {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-width: 150px;
+      }
+      .filter-group label {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .filter-group select {
+        background: rgba(15, 17, 21, 0.8);
+        color: #e2e8f0;
+        border: 1px solid rgba(0, 230, 118, 0.3);
+        padding: 10px;
+        border-radius: 6px;
+        outline: none;
+        cursor: pointer;
+      }
+      .filter-group select:focus { border-color: #00e676; }
+
+      /* Proje Grid ve Kartlar */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+      }
+      
+      .project-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: #00e676;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      
+      .project-card h3 { margin: 0 0 10px 0; color: #f8fafc; font-size: 1.4rem; }
+      .project-card p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+      
+      .meta-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+      .meta-tag { 
+        font-size: 0.75rem; 
+        padding: 4px 8px; 
+        border-radius: 4px; 
+        font-weight: bold; 
+        background: rgba(255,255,255,0.1); 
+      }
+      /* Etikete Özel Renkler */
+      .tag-lang { color: #38bdf8; }
+      .tag-type { color: #fbbf24; }
+      .tag-status { color: #10b981; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+      
+      <h1 class="anim-header">Tüm Projeler ve Arşiv</h1>
+
+      <!-- FİLTRELEME PANELİ -->
+      <div class="filter-panel anim-header">
+        
+        <div class="filter-group">
+          <label>TÜR</label>
+          <select id="filter-type">
+            <option value="all">Tümü</option>
+            <option value="game">Oyun (Game)</option>
+            <option value="toolkit">Araç (Toolkit/Utility)</option>
+            <option value="system">Sistem / Mekanik</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>DİL & MOTOR</label>
+          <select id="filter-lang">
+            <option value="all">Tümü</option>
+            <option value="csharp">C# (Unity)</option>
+            <option value="lua">Luau (Roblox)</option>
+            <option value="other">Diğer</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>EKİP</label>
+          <select id="filter-team">
+            <option value="all">Tümü</option>
+            <option value="solo">Solo Geliştirici</option>
+            <option value="team">Ekip (Co-op/Team)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>DURUM</label>
+          <select id="filter-status">
+            <option value="all">Tümü</option>
+            <option value="finished">Tamamlandı</option>
+            <option value="wip">Geliştirme Aşamasında (WIP)</option>
+            <option value="prototype">Prototip / Arşiv</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>PLATFORM</label>
+          <select id="filter-platform">
+            <option value="all">Tümü</option>
+            <option value="pc">PC (Windows)</option>
+            <option value="web">Web (HTML5)</option>
+            <option value="multi">Cross-Platform</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- PROJELER LİSTESİ -->
+      <div class="project-grid" id="project-container">
+        
+        <!-- Kart 1: CELLTEST POSİTİVE -->
+        <a href="/projects/celltest-positive" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+          <h3>CELLTEST POSİTİVE</h3>
+          <p>1v1 asimetrik strateji kart oyunu. Oyuncuların can havuzunu kaynak olarak kullandığı, Netcode altyapısına sahip ağ mimarisi.</p>
+          <div class="meta-tags">
+            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-lang">C#</span>
+            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag">Ekip</span>
+            <span class="meta-tag">PC</span>
+          </div>
+        </a>
+
+        <!-- Kart 2: Özel Unity Araç Paketi (Toolkit) -->
+        <a href="#" class="project-card" data-type="toolkit" data-lang="csharp" data-team="solo" data-status="finished" data-platform="multi">
+          <h3>Custom Unity Utility Package</h3>
+          <p>Gelecekteki projeleri hızlandırmak için geliştirilmiş; Node-Based Event Editor ve Build Wizard barındıran modüler araç seti.</p>
+          <div class="meta-tags">
+            <span class="meta-tag tag-type">Araç (Toolkit)</span>
+            <span class="meta-tag tag-lang">C#</span>
+            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag">Solo</span>
+          </div>
+        </a>
+
+        <!-- Kart 3: Roblox Survival Prototype -->
+        <a href="#" class="project-card" data-type="system" data-lang="lua" data-team="solo" data-status="prototype" data-platform="multi">
+          <h3>Multiplayer Survival Mechanics</h3>
+          <p>Roblox Studio ve Luau script kullanılarak geliştirilmiş, sürüş ve hayatta kalma (survival) öğelerini birleştiren sistem prototipi.</p>
+          <div class="meta-tags">
+            <span class="meta-tag tag-type">Sistem</span>
+            <span class="meta-tag tag-lang">Luau</span>
+            <span class="meta-tag tag-status">Prototip</span>
+            <span class="meta-tag">Solo</span>
+          </div>
+        </a>
+
+        <!-- Kart 4: Story About Fall -->
+        <a href="/projects/story-about-fall" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+          <h3>Story About Fall</h3>
+          <p>Roguelike zindan ilerlemesi ve klasik JRPG savaş mekaniklerini birleştiren sıra tabanlı RPG. Yoldaş evrim sistemleri içerir.</p>
+          <div class="meta-tags">
+            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-lang">C#</span>
+            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag">Ekip</span>
+          </div>
+        </a>
+
+        <!-- Kart 5: Nightwalker -->
+        <a href="#" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="wip" data-platform="pc">
+          <h3>Nightwalker (WIP)</h3>
+          <p>Özel oyuncu hareket kontrolcüsü (movement controller) ile desteklenen birinci şahıs (FPS) yürüme simülatörü atmosfer projesi.</p>
+          <div class="meta-tags">
+            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-lang">C#</span>
+            <span class="meta-tag tag-status">WIP</span>
+            <span class="meta-tag">Solo</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Filtreleme Javascript Kodları -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Sayfa açılış animasyonları
+        gsap.to(".anim-header", { opacity: 1, y: -20, duration: 0.8, stagger: 0.2, ease: "power3.out" });
+        gsap.fromTo(".project-card", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, delay: 0.5, ease: "back.out(1.5)" });
+
+        // Filtreleme Mantığı
+        const selects = document.querySelectorAll('.filter-panel select');
+        const cards = document.querySelectorAll('.project-card');
+
+        selects.forEach(select => {
+          select.addEventListener('change', () => {
+            
+            // Tüm select değerlerini al
+            const filterType = document.getElementById('filter-type').value;
+            const filterLang = document.getElementById('filter-lang').value;
+            const filterTeam = document.getElementById('filter-team').value;
+            const filterStatus = document.getElementById('filter-status').value;
+            const filterPlatform = document.getElementById('filter-platform').value;
+
+            // Her kartı kontrol et
+            cards.forEach(card => {
+              const type = card.getAttribute('data-type');
+              const lang = card.getAttribute('data-lang');
+              const team = card.getAttribute('data-team');
+              const status = card.getAttribute('data-status');
+              const platform = card.getAttribute('data-platform');
+
+              // Eşleşme durumu
+              const matchType = (filterType === 'all' || filterType === type);
+              const matchLang = (filterLang === 'all' || filterLang === lang);
+              const matchTeam = (filterTeam === 'all' || filterTeam === team);
+              const matchStatus = (filterStatus === 'all' || filterStatus === status);
+              const matchPlatform = (filterPlatform === 'all' || filterPlatform === platform);
+
+              if (matchType && matchLang && matchTeam && matchStatus && matchPlatform) {
+                card.style.display = "flex";
+                // Yumuşak geçiş için küçük bir animasyon
+                gsap.fromTo(card, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.3 });
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+---
+const pageTitle = "Craps With The Devil | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+
+      <div class="project-header anim-element">
+        <h1>Craps With The Devil</h1>
+        <p class="subtitle">Fizik Tabanlı ve Atmosferik Kumar Deneyimi</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Karanlık Masadaki Kumar</h2>
+          <p>Karanlıkta, kaybetmeye hiç niyeti olmayan bir rakiple aynı masadasınız[cite: 11]. Oyunun kuralları basit ama bedeli ağırdır: Çekilen karttaki hedef sayıyı zarlarla tutturmaya çalışırsınız[cite: 11]. Kazanılan her tur size bir altın kazandırır; amacınız 7 altın toplayıp özgürlüğünüzü satın almak veya deste bitene kadar hayatta kalmaktır[cite: 11].</p>
+
+          <h2>Fizik Tabanlı Zar Mekanikleri (Tactile Physics)</h2>
+          <p>Bu sadece bir olasılık oyunu değil, tamamen fizik simülasyonudur[cite: 11]. Zarların ağırlığı, çarpışmaları ve masaya verdikleri tepki tamamen sizin kontrolünüzdedir[cite: 11].</p>
+          <ul>
+            <li><strong>Atış Şiddeti:</strong> Boşluk tuşuna basılı tutma süreniz (Spacebar), zarların atış şiddetini belirler[cite: 11]. Çok zayıf bir atış korkuyu temsil ederken, dikkatsiz ve sert bir atış zarların masadan düşmesine (boşluğa gitmesine) neden olabilir[cite: 11].</li>
+            <li><strong>Kamera Kontrolleri:</strong> <code>C</code> tuşuna basılı tutarak masaya doğru eğilip (Zoom) zarları yakından inceleyebilir, <code>Shift</code> tuşu ile kamera geçiş animasyonlarını hızlandırabilirsiniz[cite: 11].</li>
+          </ul>
+
+          <h2>Karanlık Büyü ve Risk Yönetimi</h2>
+          <p>Şansınız yaver gitmediğinde, 1 altın feda ederek (CTRL + Boşluk) zarları karanlık büyü ile manipüle edip sonucu garantileyebilirsiniz[cite: 11]. Ancak hile yapmak büyük bir risk barındırır. Çok fazla kazanmak veya hileye başvurmak dinamik rakibinizin sabrını taşırır; sabrı tükendiğinde Kader Çarkı (Wheel of Fate) döner ve genellikle sizin aleyhinize sonuçlar doğurur[cite: 11].</p>
+
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          <div class="tech-item"><h4>Geliştirici Rolü</h4><p>Game Programmer</p></div>
+          <div class="tech-item"><h4>Oyun Motoru</h4><p>Unity3D (C#)</p></div>
+          <div class="tech-item"><h4>Öne Çıkan Sistemler</h4><p>Tam Fizik Simülasyonu, Dinamik Rakip Yapay Zekası, Risk/Ödül Döngüsü[cite: 11]</p></div>
+          <div class="tech-item"><h4>Atmosfer</h4><p>Klostrofobik Görsel Stil ve Ürpertici Ses Tasarımı[cite: 11]</p></div>
+          <div class="tech-item"><h4>Proje Durumu</h4><p>Tamamlandı (The Very Serious Juniper Dev Game Jam)[cite: 11]</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

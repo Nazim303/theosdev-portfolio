@@ -1,0 +1,102 @@
+---
+// Astro 5.x ve Vite için en güncel ve güvenli dosya çekme yöntemi
+const allPosts = Object.values(import.meta.glob('./*.md', { eager: true }));
+allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+
+const pageTitle = "Devlog & Yazılar | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; }
+      .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 30px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      
+      h1 { font-size: 3rem; color: #f8fafc; margin-bottom: 40px; }
+
+      /* Blog Kartları Listesi */
+      .blog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .blog-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-left: 4px solid #00e676;
+        border-radius: 8px;
+        padding: 24px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s;
+      }
+      
+      @media (max-width: 768px) {
+        .blog-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+      }
+
+      .blog-card:hover {
+        transform: translateX(10px);
+        background: rgba(0, 230, 118, 0.05);
+        border-color: rgba(0, 230, 118, 0.3);
+      }
+
+      .blog-info h2 { margin: 0 0 10px 0; color: #f8fafc; font-size: 1.5rem; }
+      .blog-meta { color: #94a3b8; font-size: 0.9rem; }
+      .blog-meta span { color: #00e676; font-weight: bold; }
+      
+      .read-more {
+        background: rgba(0, 230, 118, 0.1);
+        color: #00e676;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+      
+      <h1 class="anim-header">Geliştirici Günlükleri (Devlogs)</h1>
+
+      <div class="blog-list">
+        <!-- Otomatik Markdown Çekme Döngüsü -->
+        {allPosts.map((post) => (
+          <a href={post.url} class="blog-card anim-card">
+            <div class="blog-info">
+              <h2>{post.frontmatter.title}</h2>
+              <div class="blog-meta">
+                Tarih: <span>{post.frontmatter.date}</span> | Yazar: {post.frontmatter.author}
+              </div>
+            </div>
+            <div class="read-more">Yazıyı Oku ➜</div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-header", { opacity: 1, y: -20, duration: 0.8, ease: "power3.out" });
+        gsap.fromTo(".anim-card", 
+          { opacity: 0, x: -20 }, 
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.15, delay: 0.3, ease: "power3.out" }
+        );
+      });
+    </script>
+  </body>
+</html>
