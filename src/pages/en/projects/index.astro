@@ -1,8 +1,8 @@
 ---
-const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
+const pageTitle = "All Projects & Archive | TheosDev";
 ---
 
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -16,7 +16,7 @@ const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
       
       h1 { font-size: 3rem; color: #f8fafc; margin-bottom: 40px; }
 
-      /* Filtreleme Paneli */
+      /* Filter Panel */
       .filter-panel {
         background: rgba(255,255,255,0.02);
         border: 1px solid rgba(255,255,255,0.1);
@@ -50,7 +50,7 @@ const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
       }
       .filter-group select:focus { border-color: #00e676; }
 
-      /* Proje Grid ve Kartlar */
+      /* Project Grid & Cards */
       .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -93,209 +93,209 @@ const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
   <body>
 
     <div class="container">
-      <a href="/" class="back-btn">← Ana Sayfaya Dön</a>
+      <a href="/en" class="back-btn">← Back to Home</a>
       
-      <h1 class="anim-header">Tüm Projeler ve Arşiv</h1>
+      <h1 class="anim-header">Projects & Archive</h1>
 
-      <!-- FİLTRELEME PANELİ -->
+      <!-- FILTER PANEL -->
       <div class="filter-panel anim-header">
         
         <div class="filter-group">
-          <label>TÜR</label>
+          <label>TYPE</label>
           <select id="filter-type">
-            <option value="all">Tümü</option>
-            <option value="game">Oyun (Game)</option>
-            <option value="toolkit">Araç (Toolkit/Utility)</option>
-            <option value="app">Uygulama (App)</option>
-            <option value="system">Sistem / Evren</option>
+            <option value="all">All</option>
+            <option value="game">Game</option>
+            <option value="toolkit">Toolkit / Utility</option>
+            <option value="app">App</option>
+            <option value="system">System / Universe</option>
           </select>
         </div>
 
         <div class="filter-group">
-          <label>DİL & MOTOR</label>
+          <label>LANGUAGE & ENGINE</label>
           <select id="filter-lang">
-            <option value="all">Tümü</option>
+            <option value="all">All</option>
             <option value="csharp">C# (Unity)</option>
             <option value="dart">Dart (Flutter)</option>
             <option value="lua">Luau (Roblox)</option>
-            <option value="other">Diğer</option>
+            <option value="other">Other</option>
           </select>
         </div>
 
         <div class="filter-group">
-          <label>EKİP</label>
+          <label>TEAM</label>
           <select id="filter-team">
-            <option value="all">Tümü</option>
-            <option value="solo">Solo Geliştirici</option>
-            <option value="team">Ekip (Co-op/Team)</option>
+            <option value="all">All</option>
+            <option value="solo">Solo Developer</option>
+            <option value="team">Team / Co-op</option>
           </select>
         </div>
 
         <div class="filter-group">
-          <label>DURUM</label>
+          <label>STATUS</label>
           <select id="filter-status">
-            <option value="all">Tümü</option>
-            <option value="finished">Tamamlandı</option>
-            <option value="wip">Geliştirme Aşamasında (WIP)</option>
-            <option value="prototype">Prototip / Arşiv</option>
+            <option value="all">All</option>
+            <option value="finished">Completed</option>
+            <option value="wip">Work In Progress (WIP)</option>
+            <option value="prototype">Prototype / Archive</option>
           </select>
         </div>
 
         <div class="filter-group">
           <label>PLATFORM</label>
           <select id="filter-platform">
-            <option value="all">Tümü</option>
+            <option value="all">All</option>
             <option value="pc">PC (Windows)</option>
             <option value="web">Web (HTML5)</option>
-            <option value="mobile">Mobil</option>
+            <option value="mobile">Mobile</option>
             <option value="multi">Cross-Platform</option>
           </select>
         </div>
 
       </div>
 
-      <!-- PROJELER LİSTESİ -->
+      <!-- PROJECTS LIST -->
       <div class="project-grid" id="project-container">
 
-        <!-- 1. İŞ TAKİP -->
-        <a href="/projects/is-takip" class="project-card" data-type="app" data-lang="dart" data-team="solo" data-status="wip" data-platform="mobile">
-          <h3>İş Takip</h3>
-          <p>İnşaat ustaları ve küçük işletmeler için SQLite veritabanı altyapısıyla geliştirilmiş yerel gelir-gider, şantiye ve yevmiye takip mobil uygulaması.</p>
+        <!-- 1. WORK TRACKER (İŞ TAKİP) -->
+        <a href="/en/projects/is-takip" class="project-card" data-type="app" data-lang="dart" data-team="solo" data-status="wip" data-platform="mobile">
+          <h3>Work Tracker (İş Takip)</h3>
+          <p>Offline Android financial management mobile app built with Flutter & SQLite for construction contractors and teams.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Uygulama</span>
+            <span class="meta-tag tag-type">App</span>
             <span class="meta-tag tag-lang">Dart / Flutter</span>
             <span class="meta-tag tag-status">WIP</span>
-            <span class="meta-tag">Mobil</span>
+            <span class="meta-tag">Mobile</span>
           </div>
         </a>
 
-        <!-- 2. CELLTEST POSİTİVE -->
-        <a href="/projects/celltest-positive" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
-          <h3>CELLTEST POSİTİVE</h3>
-          <p>1v1 çevrimiçi asimetrik strateji kart oyunu. Oyuncuların can havuzunu kaynak olarak kullandığı, Host ve Client mimarisi üzerine kurulu sistem.</p>
+        <!-- 2. CELLTEST POSITIVE -->
+        <a href="/en/projects/celltest-positive" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+          <h3>CELLTEST POSITIVE</h3>
+          <p>1v1 online asymmetric strategy card game built on Host (Cancer) and Client (Antibody) Netcode architecture.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
-            <span class="meta-tag">Ekip</span>
+            <span class="meta-tag tag-status">Completed</span>
+            <span class="meta-tag">Team</span>
             <span class="meta-tag">PC</span>
           </div>
         </a>
 
         <!-- 3. ETERNAL DEBT -->
-        <a href="/projects/eternal-debt" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+        <a href="/en/projects/eternal-debt" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
           <h3>Eternal Debt: Grave Shift</h3>
-          <p>Vivox destekli sesli iletişim barındıran, takım çalışması odaklı Co-op hayatta kalma oyunu. Kazıcı, Büyücü ve Taşıyıcı rolleri için özel yetenek mekanikleri.</p>
+          <p>Team-oriented Co-op survival game featuring Vivox voice chat integration and custom roles (Digger, Mage, Carrier).</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Co-op</span>
           </div>
         </a>
 
         <!-- 4. STORY ABOUT FALL -->
-        <a href="/projects/story-about-fall" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+        <a href="/en/projects/story-about-fall" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
           <h3>Story About Fall</h3>
-          <p>Roguelike zindan ilerlemesi ve klasik JRPG savaş mekaniklerini birleştiren sıra tabanlı RPG. Yoldaş evrim sistemleri ve Hub kaynak yönetimi içerir.</p>
+          <p>Turn-based RPG combining roguelike dungeon progression with JRPG combat mechanics, companion evolution, and Hub farming.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
-            <span class="meta-tag">Ekip</span>
+            <span class="meta-tag tag-status">Completed</span>
+            <span class="meta-tag">Team</span>
           </div>
         </a>
 
         <!-- 5. CRAPS WITH THE DEVIL -->
-        <a href="/projects/craps-with-the-devil" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="pc">
+        <a href="/en/projects/craps-with-the-devil" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="pc">
           <h3>Craps With The Devil</h3>
-          <p>Zarların atış şiddetine ve açısına dayalı fizik tabanlı atmosferik oyun. Karanlık büyü mekanikleri ile dinamik risk/ödül döngüsü kurgulandı.</p>
+          <p>Physics-based atmospheric gambling game depending on the force and angle of the dice with dark magic risk/reward loops.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Solo</span>
           </div>
         </a>
 
         <!-- 6. THE COUNTY IS DOWN -->
-        <a href="/projects/the-county-is-down" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="web">
+        <a href="/en/projects/the-county-is-down" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="web">
           <h3>The County is Down</h3>
-          <p>GMTK Game Jam 2026 için geliştirilen; terminal komutları ve serbest kelime girdileriyle bir krallığın kaderini yönettiğiniz metin tabanlı siyasi strateji oyunu.</p>
+          <p>Text-based political strategy game submitted to GMTK Jam 2026 featuring free-text intent parsing and terminal commands.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Web / PC</span>
           </div>
         </a>
 
         <!-- 7. THE DOOD'S UNIVERSE -->
-        <a href="/projects/the-doods-universe" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="web">
+        <a href="/en/projects/the-doods-universe" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="finished" data-platform="web">
           <h3>The Dood's Universe</h3>
-          <p>Çizim araçlarıyla zeminleri, binaları ve vatandaşları (Dood) doğrudan elle çizerek inşa ettiğiniz cozy şehir yönetimi ve sosyal simülasyon oyunu.</p>
+          <p>Cozy town management and social simulation game where you literally draw your buildings, terrain, and citizens.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Web / PC</span>
           </div>
         </a>
 
         <!-- 8. SKETCH 'EM UP -->
-        <a href="/projects/sketch-em-up" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
+        <a href="/en/projects/sketch-em-up" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="pc">
           <h3>SKETCH 'EM UP</h3>
-          <p>Defter kenarı çizim estetiğine sahip, solo veya 2 kişilik lokal co-op destekli arcade beat 'em up oyunu.</p>
+          <p>Arcade beat 'em up featuring a hand-drawn boiling line notebook aesthetic with single-player and 2-player local co-op.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Co-op</span>
           </div>
         </a>
 
         <!-- 9. NETRUNNERS VS CORPOS -->
-        <a href="/projects/netrunners-vs-corpos" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="web">
+        <a href="/en/projects/netrunners-vs-corpos" class="project-card" data-type="game" data-lang="csharp" data-team="team" data-status="finished" data-platform="web">
           <h3>Netrunners VS Corpos</h3>
-          <p>Unity Gaming Services (UGS) ile gerçek oyuncuların replikalarını buluttan çekip karşı karşıya getiren asenkron siberpunk bulmaca ve savunma oyunu.</p>
+          <p>Asynchronous cyberpunk puzzle/defense game using Unity Gaming Services (UGS) to pull real player cloud replays.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Web / PC</span>
           </div>
         </a>
 
         <!-- 10. THEOS'S TOOLS -->
-        <a href="/projects/theos-tools" class="project-card" data-type="toolkit" data-lang="csharp" data-team="solo" data-status="finished" data-platform="multi">
+        <a href="/en/projects/theos-tools" class="project-card" data-type="toolkit" data-lang="csharp" data-team="solo" data-status="finished" data-platform="multi">
           <h3>Theos's Tools</h3>
-          <p>Gamepad Integrator, Brainstorm Canvas ve Save Data Surgeon dâhil 11 modül içeren, Unity için geliştirilmiş kapsamlı editör araç paketi.</p>
+          <p>Comprehensive 11-module Unity editor extension package including Node-Based Canvas and Input Integrator.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Araç (Toolkit)</span>
+            <span class="meta-tag tag-type">Toolkit</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Tamamlandı</span>
+            <span class="meta-tag tag-status">Completed</span>
             <span class="meta-tag">Cross-Platform</span>
           </div>
         </a>
 
         <!-- 11. PATH OF ELEMENTS -->
-        <a href="/projects/path-of-elements" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="prototype" data-platform="pc">
+        <a href="/en/projects/path-of-elements" class="project-card" data-type="game" data-lang="csharp" data-team="solo" data-status="prototype" data-platform="pc">
           <h3>Path of Elements</h3>
-          <p>Su>Ateş>Toprak>Hava element döngüsü, 4 ana savaş slotu ve zemin manipülasyonu içeren roguelike deste oluşturma (deck-building) oyunu.</p>
+          <p>Elemental loop roguelike deck-builder featuring spell fusion algorithms and dynamic terrain manipulation.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Oyun</span>
+            <span class="meta-tag tag-type">Game</span>
             <span class="meta-tag tag-lang">C#</span>
-            <span class="meta-tag tag-status">Durduruldu</span>
+            <span class="meta-tag tag-status">Paused</span>
             <span class="meta-tag">PC</span>
           </div>
         </a>
 
         <!-- 12. NIGHTWALKER UNIVERSE -->
-        <a href="/projects/nightwalker-universe" class="project-card" data-type="system" data-lang="csharp" data-team="solo" data-status="wip" data-platform="pc">
+        <a href="/en/projects/nightwalker-universe" class="project-card" data-type="system" data-lang="csharp" data-team="solo" data-status="wip" data-platform="pc">
           <h3>Nightwalker Universe</h3>
-          <p>Farklı türlerde oyunlara ev sahipliği yapmak üzere kurgulanmış; özel karakter motoru, sis şaderları ve atmosferik çevre etkileşimleri içeren özgün oyun evreni.</p>
+          <p>Atmospheric first-person game framework featuring a custom character controller, exponential fog shaders, and interaction systems.</p>
           <div class="meta-tags">
-            <span class="meta-tag tag-type">Evren / Sistem</span>
+            <span class="meta-tag tag-type">Universe / System</span>
             <span class="meta-tag tag-lang">C#</span>
             <span class="meta-tag tag-status">WIP</span>
             <span class="meta-tag">PC</span>
@@ -305,7 +305,7 @@ const pageTitle = "Tüm Projeler & Arşiv | TheosDev";
       </div>
     </div>
 
-    <!-- Filtreleme Javascript Kodları -->
+    <!-- Filtering Script -->
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
         gsap.to(".anim-header", { opacity: 1, y: -20, duration: 0.8, stagger: 0.2, ease: "power3.out" });

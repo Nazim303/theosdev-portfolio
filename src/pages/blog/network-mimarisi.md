@@ -1,8 +1,10 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: "Devlog: CELLTEST POSİTİVE için Asimetrik Ağ Mimarisi Kurulumu"
-date: "2026-08-15"
+title: "CELLTEST POSİTİVE: Asimetrik Ağ Mimarisi Kurulumu"
+date: "2026-07-28"
 author: "TheosDev"
+pinned: true
+summary: "Host (Kanser) ve Client (Antikor) mimarisinde Netcode for GameObjects kullanarak can havuzunun harcama birimi olarak senkronize edilmesi."
 ---
 
 # Oyuncu Canını Kaynak Olarak Kullanmak

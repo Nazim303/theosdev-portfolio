@@ -1,0 +1,70 @@
+---
+const pageTitle = "The Dood's Universe | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; margin-top: 30px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/projects" class="back-btn">← Tüm Projelere Dön</a>
+
+      <div class="project-header anim-element">
+        <h1>The Dood's Universe</h1>
+        <p class="subtitle">Çizim Tabanlı Şehir Yönetimi ve Sosyal Simülasyon Oyunu</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Kendi Dünyanı Çiz (Draw Your World)</h2>
+          <p>The Dood's Universe, oyuncunun boş bir araziden başlayarak kendi kasabasını çizerek inşa ettiği cozy bir sosyal simülasyon oyunudur. Oyuncular oyun içi çizim araçlarını kullanarak zemin kaplamalarını, evleri, iş yerlerini ve hatta "Dood" olarak bilinen sevimli vatandaşların kendilerini bizzat elle çizerler.</p>
+
+          <h2>Ekonomi ve Şehir Yönetimi</h2>
+          <p>Sadece çizim yapmak yeterli değildir; kasaba belediye başkanı olarak ekonomiyi dengede tutmanız gerekir. İş yerleri inşa ederek vergi toplamak, belediye hazinesini korumak, enflasyonu yönetmek ve seyahat eden tüccarlar ya da beklenmedik kıtlıklar gibi rastgele olaylarla başa çıkmak temel hedefler arasındadır.</p>
+
+          <h2>Derin Sosyal Yapay Zeka ve Dinamik Gün/Gece Döngüsü</h2>
+          <p>Dood'lar sadece sıradan işçiler değildir; her birinin kendine ait kişilik özellikleri, günlük rutinleri ve sosyal ilişkileri bulunur. Birlikte yaşadıkça ve çalıştıkça dostluklar kurarlar. Dinamik gece-gündüz döngüsü sayesinde hava karardığında sokak lambaları yanar ve vatandaşlar evlerine çekilir.</p>
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          <div class="tech-item"><h4>Geliştirici Rolü</h4><p>Nazım Beyaz (Solo Programmer)</p></div>
+          <div class="tech-item"><h4>Oyun Motoru</h4><p>Unity3D (C#)</p></div>
+          <div class="tech-item"><h4>Öne Çıkan Sistemler</h4><p>Çizim Motoru (Canvas Render), Derin Sosyal AI, Dinamik Gün/Gece Döngüsü</p></div>
+          <div class="tech-item"><h4>Proje Durumu</h4><p>Tamamlandı (The Brainless Game Jam)</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

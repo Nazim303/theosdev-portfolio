@@ -13,14 +13,14 @@ const pageTitle = "TheosDev | Game Programmer";
       body {
         background-color: #0f1115;
         color: #e2e8f0;
-        font-family: 'Segoe UI', Tahoma, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
       }
       
       /* Language Switcher */
-      .lang-switch { position: absolute; top: 24px; right: 24px; display: flex; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; padding: 4px; z-index: 100; opacity: 0; }
+      .lang-switch { position: absolute; top: 32px; right: 32px; display: flex; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; padding: 4px; z-index: 100; opacity: 0; }
       .lang-btn { padding: 6px 16px; border-radius: 20px; text-decoration: none; color: #94a3b8; font-size: 0.85rem; font-weight: bold; transition: all 0.3s ease; }
       .lang-btn.active { background: #00e676; color: #0f1115; }
       .lang-btn:hover:not(.active) { color: #f8fafc; }
@@ -58,8 +58,8 @@ const pageTitle = "TheosDev | Game Programmer";
   <body>
 
     <div class="lang-switch anim-hero">
-      <a href="/" class="lang-btn">TR</a>
-      <a href="/en" class="lang-btn active">EN</a>
+      <a href="/" class="lang-btn" onclick="sessionStorage.setItem('user_lang_pref', 'tr')">TR</a>
+      <a href="/en" class="lang-btn active" onclick="sessionStorage.setItem('user_lang_pref', 'en')">EN</a>
     </div>
 
     <section class="hero-section">
@@ -67,10 +67,9 @@ const pageTitle = "TheosDev | Game Programmer";
       <p class="hero-subtitle anim-hero">Unity & C# Game Programmer</p>
       
       <div class="link-tree anim-hero">
-        <a href="#" class="link-btn">GitHub</a>
-        <a href="#" class="link-btn">Itch.io</a>
-        <a href="#" class="link-btn">LinkedIn</a>
-        <a href="#" class="link-btn">Resume (CV)</a>
+        <a href="https://github.com/Nazim303" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub</a>
+        <a href="https://wtheos.itch.io" target="_blank" rel="noopener noreferrer" class="link-btn">Itch.io</a>
+        <a href="https://www.linkedin.com/in/nazım-polat-beyaz/" target="_blank" rel="noopener noreferrer" class="link-btn">LinkedIn</a>
       </div>
     </section>
 

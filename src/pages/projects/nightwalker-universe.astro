@@ -1,0 +1,73 @@
+---
+const pageTitle = "Nightwalker Universe | TheosDev";
+---
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; margin-top: 30px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+      .badge { display: inline-block; background: rgba(168, 85, 247, 0.2); color: #a855f7; border: 1px solid #a855f7; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/projects" class="back-btn">← Tüm Projelere Dön</a>
+
+      <div class="project-header anim-element">
+        <span class="badge">Oyun Evreni & Sistem Altyapısı</span>
+        <h1>Nightwalker Universe</h1>
+        <p class="subtitle">Atmosferik Birinci Şahıs Çevre ve Karakter Deneyimi</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Evren Konsepti ve Şehir Mimarisi</h2>
+          <p>Nightwalker Universe, gelecekte farklı türlerde oyunlara (yürüme simülatörü, korku, gizem) ev sahipliği yapmak üzere kurgulanmış özgün bir oyun evrenidir. Zifiri karanlık, ıslak sokaklar ve yoğun sis atmosferi altında oyuncunun çevreyle olan ilişkisi odak noktasındadır.</p>
+
+          <h2>Teknik Altyapı ve Sistemler</h2>
+          <ul>
+            <li><strong>Özel Karakter Kontrolcüsü (Custom Character Controller):</strong> Unity'nin varsayılan motorunu kullanmak yerine ivmelenme, yorulma (stamina) ve zemin eğimine göre adım seslerini dinamik değiştiren bir FPS karakter motoru kurgulandı.</li>
+            <li><strong>Atmosferik Sis Şaderı:</strong> Derinlik algısını ve klostrofobik hissi artıran özel exponential square fog ve post-processing efektleri entegre edildi.</li>
+            <li><strong>Modüler Etkileşim Motoru:</strong> Çevredeki objelerin (lambalar, kapılar, yazılar) farklı oyun projelerinde kolayca yeniden kullanılabilmesini sağlayan olay odaklı (event-driven) etkileşim altyapısı.</li>
+          </ul>
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Teknik Künye</h3>
+          <div class="tech-item"><h4>Geliştirici Rolü</h4><p>Nazım Beyaz (Solo)</p></div>
+          <div class="tech-item"><h4>Oyun Motoru</h4><p>Unity3D (C#)</p></div>
+          <div class="tech-item"><h4>Öne Çıkan Sistemler</h4><p>Custom FPS Movement, Custom Fog Shaders, Modular Interaction Engine</p></div>
+          <div class="tech-item"><h4>Proje Durumu</h4><p>Geliştirme Aşamasında (WIP Framework)</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

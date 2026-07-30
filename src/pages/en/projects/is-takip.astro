@@ -1,0 +1,74 @@
+---
+const pageTitle = "Work Tracker (İş Takip) | TheosDev";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; margin-top: 30px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+      .badge { display: inline-block; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/en/projects" class="back-btn">← Back to Projects</a>
+
+      <div class="project-header anim-element">
+        <span class="badge">Mobile Application (Flutter)</span>
+        <h1>Work Tracker (İş Takip)</h1>
+        <p class="subtitle">Offline Construction Financial Management & Payroll Mobile App</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Purpose</h2>
+          <p>Work Tracker is a standalone Android app built for construction contractors and small businesses to track daily cash flow, employee daily wages, site contract expenses, and pending receivables with 100% offline local data storage.</p>
+
+          <h2>Core Features</h2>
+          <ul>
+            <li><strong>Site & Contract Management:</strong> Calculates total contract amounts, received payments, image attachments, and progress bars per construction site.</li>
+            <li><strong>Worker Payroll:</strong> Monthly colored calendar view for tracking worker attendance, advances, and expense logs.</li>
+            <li><strong>Financial Analytics:</strong> Interactive pie and bar charts via <code>fl_chart</code> displaying monthly trend analysis and profit/loss breakdowns.</li>
+            <li><strong>Offline Notifications & Backup:</strong> Scheduled local notifications for upcoming payments; full JSON database backup and restore capabilities.</li>
+          </ul>
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Technical Overview</h3>
+          <div class="tech-item"><h4>Developer</h4><p>Nazım Beyaz (Solo)</p></div>
+          <div class="tech-item"><h4>Platform & Tech</h4><p>Android (Flutter 3.44 / Dart)</p></div>
+          <div class="tech-item"><h4>Database</h4><p>SQLite (sqflite)</p></div>
+          <div class="tech-item"><h4>Status</h4><p>Work In Progress (v1.0.0)</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>

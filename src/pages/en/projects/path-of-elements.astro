@@ -1,0 +1,71 @@
+---
+const pageTitle = "Path of Elements | TheosDev";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" is:inline></script>
+    <style>
+      body { background-color: #0f1115; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+      .back-btn { display: inline-block; color: #00e676; text-decoration: none; font-weight: bold; margin-bottom: 40px; transition: transform 0.2s; }
+      .back-btn:hover { transform: translateX(-5px); }
+      .project-header { margin-bottom: 50px; opacity: 0; }
+      h1 { font-size: 3.5rem; color: #f8fafc; margin: 0 0 10px 0; }
+      .subtitle { font-size: 1.5rem; color: #94a3b8; }
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; opacity: 0; }
+      @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+      h2 { color: #00e676; border-bottom: 1px solid rgba(0,230,118,0.2); padding-bottom: 10px; margin-top: 30px; }
+      ul { padding-left: 20px; }
+      li { margin-bottom: 10px; }
+      .tech-sidebar { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); height: fit-content; }
+      .tech-item { margin-bottom: 20px; }
+      .tech-item h4 { margin: 0 0 5px 0; color: #94a3b8; font-size: 0.9rem; text-transform: uppercase;}
+      .tech-item p { margin: 0; color: #f8fafc; font-weight: bold; }
+      .badge { display: inline-block; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px; }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <a href="/en/projects" class="back-btn">← Back to Projects</a>
+
+      <div class="project-header anim-element">
+        <span class="badge">Development Paused (Prototype)</span>
+        <h1>Path of Elements</h1>
+        <p class="subtitle">Elemental Loop & Dynamic Floor Manipulation Deck-Builder</p>
+      </div>
+
+      <div class="content-grid anim-element">
+        
+        <div class="main-content">
+          <h2>Elemental Advantage & Combat Slots</h2>
+          <p>A single-player roguelike deck-builder based on Water > Fire > Earth > Air counters featuring 4 primary attack slots and 1 card sacrifice exchange slot.</p>
+
+          <h2>Fusion & Dynamic Terrain VFX</h2>
+          <ul>
+            <li><strong>Fusion Mechanics:</strong> Stacking different elements spawns hybrid spell cards (Fire + Earth = Magma, Air + Water = Electric).</li>
+            <li><strong>Dynamic Terrain:</strong> Repeated element usage shifts floor visual effects, buffing matching elements while scorching opposing cards in deck.</li>
+          </ul>
+        </div>
+
+        <div class="tech-sidebar">
+          <h3>Technical Overview</h3>
+          <div class="tech-item"><h4>Role</h4><p>Game Programmer</p></div>
+          <div class="tech-item"><h4>Engine</h4><p>Unity3D (C#)</p></div>
+          <div class="tech-item"><h4>Status</h4><p>Paused Prototype Archive</p></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".anim-element", { opacity: 1, y: -20, duration: 1, stagger: 0.2, ease: "power3.out" });
+      });
+    </script>
+  </body>
+</html>
