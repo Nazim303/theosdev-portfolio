@@ -47,7 +47,7 @@ const pageTitle = "TheosDev | Game Programmer";
       h1 { font-size: 4rem; margin-bottom: 10px; color: #00e676; opacity: 0; }
       .hero-subtitle { font-size: 1.5rem; color: #94a3b8; opacity: 0; margin-bottom: 30px; }
       
-      .link-tree { display: flex; gap: 15px; opacity: 0; }
+      .link-tree { display: flex; gap: 15px; opacity: 0; flex-wrap: wrap; justify-content: center; }
       .link-btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; background: rgba(255, 255, 255, 0.1); color: #e2e8f0; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.2); }
       .link-btn:hover { background: #00e676; color: #0f1115; border-color: #00e676; }
 
@@ -87,6 +87,7 @@ const pageTitle = "TheosDev | Game Programmer";
         <a href="https://github.com/Nazim303" target="_blank" rel="noopener noreferrer" class="link-btn">GitHub</a>
         <a href="https://wtheos.itch.io" target="_blank" rel="noopener noreferrer" class="link-btn">Itch.io</a>
         <a href="https://www.linkedin.com/in/nazım-polat-beyaz/" target="_blank" rel="noopener noreferrer" class="link-btn">LinkedIn</a>
+        <a href="https://peerora-client.vercel.app" target="_blank" rel="noopener noreferrer" class="link-btn" style="border-color: #00e676; color: #00e676;">⚡ Peerora (Canlı İzle)</a>
       </div>
     </section>
 
@@ -117,6 +118,13 @@ const pageTitle = "TheosDev | Game Programmer";
       <h2 class="section-title">Önemli Projeler</h2>
       <div class="project-grid">
         
+        <ProjectCard 
+          title="Peerora"
+          description="WebRTC Mesh ve Socket.io mimarisiyle geliştirilmiş; sıfır gecikmeli YouTube/video senkronizasyonu, canlı sesli sohbet ve ortak ekran paylaşım platformu."
+          tags={["WebRTC", "Socket.io", "React", "P2P", "TailwindCSS"]}
+          link="https://peerora-client.vercel.app" 
+        />
+
         <ProjectCard 
           title="CELLTEST POSİTİVE"
           description="1v1 çevrimiçi asimetrik strateji kart oyunu. Oyuncuların can havuzunu kaynak olarak kullandığı, Host (Kanser) ve Client (Antikor) mimarisi üzerine kurulu sistem."
