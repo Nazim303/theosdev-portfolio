@@ -1,0 +1,31 @@
+---
+interface Props {
+  lang?: 'tr' | 'en';
+}
+
+const { lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+---
+
+<div class="play-page">
+  <header class="play-header">
+    <p class="eyebrow">TheosDev / {isEnglish ? 'Play' : 'Oyna'}</p>
+    <h1 class="page-title">{isEnglish ? 'Small builds worth trying.' : 'Denemeye değer küçük buildler.'}</h1>
+    <p class="page-intro">{isEnglish ? 'Playable projects and live experiments collected in one place. For the deeper technical story, open the project archive.' : 'Oynanabilir projeler ve canlı deneyler tek yerde. Daha derin teknik hikaye için proje arşivine geçebilirsin.'}</p>
+  </header>
+
+  <div class="demo-list">
+    <article class="demo-item">
+      <div class="demo-index">01</div>
+      <div class="demo-copy"><p class="eyebrow">Live web product</p><h2>Peerora</h2><p>{isEnglish ? 'A watch party platform with synchronized video, voice chat, and screen sharing.' : 'Senkronize video, sesli sohbet ve ekran paylaşımı sunan watch party platformu.'}</p><a class="button button-primary" href="https://peerora-client.vercel.app" target="_blank" rel="noopener noreferrer">{isEnglish ? 'Open live app' : 'Canlı uygulamayı aç'} <span aria-hidden="true">↗</span></a></div>
+      <div class="demo-meta"><span>WebRTC</span><span>Socket.io</span><span>React</span></div>
+    </article>
+    <article class="demo-item">
+      <div class="demo-index">02</div>
+      <div class="demo-copy"><p class="eyebrow">Playable builds</p><h2>Itch.io collection</h2><p>{isEnglish ? 'Game jam experiments and prototypes published through the TheosDev itch.io page.' : 'Game jam deneyleri ve prototiplerin yer aldığı TheosDev itch.io sayfası.'}</p><a class="button button-dark" href="https://wtheos.itch.io" target="_blank" rel="noopener noreferrer">{isEnglish ? 'Open Itch.io' : 'Itch.io sayfasını aç'} <span aria-hidden="true">↗</span></a></div>
+      <div class="demo-meta"><span>Games</span><span>Prototypes</span><span>Game jams</span></div>
+    </article>
+  </div>
+
+  <section class="play-next"><p class="eyebrow">{isEnglish ? 'Next additions' : 'Sıradaki eklemeler'}</p><p>{isEnglish ? 'This page will grow as stable builds, short gameplay videos, and public demos become available.' : 'Bu sayfa kararlı buildler, kısa gameplay videoları ve herkese açık demolar hazır oldukça büyüyecek.'}</p><a class="text-link" href={isEnglish ? '/en/projects' : '/projects'}>{isEnglish ? 'Browse all projects' : 'Tüm projelere bak'} <span aria-hidden="true">↗</span></a></section>
+</div>

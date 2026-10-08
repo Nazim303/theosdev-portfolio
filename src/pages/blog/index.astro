@@ -1,0 +1,71 @@
+---
+type BlogPost = {
+  url: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    author: string;
+    summary?: string;
+    pinned?: boolean;
+  };
+};
+
+const allPosts = Object.values(import.meta.glob<BlogPost>('./*.md', { eager: true }));
+
+// Tarihe göre sırala
+allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+
+// Sabitlenmiş ve Normal Yazıları Ayır
+const pinnedPosts = allPosts.filter(post => post.frontmatter.pinned === true);
+const regularPosts = allPosts.filter(post => !post.frontmatter.pinned);
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Devlog ve Yazılar | TheosDev";
+---
+<BaseLayout title={pageTitle} lang="tr">
+  <div class="page-wrap narrow-wrap">
+    <p class="eyebrow">TheosDev / Notes</p>
+    <h1 class="page-title">Geliştirici günlükleri</h1>
+    <p class="page-intro">Oyun sistemleri, ağ mimarileri ve hızlı prototipleme sürecinden teknik notlar.</p>
+
+    {pinnedPosts.length > 0 && (
+      <section aria-labelledby="featured-title">
+        <div class="section-label"><h2 id="featured-title">Öne çıkanlar</h2><span>Sabitlenmiş</span></div>
+        <div class="blog-list">
+            {pinnedPosts.map((post) => (
+              <a href={post.url} class="blog-card pinned">
+                <div class="blog-info">
+                  <span class="pinned-badge">Öne çıkan yazı</span>
+                  <h3>{post.frontmatter.title}</h3>
+                  {post.frontmatter.summary && <p class="blog-summary">{post.frontmatter.summary}</p>}
+                  <div class="blog-meta">
+                    <span>{post.frontmatter.date}</span> · {post.frontmatter.author}
+                  </div>
+                </div>
+                <div class="read-more">Oku <span aria-hidden="true">↗</span></div>
+              </a>
+            ))}
+        </div>
+      </section>
+    )}
+
+    <section aria-labelledby="all-posts-title">
+      <div class="section-label"><h2 id="all-posts-title">Tüm yazılar</h2><span>{regularPosts.length} yazı</span></div>
+      <div class="blog-list">
+        {regularPosts.map((post) => (
+          <a href={post.url} class="blog-card">
+            <div class="blog-info">
+              <h3>{post.frontmatter.title}</h3>
+              {post.frontmatter.summary && <p class="blog-summary">{post.frontmatter.summary}</p>}
+              <div class="blog-meta">
+                <span>{post.frontmatter.date}</span> · {post.frontmatter.author}
+              </div>
+            </div>
+            <div class="read-more">Oku <span aria-hidden="true">↗</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  category: string;
+  type: string;
+  language: string;
+  team: string;
+  status: string;
+  platform: string;
+}
+
+interface Props {
+  lang?: 'tr' | 'en';
+}
+
+const { lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+
+const projects: Project[] = isEnglish
+  ? [
+      { title: 'CELLTEST POSITIVE', description: 'An asymmetric 1v1 strategy card game where health becomes a resource and networking shapes the match.', tags: ['Unity', 'Networking', 'Asymmetric'], link: '/en/projects/celltest-positive', category: 'Game', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Eternal Debt: Grave Shift', description: 'A co-op survival game built around role-based abilities, teamwork, and integrated voice communication.', tags: ['C#', 'Co-op', 'Vivox'], link: '/en/projects/eternal-debt', category: 'Game', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Peerora', description: 'A real-time watch party platform with synchronized video, voice chat, and screen sharing.', tags: ['WebRTC', 'Socket.io', 'React'], link: 'https://peerora-client.vercel.app', category: 'Web product', type: 'app', language: 'other', team: 'solo', status: 'finished', platform: 'web' },
+      { title: 'Story About Fall', description: 'A turn-based RPG prototype combining roguelike progression, companion evolution, and state-driven combat.', tags: ['Turn-based', 'RPG', 'State machine'], link: '/en/projects/story-about-fall', category: 'Game', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Craps With The Devil', description: 'A physics-based atmospheric gambling game built around dice force, angle, and risk-reward loops.', tags: ['Physics', 'Game feel'], link: '/en/projects/craps-with-the-devil', category: 'Game', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'pc' },
+      { title: 'The County is Down', description: 'A text-based political strategy game driven by terminal commands and free-text player intent.', tags: ['Game jam', 'Text systems'], link: '/en/projects/the-county-is-down', category: 'Game', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'web' },
+      { title: "The Dood's Universe", description: 'A cozy town simulation where players draw the buildings, terrain, and citizens they want to create.', tags: ['Simulation', 'Drawing'], link: '/en/projects/the-doods-universe', category: 'Game', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'web' },
+      { title: "Sketch 'Em Up", description: 'A hand-drawn arcade beat-em-up with local co-op and a deliberately rough notebook aesthetic.', tags: ['Arcade', 'Co-op'], link: '/en/projects/sketch-em-up', category: 'Game', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Netrunners VS Corpos', description: 'An asynchronous cyberpunk defense game using cloud replays and real player strategies.', tags: ['UGS', 'Async multiplayer'], link: '/en/projects/netrunners-vs-corpos', category: 'Game', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'web' },
+      { title: "Theos's Tools", description: 'An 11-module Unity editor toolkit for making iteration, input, and data workflows faster.', tags: ['Unity editor', 'Tools'], link: '/en/projects/theos-tools', category: 'Toolkit', type: 'toolkit', language: 'csharp', team: 'solo', status: 'finished', platform: 'multi' },
+      { title: 'Path of Elements', description: 'A paused deck-building prototype with elemental loops, spell fusion, and terrain manipulation.', tags: ['Deck-builder', 'Prototype'], link: '/en/projects/path-of-elements', category: 'Prototype', type: 'game', language: 'csharp', team: 'solo', status: 'prototype', platform: 'pc' },
+      { title: 'Nightwalker Universe', description: 'An evolving game framework for atmospheric first-person experiments and reusable systems.', tags: ['Framework', 'Atmosphere'], link: '/en/projects/nightwalker-universe', category: 'System', type: 'system', language: 'csharp', team: 'solo', status: 'wip', platform: 'pc' },
+      { title: 'Work Tracker', description: 'An offline Flutter and SQLite mobile app for practical income, site, and daily-work tracking.', tags: ['Flutter', 'SQLite'], link: '/en/projects/is-takip', category: 'Application', type: 'app', language: 'dart', team: 'solo', status: 'wip', platform: 'mobile' },
+    ]
+  : [
+      { title: 'CELLTEST POSITIVE', description: 'Canın kaynak olduğu, ağ mimarisinin maçın dengesini şekillendirdiği asimetrik 1v1 strateji kart oyunu.', tags: ['Unity', 'Networking', 'Asymmetric'], link: '/projects/celltest-positive', category: 'Oyun', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Eternal Debt: Grave Shift', description: 'Rol tabanlı yetenekler, takım çalışması ve sesli iletişim üzerine kurulu co-op hayatta kalma oyunu.', tags: ['C#', 'Co-op', 'Vivox'], link: '/projects/eternal-debt', category: 'Oyun', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Peerora', description: 'Senkronize video, sesli sohbet ve ekran paylaşımı sunan gerçek zamanlı watch party platformu.', tags: ['WebRTC', 'Socket.io', 'React'], link: 'https://peerora-client.vercel.app', category: 'Web ürünü', type: 'app', language: 'other', team: 'solo', status: 'finished', platform: 'web' },
+      { title: 'Story About Fall', description: 'Roguelike ilerleme, yoldaş evrimi ve state-driven savaş sistemini birleştiren sıra tabanlı RPG prototipi.', tags: ['Turn-based', 'RPG', 'State machine'], link: '/projects/story-about-fall', category: 'Oyun', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Craps With The Devil', description: 'Zar atış gücü, açısı ve risk/ödül döngüsü üzerine kurulu fizik tabanlı atmosferik oyun.', tags: ['Physics', 'Game feel'], link: '/projects/craps-with-the-devil', category: 'Oyun', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'pc' },
+      { title: 'The County is Down', description: 'Terminal komutları ve serbest metin girdileriyle ilerleyen metin tabanlı siyasi strateji oyunu.', tags: ['Game jam', 'Text systems'], link: '/projects/the-county-is-down', category: 'Oyun', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'web' },
+      { title: "The Dood's Universe", description: 'Binaları, zemini ve vatandaşları çizerek kurduğunuz cozy şehir yönetimi simülasyonu.', tags: ['Simulation', 'Drawing'], link: '/projects/the-doods-universe', category: 'Oyun', type: 'game', language: 'csharp', team: 'solo', status: 'finished', platform: 'web' },
+      { title: "Sketch 'Em Up", description: 'Yerel co-op destekli, defter kenarı estetiğine sahip arcade beat-em-up oyunu.', tags: ['Arcade', 'Co-op'], link: '/projects/sketch-em-up', category: 'Oyun', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'pc' },
+      { title: 'Netrunners VS Corpos', description: 'Bulut kayıtları ve gerçek oyuncu stratejileri kullanan asenkron siberpunk savunma oyunu.', tags: ['UGS', 'Async multiplayer'], link: '/projects/netrunners-vs-corpos', category: 'Oyun', type: 'game', language: 'csharp', team: 'team', status: 'finished', platform: 'web' },
+      { title: "Theos's Tools", description: 'İterasyon, input ve veri akışlarını hızlandıran 11 modüllü Unity editör araç paketi.', tags: ['Unity editor', 'Tools'], link: '/projects/theos-tools', category: 'Toolkit', type: 'toolkit', language: 'csharp', team: 'solo', status: 'finished', platform: 'multi' },
+      { title: 'Path of Elements', description: 'Element döngüleri, büyü füzyonu ve zemin manipülasyonu içeren durdurulmuş deck-builder prototipi.', tags: ['Deck-builder', 'Prototype'], link: '/projects/path-of-elements', category: 'Prototip', type: 'game', language: 'csharp', team: 'solo', status: 'prototype', platform: 'pc' },
+      { title: 'Nightwalker Universe', description: 'Atmosferik first-person denemeleri ve yeniden kullanılabilir sistemler için gelişen oyun çatısı.', tags: ['Framework', 'Atmosphere'], link: '/projects/nightwalker-universe', category: 'Sistem', type: 'system', language: 'csharp', team: 'solo', status: 'wip', platform: 'pc' },
+      { title: 'İş Takip', description: 'Gelir, şantiye ve günlük iş takibi için Flutter ve SQLite ile geliştirilen offline mobil uygulama.', tags: ['Flutter', 'SQLite'], link: '/projects/is-takip', category: 'Uygulama', type: 'app', language: 'dart', team: 'solo', status: 'wip', platform: 'mobile' },
+    ];
+
+const labels = isEnglish
+  ? { title: 'Projects & archive', intro: 'A working archive of games, prototypes, tools, and small products. Filter by the kind of problem behind the project.', selected: 'All projects', count: 'projects', type: 'Type', language: 'Stack', team: 'Team', status: 'Status', platform: 'Platform', all: 'All', game: 'Games', toolkit: 'Tools', app: 'Apps', system: 'Systems', csharp: 'C# / Unity', dart: 'Dart / Flutter', other: 'Other', solo: 'Solo', teamValue: 'Team', finished: 'Completed', wip: 'In progress', prototype: 'Prototype / paused', pc: 'PC', web: 'Web', mobile: 'Mobile', multi: 'Cross-platform', noResults: 'No projects match these filters.' }
+  : { title: 'Projeler ve arşiv', intro: 'Oyun, prototip, araç ve küçük ürünlerden oluşan çalışma arşivi. Projenin arkasındaki probleme göre filtrele.', selected: 'Tüm projeler', count: 'proje', type: 'Tür', language: 'Teknoloji', team: 'Ekip', status: 'Durum', platform: 'Platform', all: 'Tümü', game: 'Oyunlar', toolkit: 'Araçlar', app: 'Uygulamalar', system: 'Sistemler', csharp: 'C# / Unity', dart: 'Dart / Flutter', other: 'Diğer', solo: 'Solo', teamValue: 'Ekip', finished: 'Tamamlandı', wip: 'Geliştirme aşamasında', prototype: 'Prototip / duraklatıldı', pc: 'PC', web: 'Web', mobile: 'Mobil', multi: 'Cross-platform', noResults: 'Bu filtrelerle eşleşen proje yok.' };
+---
+
+<div class="archive-wrap">
+  <div class="archive-heading">
+    <p class="eyebrow">TheosDev / {isEnglish ? 'Work' : 'Çalışmalar'}</p>
+    <h1 class="page-title">{labels.title}</h1>
+    <p class="page-intro">{labels.intro}</p>
+  </div>
+
+  <div class="archive-toolbar" aria-label={isEnglish ? 'Project filters' : 'Proje filtreleri'}>
+    <label>{labels.type}<select data-filter="type"><option value="all">{labels.all}</option><option value="game">{labels.game}</option><option value="toolkit">{labels.toolkit}</option><option value="app">{labels.app}</option><option value="system">{labels.system}</option></select></label>
+    <label>{labels.language}<select data-filter="language"><option value="all">{labels.all}</option><option value="csharp">{labels.csharp}</option><option value="dart">{labels.dart}</option><option value="other">{labels.other}</option></select></label>
+    <label>{labels.team}<select data-filter="team"><option value="all">{labels.all}</option><option value="solo">{labels.solo}</option><option value="team">{labels.teamValue}</option></select></label>
+    <label>{labels.status}<select data-filter="status"><option value="all">{labels.all}</option><option value="finished">{labels.finished}</option><option value="wip">{labels.wip}</option><option value="prototype">{labels.prototype}</option></select></label>
+    <label>{labels.platform}<select data-filter="platform"><option value="all">{labels.all}</option><option value="pc">{labels.pc}</option><option value="web">{labels.web}</option><option value="mobile">{labels.mobile}</option><option value="multi">{labels.multi}</option></select></label>
+  </div>
+
+  <div class="archive-summary"><span>{labels.selected}</span><span id="project-count">{projects.length} {labels.count}</span></div>
+  <div class="archive-grid" id="project-grid">
+    {projects.map((project) => (
+      <div class="archive-item" data-type={project.type} data-language={project.language} data-team={project.team} data-status={project.status} data-platform={project.platform}>
+        <ProjectCard {...project} />
+      </div>
+    ))}
+  </div>
+  <p class="empty-state" id="empty-state" hidden>{labels.noResults}</p>
+</div>
+
+<script is:inline define:vars={{ countLabel: labels.count }}>
+  const filters = document.querySelectorAll('[data-filter]');
+  const items = document.querySelectorAll('.archive-item');
+  const count = document.querySelector('#project-count');
+  const empty = document.querySelector('#empty-state');
+
+  function filterProjects() {
+    const values = Object.fromEntries([...filters].map((filter) => [filter.dataset.filter, filter.value]));
+    let visible = 0;
+    items.forEach((item) => {
+      const matches = Object.entries(values).every(([key, value]) => value === 'all' || item.dataset[key] === value);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    count.textContent = `${visible} ${countLabel}`;
+    empty.hidden = visible !== 0;
+  }
+
+  filters.forEach((filter) => filter.addEventListener('change', filterProjects));
+</script>

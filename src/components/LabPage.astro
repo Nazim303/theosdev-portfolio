@@ -1,0 +1,39 @@
+---
+interface Props {
+  lang?: 'tr' | 'en';
+}
+
+const { lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+---
+
+<div class="lab-wrap">
+  <header class="lab-header">
+    <p class="eyebrow">TheosDev / {isEnglish ? 'In the lab' : 'Atölye'}</p>
+    <h1 class="page-title">{isEnglish ? 'Work in progress, shared carefully.' : 'Devam eden işleri, doğru zamanda paylaşmak.'}</h1>
+    <p class="page-intro">{isEnglish ? 'A quieter space for an unreleased project: development notes, presentation material, experiments, and decisions as they take shape.' : 'Yayınlanmamış bir proje için daha sakin bir alan: geliştirme notları, sunumlar, deneyler ve kararlar şekillendikçe burada birikecek.'}</p>
+  </header>
+
+  <section class="lab-project" aria-labelledby="current-project-title">
+    <div class="lab-project-index">01<br /><span>{isEnglish ? 'PRIVATE / IN PROGRESS' : 'GİZLİ / DEVAM EDİYOR'}</span></div>
+    <div>
+      <p class="eyebrow">{isEnglish ? 'Current project' : 'Güncel proje'}</p>
+      <h2 id="current-project-title">{isEnglish ? 'Project details are intentionally held back for now.' : 'Proje detayları şimdilik bilinçli olarak sınırlı tutuluyor.'}</h2>
+      <p>{isEnglish ? 'This page is ready for the project’s public moment. Until then, it can hold process material without exposing the parts that are still being tested.' : 'Bu sayfa projenin kamuya açık paylaşım anına hazır. O zamana kadar henüz test edilen bölümleri açığa çıkarmadan süreç materyallerini taşıyabilir.'}</p>
+    </div>
+  </section>
+
+  <section class="lab-stream" aria-labelledby="lab-stream-title">
+    <div class="section-label"><h2 id="lab-stream-title">{isEnglish ? 'What will live here' : 'Burada neler olacak'}</h2><span>02 — 04</span></div>
+    <div class="lab-grid">
+      <article><span>02</span><h3>{isEnglish ? 'Devlog notes' : 'Devlog notları'}</h3><p>{isEnglish ? 'Short entries about prototypes, technical decisions, failures, and the next experiment.' : 'Prototipler, teknik kararlar, başarısız denemeler ve sıradaki deney hakkında kısa yazılar.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
+      <article><span>03</span><h3>{isEnglish ? 'Presentation deck' : 'Sunum dosyaları'}</h3><p>{isEnglish ? 'A clear project brief, visual direction, system map, and selected progress snapshots.' : 'Net bir proje özeti, görsel yön, sistem haritası ve seçilmiş ilerleme görüntüleri.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
+      <article><span>04</span><h3>{isEnglish ? 'Build notes' : 'Build notları'}</h3><p>{isEnglish ? 'Milestones and release notes added when a build is stable enough to talk about.' : 'Bir build hakkında konuşmaya yetecek kadar kararlı olduğunda eklenecek kilometre taşları ve sürüm notları.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
+    </div>
+  </section>
+
+  <section class="lab-guideline">
+    <p class="eyebrow">{isEnglish ? 'Publishing rule' : 'Paylaşım ilkesi'}</p>
+    <p>{isEnglish ? 'The project stays private until its core idea, presentation, and playable state are ready to represent it honestly.' : 'Proje; temel fikri, sunumu ve oynanabilir hali onu doğru temsil edecek duruma gelene kadar özel kalacak.'}</p>
+  </section>
+</div>

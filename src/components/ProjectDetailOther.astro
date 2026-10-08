@@ -1,0 +1,87 @@
+---
+interface Props {
+  slug: 'theos-tools' | 'the-doods-universe' | 'the-county-is-down' | 'sketch-em-up' | 'path-of-elements' | 'nightwalker-universe' | 'netrunners-vs-corpos' | 'is-takip';
+  lang?: 'tr' | 'en';
+}
+
+const { slug, lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+
+const projects = {
+  'theos-tools': {
+    title: "Theos's Tools",
+    subtitle: isEnglish ? '11-module Unity editor toolkit' : '11 modüllü Unity editör araç paketi',
+    intro: isEnglish ? 'A modular toolkit designed to make prototyping, debugging, and production workflows faster inside Unity.' : 'Unity içinde prototipleme, hata ayıklama ve üretim süreçlerini hızlandırmak için geliştirilen modüler araç paketi.',
+    sections: isEnglish ? [['Package architecture', 'The toolkit brings project setup, data visualization, save management, and asset workflows into focused editor windows.'], ['Featured modules', 'Brainstorm Canvas maps stories and systems as nodes; Gamepad Integrator connects the New Input System; Save Data Surgeon makes test data visible and editable.'], ['Designed for iteration', 'Project Dashboard, Localization Hub, Entity Database, and automatic import tools reduce the friction between an idea and a testable build.']] : [['Paket mimarisi', 'Paket; proje kurulumu, veri görselleştirme, kayıt yönetimi ve asset iş akışlarını odaklı editör pencerelerinde bir araya getirir.'], ['Öne çıkan modüller', 'Brainstorm Canvas hikaye ve sistemleri node olarak haritalar; Gamepad Integrator New Input System bağlantısı kurar; Save Data Surgeon test verisini görünür ve düzenlenebilir hale getirir.'], ['İterasyon için tasarlandı', 'Project Dashboard, Localization Hub, Entity Database ve otomatik import araçları fikir ile test edilebilir build arasındaki sürtünmeyi azaltır.']],
+    facts: isEnglish ? [['Developer', 'Nazım Beyaz / Solo'], ['Stack', 'Unity3D / C# Editor Scripting'], ['Modules', '11 integrated tools'], ['Status', 'Completed package']] : [['Geliştirici', 'Nazım Beyaz / Solo'], ['Teknoloji', 'Unity3D / C# Editor Scripting'], ['Modül', '11 entegre araç'], ['Durum', 'Tamamlandı / Hazır paket']],
+  },
+  'the-doods-universe': {
+    title: "The Dood's Universe",
+    subtitle: isEnglish ? 'Draw-your-world town management simulation' : 'Çizim tabanlı şehir yönetimi ve sosyal simülasyon',
+    intro: isEnglish ? 'A cozy simulation where the player draws the town, manages its economy, and watches its citizens form lives of their own.' : 'Oyuncunun kasabayı çizdiği, ekonomiyi yönettiği ve vatandaşların kendi hayatlarını kurmasını izlediği cozy simülasyon.',
+    sections: isEnglish ? [['Draw your world', 'Terrain, buildings, workplaces, and citizens are created through an in-game drawing tool that makes authorship part of the play.'], ['Town economy', 'Taxes, treasury, inflation, merchants, and shortages turn the drawn town into a system that needs careful balancing.'], ['Social simulation', 'Citizens have personalities, routines, and relationships. A dynamic day/night cycle gives the town a readable rhythm.']] : [['Kendi dünyanı çiz', 'Zemin, binalar, iş yerleri ve vatandaşlar, üretmeyi doğrudan oyunun parçası yapan çizim araçlarıyla oluşturulur.'], ['Şehir ekonomisi', 'Vergiler, hazine, enflasyon, tüccarlar ve kıtlıklar çizilen kasabayı dengelenmesi gereken bir sisteme dönüştürür.'], ['Sosyal simülasyon', 'Vatandaşların kişilikleri, rutinleri ve ilişkileri vardır. Dinamik gün/gece döngüsü şehre okunabilir bir ritim verir.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo Programmer'], ['Engine', 'Unity3D / C#'], ['Systems', 'Canvas drawing, social AI, day/night'], ['Status', 'Completed / Game Jam']] : [['Rol', 'Nazım Beyaz / Solo Programmer'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'Canvas çizim, sosyal AI, gün/gece'], ['Durum', 'Tamamlandı / Game Jam']],
+  },
+  'the-county-is-down': {
+    title: 'The County is Down',
+    subtitle: isEnglish ? 'Free-text political crisis management game' : 'Serbest metin tabanlı siyasi kriz yönetimi oyunu',
+    intro: isEnglish ? 'A game jam experiment where the player advises a collapsing kingdom through free-text decisions and terminal commands.' : 'Oyuncunun çöken bir krallığa serbest metin kararları ve terminal komutlarıyla danışmanlık yaptığı game jam deneyi.',
+    sections: isEnglish ? [['A kingdom under pressure', 'With ten days before the gates fall, the player responds to daily crises as the Grand Advisor.'], ['Intent-based strategy', 'The player writes advice in their own words. The parser translates intent into changes across treasury, military strength, public trust, and foreign alliances.'], ['Terminal Scribe', 'Commands such as //rewrite, //menu, and //mute make the terminal part of the fiction as well as the interface.']] : [['Çöken bir krallık', 'Kapıların düşmesine on gün kala oyuncu, Başdanışman olarak her gün gelen krizlere cevap verir.'], ['Niyet tabanlı strateji', 'Oyuncu tavsiyesini kendi kelimeleriyle yazar. Parser bu niyeti hazine, askeri güç, halk güveni ve dış ittifaklara yansıtır.'], ['Terminal Scribe', '//rewrite, //menu ve //mute gibi komutlar terminali hem kurmacanın hem de arayüzün parçası yapar.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo Programmer'], ['Engine', 'Unity3D / C#'], ['Systems', 'Free-text parser, terminal commands'], ['Status', 'Completed / GMTK Jam 2026']] : [['Rol', 'Nazım Beyaz / Solo Programmer'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'Serbest metin parser, terminal komutları'], ['Durum', 'Tamamlandı / GMTK Jam 2026']],
+  },
+  'sketch-em-up': {
+    title: "SKETCH 'EM UP",
+    subtitle: isEnglish ? 'Hand-drawn arcade beat-em-up' : 'Defter kenarı estetiğine sahip arcade beat-em-up',
+    intro: isEnglish ? 'A notebook-margin brawler where hand-drawn animation, local co-op, and knockback physics carry the feel.' : 'El çizimi animasyon, yerel co-op ve knockback fiziğinin oyun hissini taşıdığı defter kenarı dövüş oyunu.',
+    sections: isEnglish ? [['Ink on the margins', 'A boiling-line animation style creates a living flipbook look for a game born from classroom boredom.'], ['Combat feel', 'Combo multipliers, knockback physics, and distinct Tank and Agile archetypes make each hit readable.'], ['Local co-op', 'The game supports solo character switching and two-gamepad couch co-op.']] : [['Kenar boşluklarında mürekkep', 'Boiling-line animasyon stili, sınıf sıkıntısından doğan oyuna yaşayan flipbook görünümü verir.'], ['Dövüş hissi', 'Kombo çarpanları, knockback fiziği ve Tank/Agile karakterleri her vuruşu okunabilir kılar.'], ['Yerel co-op', 'Oyun solo karakter geçişini ve iki gamepad ile aynı ekranda co-op oynamayı destekler.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Game Programmer'], ['Engine', 'Unity3D / C#'], ['Systems', 'Dual input, line VFX, knockback'], ['Status', 'Completed / JAMSTICK Jam']] : [['Rol', 'Nazım Beyaz / Game Programmer'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'Çift input, çizim VFX, knockback'], ['Durum', 'Tamamlandı / JAMSTICK Jam']],
+  },
+  'path-of-elements': {
+    title: 'Path of Elements',
+    subtitle: isEnglish ? 'Elemental roguelike deck-builder prototype' : 'Element döngülü roguelike deck-builder prototipi',
+    intro: isEnglish ? 'A paused prototype built around elemental advantage, fusion cards, and a battlefield that changes with the player.' : 'Element üstünlüğü, füzyon kartları ve oyuncuyla değişen savaş alanı üzerine kurulu duraklatılmış prototip.',
+    sections: isEnglish ? [['Elemental loop', 'Water, Fire, Earth, and Air form an advantage cycle across four combat slots and an Exchange slot.'], ['Fusion and terrain', 'Combining elements creates intermediate cards such as Magma and Electricity. Repeated elements also reshape the arena floor.'], ['Procedural route', 'A twelve-path map moves between combat, shop, tavern, and Diviner rooms.']] : [['Element döngüsü', 'Su, Ateş, Toprak ve Hava; dört savaş slotu ve bir Exchange slotunda üstünlük döngüsü oluşturur.'], ['Füzyon ve zemin', 'Elementleri birleştirmek Magma ve Elektrik gibi ara kartlar üretir. Tekrarlanan elementler arena zeminini de değiştirir.'], ['Prosedürel rota', 'On iki patikalı harita combat, shop, taverna ve Diviner odaları arasında ilerler.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo'], ['Engine', 'Unity3D / C#'], ['Systems', 'ScriptableObjects, fusion, procedural paths'], ['Status', 'Paused prototype archive']] : [['Rol', 'Nazım Beyaz / Solo'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'ScriptableObject, füzyon, prosedürel patika'], ['Durum', 'Durduruldu / Prototip arşivi']],
+  },
+  'nightwalker-universe': {
+    title: 'Nightwalker Universe',
+    subtitle: isEnglish ? 'Atmospheric first-person framework' : 'Atmosferik birinci şahıs oyun çatısı',
+    intro: isEnglish ? 'A reusable universe and framework for walking, horror, and mystery experiments built around environmental interaction.' : 'Çevre etkileşimi etrafında yürüme simülasyonu, korku ve gizem denemeleri için geliştirilen yeniden kullanılabilir oyun çatısı.',
+    sections: isEnglish ? [['A reusable universe', 'The project provides a setting and technical base for multiple atmospheric game ideas.'], ['Movement and atmosphere', 'Custom acceleration, stamina, slope-aware footsteps, fog shaders, and post-processing shape the first-person experience.'], ['Modular interaction', 'Event-driven interactions let lamps, doors, and written clues move between projects without rebuilding the system.']] : [['Yeniden kullanılabilir evren', 'Proje, farklı atmosferik oyun fikirleri için hem bir evren hem de teknik temel sağlar.'], ['Hareket ve atmosfer', 'Özel ivmelenme, stamina, eğime duyarlı adım sesleri, sis shaderları ve post-processing first-person deneyimi şekillendirir.'], ['Modüler etkileşim', 'Event-driven etkileşimler lamba, kapı ve yazılı ipuçlarını sistemi yeniden kurmadan projeler arasında taşır.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo'], ['Engine', 'Unity3D / C#'], ['Systems', 'FPS movement, fog shaders, interaction'], ['Status', 'WIP framework']] : [['Rol', 'Nazım Beyaz / Solo'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'FPS movement, fog shader, etkileşim'], ['Durum', 'Geliştirme aşamasında / Framework']],
+  },
+  'netrunners-vs-corpos': {
+    title: 'Netrunners VS Corpos',
+    subtitle: isEnglish ? 'Asynchronous cyberpunk puzzle and defense game' : 'Asenkron siberpunk bulmaca ve savunma oyunu',
+    intro: isEnglish ? 'A two-sided competitive experiment where one player creates a replay and another defends against the ghost of a real player.' : 'Bir oyuncunun replay oluşturduğu, diğerinin gerçek oyuncunun ghost kaydına karşı savunma yaptığı iki taraflı rekabet deneyi.',
+    sections: isEnglish ? [['Cloud replay architecture', 'Inputs, timestamps, and puzzle solutions are compressed and stored through Unity Gaming Services for later playback.'], ['Two asymmetric roles', 'Netrunners solve timed mini-puzzles while Corpo Security reads the attack and deploys countermeasures.'], ['Designed for asynchronous play', 'The system turns a finished run into the next opponent, creating competition without requiring both players online together.']] : [['Bulut replay mimarisi', 'Inputlar, zaman damgaları ve bulmaca çözümleri Unity Gaming Services üzerinden sıkıştırılıp daha sonra oynatılmak üzere saklanır.'], ['İki asimetrik rol', 'Netrunner zamanlı mini bulmacaları çözerken Corpo Security saldırıyı okuyup karşı önlemler gönderir.'], ['Asenkron oyun için', 'Sistem tamamlanan koşuyu bir sonraki rakibe dönüştürür; oyuncuların aynı anda çevrimiçi olması gerekmez.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Game Programmer'], ['Engine', 'Unity3D / C#'], ['Networking', 'UGS asynchronous cloud replay'], ['Status', 'Completed / Stop Killing Games Jam']] : [['Rol', 'Nazım Beyaz / Game Programmer'], ['Motor', 'Unity3D / C#'], ['Network', 'UGS asenkron cloud replay'], ['Durum', 'Tamamlandı / Stop Killing Games Jam']],
+  },
+  'is-takip': {
+    title: 'İş Takip',
+    subtitle: isEnglish ? 'Offline construction finance and payroll mobile app' : 'İnşaat sektörü için offline finans ve yevmiye mobil uygulaması',
+    intro: isEnglish ? 'A Flutter and SQLite application for tracking sites, contracts, workers, payments, expenses, and reminders without an internet connection.' : 'Şantiye, sözleşme, çalışan, ödeme, gider ve hatırlatıcıları internet olmadan takip eden Flutter ve SQLite uygulaması.',
+    sections: isEnglish ? [['Purpose', 'The app brings daily cash flow, worker payroll, site income and expenses, and expected payments into one practical offline workflow.'], ['Core modules', 'Site contracts, visual attachments, payroll calendars, advances, expenses, charts, local notifications, and JSON backups keep the data actionable.'], ['SQLite architecture', 'Six related tables are managed through a dedicated DatabaseHelper layer with CRUD operations and export support.']] : [['Amaç', 'Uygulama günlük para akışını, çalışan yevmiyelerini, şantiye gelir-giderini ve beklenen ödemeleri tek bir offline iş akışında toplar.'], ['Temel modüller', 'Şantiye sözleşmeleri, görsel ekler, yevmiye takvimleri, avanslar, giderler, grafikler, yerel bildirimler ve JSON yedekleri veriyi kullanılabilir tutar.'], ['SQLite mimarisi', 'İlişkili altı tablo, CRUD işlemleri ve export desteği olan özel DatabaseHelper katmanıyla yönetilir.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo'], ['Stack', 'Flutter 3.44 / Dart'], ['Database', 'SQLite / sqflite'], ['Status', 'Work in progress / v1.0.0']] : [['Rol', 'Nazım Beyaz / Solo'], ['Teknoloji', 'Flutter 3.44 / Dart'], ['Veritabanı', 'SQLite / sqflite'], ['Durum', 'Geliştirme aşamasında / v1.0.0']],
+  },
+}[slug];
+---
+
+<div class="detail-wrap">
+  <a class="detail-back" href={isEnglish ? '/en/projects' : '/projects'}>← {isEnglish ? 'Back to archive' : 'Arşive dön'}</a>
+  <header class="detail-hero">
+    <p class="eyebrow">{isEnglish ? 'Project study' : 'Proje incelemesi'} / {slug}</p>
+    <h1 class="page-title">{projects.title}</h1>
+    <p class="detail-subtitle">{projects.subtitle}</p>
+    <p class="detail-intro">{projects.intro}</p>
+  </header>
+  <div class="detail-layout">
+    <main class="detail-story">
+      {projects.sections.map(([title, body]) => <section><h2>{title}</h2><p>{body}</p></section>)}
+    </main>
+    <aside class="detail-facts" aria-label={isEnglish ? 'Project facts' : 'Proje künyesi'}>
+      <p class="eyebrow">{isEnglish ? 'At a glance' : 'Künye'}</p>
+      {projects.facts.map(([label, value]) => <div class="fact"><span>{label}</span><strong>{value}</strong></div>)}
+    </aside>
+  </div>
+</div>

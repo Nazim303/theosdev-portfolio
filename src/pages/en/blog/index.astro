@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+type BlogPost = {
+  url: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    author: string;
+    summary?: string;
+    pinned?: boolean;
+  };
+};
+
+const allPosts = Object.values(import.meta.glob<BlogPost>('./*.md', { eager: true }));
+allPosts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+
+const pinnedPosts = allPosts.filter((post) => post.frontmatter.pinned === true);
+const regularPosts = allPosts.filter((post) => !post.frontmatter.pinned);
+const pageTitle = "Devlogs & Writing | TheosDev";
+---
+
+<BaseLayout title={pageTitle} lang="en">
+  <div class="page-wrap narrow-wrap">
+    <p class="eyebrow">TheosDev / Notes</p>
+    <h1 class="page-title">Developer logs</h1>
+    <p class="page-intro">Technical notes on game systems, network architecture, and rapid prototyping.</p>
+
+    {pinnedPosts.length > 0 && (
+      <section aria-labelledby="featured-title">
+        <div class="section-label"><h2 id="featured-title">Featured</h2><span>Pinned notes</span></div>
+        <div class="blog-list">
+          {pinnedPosts.map((post) => (
+            <a href={post.url} class="blog-card pinned">
+              <div class="blog-info">
+                <span class="pinned-badge">Featured note</span>
+                <h3>{post.frontmatter.title}</h3>
+                {post.frontmatter.summary && <p class="blog-summary">{post.frontmatter.summary}</p>}
+                <div class="blog-meta"><span>{post.frontmatter.date}</span> · {post.frontmatter.author}</div>
+              </div>
+              <div class="read-more">Read <span aria-hidden="true">↗</span></div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section aria-labelledby="all-posts-title">
+      <div class="section-label"><h2 id="all-posts-title">All writing</h2><span>{regularPosts.length} posts</span></div>
+      <div class="blog-list">
+        {regularPosts.map((post) => (
+          <a href={post.url} class="blog-card">
+            <div class="blog-info">
+              <h3>{post.frontmatter.title}</h3>
+              {post.frontmatter.summary && <p class="blog-summary">{post.frontmatter.summary}</p>}
+              <div class="blog-meta"><span>{post.frontmatter.date}</span> · {post.frontmatter.author}</div>
+            </div>
+            <div class="read-more">Read <span aria-hidden="true">↗</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

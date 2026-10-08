@@ -1,0 +1,93 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  lang?: 'tr' | 'en';
+}
+
+const { lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+const homePath = isEnglish ? '/en' : '/';
+const projectsPath = isEnglish ? '/en/projects' : '/projects';
+const blogPath = isEnglish ? '/en/blog' : '/blog';
+
+const projects = isEnglish
+  ? [
+      { title: 'CELLTEST POSITIVE', description: 'An asymmetric 1v1 strategy card game where health becomes a resource and networking shapes the match.', tags: ['Unity', 'Networking', 'Asymmetric'], link: '/en/projects/celltest-positive', category: 'Game system' },
+      { title: 'Eternal Debt: Grave Shift', description: 'A co-op survival game built around role-based abilities, teamwork, and integrated voice communication.', tags: ['C#', 'Co-op', 'Vivox'], link: '/en/projects/eternal-debt', category: 'Multiplayer' },
+      { title: 'Peerora', description: 'A real-time watch party platform with synchronized video, voice chat, and screen sharing.', tags: ['WebRTC', 'Socket.io', 'React'], link: 'https://peerora-client.vercel.app', category: 'Web product' },
+      { title: 'Story About Fall', description: 'A turn-based RPG prototype combining roguelike progression, companion evolution, and state-driven combat.', tags: ['Turn-based', 'RPG', 'State machine'], link: '/en/projects/story-about-fall', category: 'Prototype' },
+    ]
+  : [
+      { title: 'CELLTEST POSITIVE', description: 'Canın kaynak olduğu, ağ mimarisinin oyunun dengesini şekillendirdiği asimetrik 1v1 strateji kart oyunu.', tags: ['Unity', 'Networking', 'Asymmetric'], link: '/projects/celltest-positive', category: 'Oyun sistemi' },
+      { title: 'Eternal Debt: Grave Shift', description: 'Rol tabanlı yetenekler, takım çalışması ve sesli iletişim üzerine kurulu co-op hayatta kalma oyunu.', tags: ['C#', 'Co-op', 'Vivox'], link: '/projects/eternal-debt', category: 'Multiplayer' },
+      { title: 'Peerora', description: 'Senkronize video, sesli sohbet ve ekran paylaşımı sunan gerçek zamanlı watch party platformu.', tags: ['WebRTC', 'Socket.io', 'React'], link: 'https://peerora-client.vercel.app', category: 'Web ürünü' },
+      { title: 'Story About Fall', description: 'Roguelike ilerleme, yoldaş evrimi ve state-driven savaş sistemini birleştiren sıra tabanlı RPG prototipi.', tags: ['Turn-based', 'RPG', 'State machine'], link: '/projects/story-about-fall', category: 'Prototip' },
+    ];
+---
+
+<div class="home-wrap">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="hero-copy">
+      <p class="eyebrow">{isEnglish ? 'Game programmer / rapid prototyping' : 'Oyun programcısı / hızlı prototipleme'}</p>
+      <h1 id="home-title">{isEnglish ? 'I turn game ideas into playable systems.' : 'Oyun fikirlerini oynanabilir sistemlere dönüştürüyorum.'}</h1>
+      <p class="hero-lede">{isEnglish ? 'I am Nazım Beyaz, a Unity and C# programmer focused on gameplay systems, multiplayer experiments, and the fast path from first idea to working prototype.' : 'Ben Nazım Beyaz. Gameplay sistemleri, multiplayer deneyleri ve ilk fikirden çalışan prototipe giden hızlı yol üzerine çalışan Unity ve C# programcısıyım.'}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#selected-work">{isEnglish ? 'Explore selected work' : 'Seçili işlere göz at'}</a>
+        <a class="text-link" href="https://github.com/Nazim303" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="https://wtheos.itch.io" target="_blank" rel="noopener noreferrer">Itch.io <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hero-index" aria-hidden="true">
+      <span>01</span>
+      <span>{isEnglish ? 'BUILD / TEST / REPEAT' : 'ÜRET / DENE / TEKRARLA'}</span>
+    </div>
+  </section>
+
+  <section class="intro-band" aria-label={isEnglish ? 'Focus areas' : 'Odak alanları'}>
+    <div><strong>Unity + C#</strong><span>{isEnglish ? 'Gameplay foundations' : 'Gameplay temelleri'}</span></div>
+    <div><strong>Networked play</strong><span>{isEnglish ? 'Multiplayer experiments' : 'Multiplayer deneyleri'}</span></div>
+    <div><strong>Small tools</strong><span>{isEnglish ? 'Web, apps, and bots' : 'Web, uygulama ve botlar'}</span></div>
+  </section>
+
+  <section class="home-section" id="selected-work" aria-labelledby="selected-work-title">
+    <div class="section-label"><h2 id="selected-work-title">{isEnglish ? 'Selected work' : 'Seçili işler'}</h2><a href={projectsPath}>{isEnglish ? 'View archive ↗' : 'Arşivi gör ↗'}</a></div>
+    <div class="featured-project">
+      <div class="featured-number">01</div>
+      <div>
+        <p class="eyebrow">{projects[0].category}</p>
+        <h3>{projects[0].title}</h3>
+        <p>{projects[0].description}</p>
+        <a class="text-link" href={projects[0].link}>{isEnglish ? 'Read project story' : 'Proje hikayesini oku'} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="home-project-grid">
+      {projects.slice(1).map((project) => <ProjectCard {...project} />)}
+    </div>
+  </section>
+
+  <section class="home-section capability-section" aria-labelledby="capabilities-title">
+    <div class="section-label"><h2 id="capabilities-title">{isEnglish ? 'What I work on' : 'Çalıştığım alanlar'}</h2><span>02 — 04</span></div>
+    <div class="capability-grid">
+      <article><span>02</span><h3>{isEnglish ? 'Gameplay systems' : 'Gameplay sistemleri'}</h3><p>{isEnglish ? 'State machines, combat loops, progression, physics, and the small details that make an interaction feel deliberate.' : 'State machine, savaş döngüleri, ilerleme, fizik ve etkileşimleri bilinçli hissettiren küçük detaylar.'}</p></article>
+      <article><span>03</span><h3>{isEnglish ? 'Rapid prototypes' : 'Hızlı prototipler'}</h3><p>{isEnglish ? 'I test the core idea early, keep the feedback loop short, and turn experiments into a foundation worth building on.' : 'Temel fikri erken test eder, geri bildirim döngüsünü kısa tutar ve denemeyi üzerine inşa edilecek temele dönüştürürüm.'}</p></article>
+      <article><span>04</span><h3>{isEnglish ? 'Tools beyond games' : 'Oyun dışı araçlar'}</h3><p>{isEnglish ? 'Web products, small applications, and bots when a practical tool is the right shape for the problem.' : 'Problem için doğru form pratik bir araç olduğunda web ürünleri, küçük uygulamalar ve botlar.'}</p></article>
+    </div>
+  </section>
+
+  <section class="home-section about-strip" aria-labelledby="about-title">
+    <div><p class="eyebrow">{isEnglish ? 'A little context' : 'Kısaca ben'}</p><h2 id="about-title">{isEnglish ? 'Curious about the systems behind the screen.' : 'Ekranın arkasındaki sistemleri merak ediyorum.'}</h2></div>
+    <div><p>{isEnglish ? 'I like work that sits between design intent and technical structure: figuring out why a mechanic is fun, then building the architecture that lets it survive iteration.' : 'Tasarım fikri ile teknik yapı arasında kalan işleri seviyorum: bir mekaniğin neden eğlenceli olduğunu anlamak ve iterasyonlara dayanacak mimariyi kurmak.'}</p><a class="text-link" href={`${blogPath}/network-${isEnglish ? 'architecture' : 'mimarisi'}`}>{isEnglish ? 'Read the latest note' : 'Son yazıyı oku'} <span aria-hidden="true">↗</span></a></div>
+  </section>
+
+  <section class="lab-promo" aria-labelledby="lab-promo-title">
+    <div><p class="eyebrow">05 — {isEnglish ? 'In progress' : 'Devam ediyor'}</p><h2 id="lab-promo-title">{isEnglish ? 'A project I am not ready to reveal yet.' : 'Henüz paylaşmaya hazır olmadığım bir proje.'}</h2></div>
+    <div><p>{isEnglish ? 'The lab is where its devlogs, presentation material, and process notes will appear when the work is ready.' : 'Atölye, proje hazır olduğunda devlogların, sunum materyallerinin ve süreç notlarının paylaşılacağı alan.'}</p><a class="text-link" href={isEnglish ? '/en/lab' : '/lab'}>{isEnglish ? 'Open the lab' : 'Atölyeyi aç'} <span aria-hidden="true">↗</span></a></div>
+  </section>
+
+  <section class="contact-block" id="contact" aria-labelledby="contact-title">
+    <p class="eyebrow">06 — {isEnglish ? 'Contact' : 'İletişim'}</p>
+    <h2 id="contact-title">{isEnglish ? 'Have a system worth prototyping?' : 'Prototiplenmeye değer bir sistem fikrin mi var?'}</h2>
+    <a class="button button-dark" href="mailto:nazimbeyaz11@gmail.com">nazimbeyaz11@gmail.com <span aria-hidden="true">↗</span></a>
+  </section>
+</div>

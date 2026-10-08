@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  category?: string;
+}
+
+const { title, description, tags, link, category = 'Project' } = Astro.props;
+const isExternal = link.startsWith('http');
+---
+
+<a
+  href={link}
+  class="project-card"
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+>
+  <div class="project-card-top"><span>{category}</span><span aria-hidden="true">↗</span></div>
+  <div class="card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="tags">
+      {tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    background: var(--paper-bright);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    padding: 24px;
+    text-decoration: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+  .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-4px); }
+  .project-card-top { color: var(--accent-dark); display: flex; font-size: 0.7rem; font-weight: 800; justify-content: space-between; letter-spacing: 0.1em; text-transform: uppercase; }
+  h3 { font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; font-weight: 400; line-height: 1; margin: 46px 0 12px; }
+  p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin: 0 0 24px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+  .tag { border: 1px solid var(--line); color: var(--muted); font-size: 0.7rem; padding: 5px 8px; }
+</style>

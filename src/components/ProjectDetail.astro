@@ -1,0 +1,77 @@
+---
+interface Section {
+  title: string;
+  body: string;
+}
+
+interface Fact {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  slug: 'celltest-positive' | 'eternal-debt' | 'story-about-fall' | 'craps-with-the-devil';
+  lang?: 'tr' | 'en';
+}
+
+const { slug, lang = 'en' } = Astro.props;
+const isEnglish = lang === 'en';
+
+const content = {
+  'celltest-positive': {
+    title: isEnglish ? 'CELLTEST POSITIVE' : 'CELLTEST POSİTİVE',
+    subtitle: isEnglish ? 'Asymmetric 1v1 online strategy card game' : 'Asimetrik 1v1 çevrimiçi strateji kart oyunu',
+    intro: isEnglish ? 'A competitive card game where your own life force is both your health bar and your economy.' : 'Kendi yaşam gücünüzün hem can barınız hem de ekonominiz olduğu rekabetçi bir kart oyunu.',
+    sections: isEnglish ? [
+      { title: 'Core gameplay', body: 'Players start with 10 HP and have no traditional mana regeneration. Every card played takes a direct cost from the health pool, turning each action into a tactical trade.' },
+      { title: 'Asymmetric architecture', body: 'The host controls the spreading Cancer Cell while the joining client controls the defending Antibody. The two sides have distinct mechanics and win conditions.' },
+      { title: 'Battlefield and tactics', body: 'Cards enter the back row and must advance into direct combat. Damage permanently reduces both current health and maximum health capacity.' },
+    ] : [
+      { title: 'Temel oynanış', body: 'Oyuncular 10 can ile başlar ve geleneksel mana yenilenmesi bulunmaz. Sahaya sürülen her kart can havuzundan doğrudan bedel alır; her hamle taktiksel bir değiş tokuşa dönüşür.' },
+      { title: 'Asimetrik mimari', body: 'Host tarafı yayılan Kanser Hücresini, Client tarafı savunmadaki Antikoru yönetir. İki tarafın mekanikleri ve kazanma koşulları birbirinden ayrılır.' },
+      { title: 'Savaş alanı ve taktik', body: 'Kartlar arka satıra yerleşir ve doğrudan çatışma için ilerletilir. Verilen hasar hem mevcut canı hem de maksimum can kapasitesini kalıcı olarak azaltır.' },
+    ],
+    facts: isEnglish ? [{ label: 'Role', value: 'Game Programmer' }, { label: 'Engine', value: 'Unity3D / C#' }, { label: 'Networking', value: 'Netcode for GameObjects' }, { label: 'Systems', value: 'Room-code lobby, asymmetric state sync, turn manager' }, { label: 'Status', value: 'Completed / Game Jam' }] : [{ label: 'Rol', value: 'Game Programmer' }, { label: 'Motor', value: 'Unity3D / C#' }, { label: 'Network', value: 'Netcode for GameObjects' }, { label: 'Sistemler', value: 'Oda kodu lobisi, asimetrik state sync, tur yöneticisi' }, { label: 'Durum', value: 'Tamamlandı / Game Jam' }],
+  },
+  'eternal-debt': {
+    title: 'Eternal Debt: Grave Shift',
+    subtitle: isEnglish ? 'Team-oriented co-op survival experience' : 'Takım odaklı co-op hayatta kalma deneyimi',
+    intro: isEnglish ? 'A cooperative survival game built around distinct roles, communication, and abilities that make every player matter.' : 'Her oyuncunun önemli olduğu, farklı roller, iletişim ve yetenekler üzerine kurulu co-op hayatta kalma oyunu.',
+    sections: isEnglish ? [{ title: 'Core gameplay', body: 'The team works through a dangerous shift by combining role-specific abilities and making space for each other under pressure.' }, { title: 'Roles and asymmetric skills', body: 'Digger, Mage, and Carrier roles create different responsibilities and encourage players to read the state of the team rather than play in isolation.' }, { title: 'Voice communication', body: 'Vivox voice integration supports the coordination loop, while the lobby and role state keep the multiplayer session coherent.' }] : [{ title: 'Temel oynanış', body: 'Ekip, baskı altında birbirine alan açarak ve role özel yetenekleri birleştirerek tehlikeli vardiyayı tamamlamaya çalışır.' }, { title: 'Roller ve asimetrik yetenekler', body: 'Kazıcı, Büyücü ve Taşıyıcı rolleri farklı sorumluluklar yaratır; oyuncuları tek başına değil takımın durumunu okuyarak oynamaya iter.' }, { title: 'Sesli iletişim', body: 'Vivox entegrasyonu koordinasyon döngüsünü destekler. Lobi ve rol durumları multiplayer oturumunu tutarlı tutar.' }],
+    facts: isEnglish ? [{ label: 'Role', value: 'Game Programmer' }, { label: 'Engine', value: 'Unity3D / C#' }, { label: 'Networking', value: 'Multiplayer sync, Vivox Voice Chat' }, { label: 'Systems', value: 'Room-code lobby, role state, radar' }, { label: 'Status', value: 'Completed / Game Jam' }] : [{ label: 'Rol', value: 'Game Programmer' }, { label: 'Motor', value: 'Unity3D / C#' }, { label: 'Network', value: 'Multiplayer sync, Vivox Voice Chat' }, { label: 'Sistemler', value: 'Oda kodu lobisi, rol state, radar' }, { label: 'Durum', value: 'Tamamlandı / Game Jam' }],
+  },
+  'story-about-fall': {
+    title: 'Story About Fall',
+    subtitle: isEnglish ? 'Tactical turn-based RPG and roguelite dungeon experience' : 'Taktiksel sıra tabanlı RPG ve roguelite zindan deneyimi',
+    intro: isEnglish ? 'A prototype focused on readable turn-based decisions, procedural progression, and companions that evolve with the journey.' : 'Okunabilir sıra tabanlı kararlar, prosedürel ilerleme ve yolculukla gelişen yoldaşlar üzerine kurulu bir prototip.',
+    sections: isEnglish ? [{ title: 'Turn-based combat', body: 'Combat is organized around a state-driven turn loop, giving each action a clear place in the encounter and leaving room for tactical planning.' }, { title: 'Procedural progression', body: 'Roguelite dungeon progression keeps the route moving while allowing encounters and resources to reshape the run.' }, { title: 'Companions and hub', body: 'Companion evolution and hub resource management give the run a longer arc beyond the individual battle.' }] : [{ title: 'Sıra tabanlı savaş', body: 'Savaş, state-driven bir tur döngüsü etrafında düzenlenir. Her eylem karşılaşma içinde net bir yere sahip olur ve taktik planlamaya alan bırakır.' }, { title: 'Prosedürel ilerleme', body: 'Roguelite zindan ilerlemesi rotayı hareketli tutarken karşılaşmaların ve kaynakların koşuyu yeniden şekillendirmesine izin verir.' }, { title: 'Yoldaşlar ve hub', body: 'Yoldaş evrimi ve hub kaynak yönetimi, tek bir savaşın ötesinde daha uzun bir ilerleme döngüsü oluşturur.' }],
+    facts: isEnglish ? [{ label: 'Role', value: 'Game Programmer' }, { label: 'Engine', value: 'Unity3D / C#' }, { label: 'Systems', value: 'Turn-based combat, procedural generation, evolution' }, { label: 'Format', value: 'Team project' }, { label: 'Status', value: 'Completed / Game Jam' }] : [{ label: 'Rol', value: 'Game Programmer' }, { label: 'Motor', value: 'Unity3D / C#' }, { label: 'Sistemler', value: 'Sıra tabanlı savaş, prosedürel üretim, evrim' }, { label: 'Format', value: 'Ekip projesi' }, { label: 'Durum', value: 'Tamamlandı / Game Jam' }],
+  },
+  'craps-with-the-devil': {
+    title: 'Craps With The Devil',
+    subtitle: isEnglish ? 'Physics-driven atmospheric gambling experience' : 'Fizik tabanlı atmosferik kumar deneyimi',
+    intro: isEnglish ? 'A focused experiment in tactile dice physics, dark magic, and a risk-reward loop that reacts to how you play.' : 'Dokunsal zar fiziği, karanlık büyü ve oynama biçimine tepki veren risk/ödül döngüsü üzerine odaklanan bir deney.',
+    sections: isEnglish ? [{ title: 'High-stakes table gambling', body: 'The table is designed to make every roll feel consequential, with the atmosphere and opponent pressure pushing the player toward difficult choices.' }, { title: 'Tactile physics mechanics', body: 'Dice force and angle are part of the interaction. The physical result is not only decoration; it feeds the game loop.' }, { title: 'Dark magic and risk', body: 'Magic mechanics add another layer to the wager, balancing immediate advantage against the patience of a dynamic opponent.' }] : [{ title: 'Karanlık masadaki kumar', body: 'Masa, her atışın sonuç doğuracağı şekilde tasarlanır. Atmosfer ve rakip baskısı oyuncuyu zor seçimlere iter.' }, { title: 'Fizik tabanlı zar mekaniği', body: 'Zarın atış gücü ve açısı etkileşimin parçasıdır. Fiziksel sonuç yalnızca süs değildir; oyun döngüsünü besler.' }, { title: 'Karanlık büyü ve risk', body: 'Büyü mekanikleri bahse yeni bir katman ekler ve anlık avantajı dinamik rakibin sabrıyla dengeler.' }],
+    facts: isEnglish ? [{ label: 'Role', value: 'Game Programmer' }, { label: 'Engine', value: 'Unity3D / C#' }, { label: 'Systems', value: 'Rigid-body physics, opponent AI, risk/reward' }, { label: 'Format', value: 'Solo project' }, { label: 'Status', value: 'Completed / Game Jam' }] : [{ label: 'Rol', value: 'Game Programmer' }, { label: 'Motor', value: 'Unity3D / C#' }, { label: 'Sistemler', value: 'Rigid-body physics, rakip AI, risk/ödül' }, { label: 'Format', value: 'Solo proje' }, { label: 'Durum', value: 'Tamamlandı / Game Jam' }],
+  },
+}[slug];
+---
+
+<div class="detail-wrap">
+  <a class="detail-back" href={isEnglish ? '/en/projects' : '/projects'}>← {isEnglish ? 'Back to archive' : 'Arşive dön'}</a>
+  <header class="detail-hero">
+    <p class="eyebrow">{isEnglish ? 'Project study' : 'Proje incelemesi'} / {slug}</p>
+    <h1 class="page-title">{content.title}</h1>
+    <p class="detail-subtitle">{content.subtitle}</p>
+    <p class="detail-intro">{content.intro}</p>
+  </header>
+  <div class="detail-layout">
+    <main class="detail-story">
+      {content.sections.map((section) => <section><h2>{section.title}</h2><p>{section.body}</p></section>)}
+    </main>
+    <aside class="detail-facts" aria-label={isEnglish ? 'Project facts' : 'Proje künyesi'}>
+      <p class="eyebrow">{isEnglish ? 'At a glance' : 'Künye'}</p>
+      {content.facts.map((fact) => <div class="fact"><span>{fact.label}</span><strong>{fact.value}</strong></div>)}
+    </aside>
+  </div>
+</div>

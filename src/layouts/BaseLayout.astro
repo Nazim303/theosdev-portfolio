@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: 'tr' | 'en';
+  currentPath?: string;
+}
+
+const {
+  title,
+  description = 'TheosDev is a game programmer focused on rapid prototyping, gameplay systems, and technical experiments.',
+  lang = 'en',
+  currentPath = Astro.url.pathname,
+} = Astro.props;
+
+const isEnglish = lang === 'en';
+const homePath = isEnglish ? '/en' : '/';
+const blogPath = isEnglish ? '/en/blog' : '/blog';
+const projectsPath = isEnglish ? '/en/projects' : '/projects';
+const labPath = isEnglish ? '/en/lab' : '/lab';
+const aboutPath = isEnglish ? '/en/about' : '/about';
+const playPath = isEnglish ? '/en/play' : '/play';
+const turkishPath = isEnglish
+  ? currentPath === '/en'
+    ? '/'
+    : currentPath.replace(/^\/en/, '').replace('/blog/network-architecture', '/blog/network-mimarisi')
+  : currentPath;
+const englishPath = isEnglish
+  ? currentPath
+  : currentPath === '/'
+    ? '/en'
+    : `/en${currentPath.replace('/blog/network-mimarisi', '/blog/network-architecture')}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href={Astro.url.href} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-brand" href={homePath}>TheosDev</a>
+      <nav class="site-nav" aria-label={isEnglish ? 'Primary navigation' : 'Ana navigasyon'}>
+        <a href={projectsPath} aria-current={currentPath.startsWith(projectsPath) ? 'page' : undefined}>{isEnglish ? 'Projects' : 'Projeler'}</a>
+        <a href={aboutPath} aria-current={currentPath.startsWith(aboutPath) ? 'page' : undefined}>{isEnglish ? 'About' : 'Hakkımda'}</a>
+        <a href={playPath} aria-current={currentPath.startsWith(playPath) ? 'page' : undefined}>{isEnglish ? 'Play' : 'Oyna'}</a>
+        <a href={blogPath} aria-current={currentPath.startsWith(blogPath) ? 'page' : undefined}>{isEnglish ? 'Writing' : 'Yazılar'}</a>
+        <a href={labPath} aria-current={currentPath.startsWith(labPath) ? 'page' : undefined}>{isEnglish ? 'Lab' : 'Atölye'}</a>
+        <a href={`${homePath}#contact`}>{isEnglish ? 'Contact' : 'İletişim'}</a>
+        <span class="language-switch" aria-label={isEnglish ? 'Language' : 'Dil'}>
+          <a href={turkishPath} aria-current={isEnglish ? undefined : 'page'}>TR</a>
+          <a href={englishPath} aria-current={isEnglish ? 'page' : undefined}>EN</a>
+        </span>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <span>© {new Date().getFullYear()} TheosDev</span>
+    </footer>
+  </body>
+</html>
