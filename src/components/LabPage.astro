@@ -1,39 +1,930 @@
 ---
+/**
+ * Project presentation component for TheosDev / Lab.
+ * Self-contained markup, scoped CSS, and a small language-toggle script.
+ * Import this component into an Astro page/layout; it does not modify site routes or styles.
+ */
 interface Props {
   lang?: 'tr' | 'en';
 }
 
-const { lang = 'en' } = Astro.props;
-const isEnglish = lang === 'en';
+const { lang: initialLanguage = 'tr' } = Astro.props;
+
+const copy = {
+  tr: {
+    navLabel: "Sunum bölümleri",
+    topLabel: "THEOSDEV / ATÖLYE",
+    topMeta: "PROJE DOSYASI 001 · HAFTA 01—04",
+    heroKicker: "GELİŞTİRME GÜNLÜĞÜ / PROJE ÖZETİ",
+    heroTitle: "PROJECT: NIGHTWATCH",
+    heroSubtitle: "Gece vardiyası. Yanlış bir karar. İçeri girmiş olabilecek bir şey.",
+    heroBody: "Gizli bir laboratuvarda çalışan güvenlik görevlisi, personelin kimliğini doğrulamak ve insan kılığına girmiş Skinwalker'ları ayırt etmek zorunda. Ancak kontrol noktasından ayrıldığında tehlike yalnızca verdiği kararlardan ibaret değil.",
+    status: "GELİŞTİRİLİYOR · DEBUG PROTOTİPİ",
+    heroMeta: [
+      { label: "TÜR", value: "Birinci şahıs korku · Dedüksiyon" },
+      { label: "MOTOR", value: "Unity 6000.5.9f1" },
+      { label: "EKİP", value: "Nazım · Ramtin" },
+      { label: "DÖNEM HEDEFİ", value: "10–30 dk vertical slice" }
+    ],
+    facilityEyebrow: "TESİS / ŞEMATİK",
+    facilityHeader: "GECE VARDİYASI",
+    facilityStatus: "SİSTEM DURUMU: TEST",
+    facility: ["Yetki alanı", "Makine odası", "Hücre koridoru · 5 hücre", "Giriş koridoru", "Güvenlik kulübesi"],
+    facilityFoot: "Şema, planlama seviyesindedir; nihai level layout değildir.",
+    tocTitle: "Bu sunumda",
+    toc: [
+      { id: "concept", label: "01 / Concept" },
+      { id: "market", label: "02 / Market Research" },
+      { id: "pipeline", label: "03 / Production Pipeline" },
+      { id: "prototype", label: "04 / Prototype & Test" },
+      { id: "next", label: "Sonraki adım" }
+    ],
+    introTitle: "Bir fikrin üretim sürecine dönüşmesi",
+    introBody: "İlk dört haftanın çıktıları tek bir akışta bir araya geliyor: oyunun ne olduğu, benzer oyunlardan ne öğrendiğimiz, ekibin nasıl üreteceği ve bugün prototipte hangi sistemlerin bulunduğu.",
+    factCards: [
+      { label: "OYUNCU FANTAZİSİ", title: "Güvenlik görevlisi olmak", body: "Bir kişinin gerçekten kim olduğuna karar verirken vardiyanın, kaynakların ve kendi güvenliğinin sorumluluğunu taşımak." },
+      { label: "ANA KANCA", title: "Kimlikten fazlasını doğrula", body: "Belgeler, önceki konuşmalar ve UV altında görülen izler birbirini tamamlayan kanıtlar sunar." },
+      { label: "TASARIM SÜTUNU", title: "Bilgi + zaman + risk", body: "Kontrol noktasındaki kararlar ile tesiste fiziksel olarak hareket etmenin riskleri aynı döngüde birleşir." },
+      { label: "PROJE YAKLAŞIMI", title: "Önce çalıştır, sonra cilala", body: "Mekanikler Sandbox/debug ortamında denenir; entegrasyon ve görsel polish ayrı üretim adımlarıdır." }
+    ],
+    week1: {
+      number: "HAFTA 01",
+      tag: "CONCEPT / PROJE TANIMI",
+      title: "Tek bir güçlü çekirdek etrafında",
+      intro: "Proje, ekip oluşturulurken mevcut bir fikir üzerinden ilerledi. Bu sunum, geçmişte yapılmamış üç alternatif fikri sonradan varmış gibi üretmek yerine seçili konseptin mantığını ve üretilebilirliğini belgeliyor.",
+      pitchLabel: "TEK CÜMLELİK PITCH",
+      pitch: "Birinci şahıs korku ve dedüksiyon oyunu: personelin kimliğini belgeler, hafıza ve UV izleriyle kontrol et; tesis görevlerini tamamla ve güvenlik noktasından uzaktayken hayatta kal.",
+      pillarsTitle: "Üç tasarım sütunu",
+      pillars: [
+        { number: "01", title: "Bilgi ve dedüksiyon", body: "Kimlik bilgilerini karşılaştır; bilim insanlarıyla önceki konuşmaları hatırla; fiziksel kanıtları yorumla." },
+        { number: "02", title: "Zaman ve kaynaklar", body: "Personel kontrolü, besleme, jeneratör ve taşıyabileceğin sınırlı ekipman arasında öncelik belirle." },
+        { number: "03", title: "Fiziksel risk", body: "Kulübeden ayrılmak görevleri mümkün kılar ama açık kapılar ve yaratık karşılaşmaları riski artırır." }
+      ],
+      loopTitle: "Temel oynanış döngüsü",
+      loop: ["Vardiya hazırlığı", "Personeli incele", "Karar ver", "Tesis görevlerini yönet", "09.00'da vardiyayı bitir", "Sonuçlarla sonraki güne geç"],
+      noteTitle: "Kapsam notu",
+      note: "Bu bölüm, geriye dönük bir ideation listesi değil; mevcut konseptin oyuncuya sunduğu deneyimi, ana kancayı ve tasarım ilkelerini açıklar. Alternatif fikirler uydurulmamıştır."
+    },
+    week2: {
+      number: "HAFTA 02",
+      tag: "MARKET RESEARCH / CONCEPT DECK",
+      title: "Tanıdık bir fanteziye farklı riskler eklemek",
+      intro: "Oyun; evrak kontrolü, dikkat ve kanıt değerlendirmesi gibi anlaşılır etkileşimlerden yola çıkıyor. Ayrışma noktası, bu kararları birinci şahıs bir tesiste dolaşma ve fiziksel tehditlerle birleştirmek.",
+      audienceTitle: "Hedef oyuncu",
+      audience: "Birinci şahıs korku, gözlem ve dedüksiyon, iş simülasyonu ve sistem tabanlı gerilim oyunlarından hoşlanan PC oyuncuları.",
+      uspTitle: "Temel ayrışma / USP",
+      usp: "Oyuncu yalnızca belgeleri denetlemez: daha önceki konuşmalardan elde ettiği bilgileri hatırlayabilir, UV izlerini yorumlayabilir ve görevler için kontrol noktasından ayrıldığında yaratıklarla yüz yüze kalabilir.",
+      competitorTitle: "Beş tasarım referansı",
+      competitorIntro: "Bunlar doğrudan kopyalanacak şablonlar değil; benzer oyuncu beklentilerini, başarılı etkileşimleri ve kendi oyunumuzun ayrışabileceği alanları incelemek için seçilmiş referanslardır.",
+      competitors: [
+        { name: "That's Not My Neighbor", lens: "Kimlik denetimi / doppelgänger", strength: "Belgeler ve görsel ayrıntılar üzerinden kimin içeri alınacağına karar verme.", opportunity: "Project: Nightwatch bunu 3D bir tesise, konuşma hafızasına, UV kanıtına ve fiziksel tehlikeye genişletir.", url: "https://store.steampowered.com/app/3431040/Thats_not_my_Neighbor/" },
+        { name: "Papers, Please", lens: "Belge kontrolü / sonuçlar", strength: "Kurallara göre evrak inceleme, zaman baskısı ve kararların sonuçları.", opportunity: "Bizim odak noktamız evrakın yanında hafıza tutarlılığı ve doğaüstü kanıtların yorumlanmasıdır.", url: "https://store.steampowered.com/app/239030/Papers_Please/" },
+        { name: "Contraband Police", lens: "Birinci şahıs kontrol noktası", strength: "Belge kontrolünü fiziksel çalışma alanı ve ek görevlerle birleştirme.", opportunity: "Tesis içi bakım görevleri benzer bir iş yükü yaratırken korku ve Skinwalker tehdidi ana ayrımı oluşturur.", url: "https://store.steampowered.com/app/756800/Border_Officer/" },
+        { name: "I'm on Observation Duty", lens: "Gözlem / hafıza / anomali", strength: "Gece vardiyasında dikkat ve hafıza kullanarak olağandışı durumları fark etme.", opportunity: "Biz kamera görüntülerini izlemek yerine NPC'lerle doğrudan etkileşime, kimlik kontrolüne ve UV izlerine dayanırız.", url: "https://store.steampowered.com/app/1046820/" },
+        { name: "The Operator", lens: "Dijital kanıt / araştırma", strength: "Bilgisayar araçları üzerinden bilgi toplama ve ipuçlarını birleştirme.", opportunity: "Tesis bilgisayarı bilgi merkezi olarak kalırken oyuncu ekran başından kalkıp fiziksel risk üstlenir.", url: "https://store.steampowered.com/app/1771980/The_Operator/" }
+      ],
+      researchNote: "Karşılaştırmalar, her oyunun resmî mağaza açıklamalarında tanıtılan temel etkileşimlere ve bu projenin tasarım hedeflerine dayalı nitel bir tasarım okumasıdır; satış verisi veya pazar büyüklüğü iddiası değildir."
+    },
+    week3: {
+      number: "HAFTA 03",
+      tag: "PRODUCTION PIPELINE / V1",
+      title: "İki üretim hattı, ortak bir hedef",
+      intro: "Teknik sistemler ve görsel içerik paralel ilerler. Mekaniklerin ilk hâli için nihai modellerin bitmesini beklemeyiz; placeholder varlıklar kullanılabilir. Üretim sürecinin amacı, sistemi önce kanıtlamak ve sonra ana oyun akışına taşımaktır.",
+      toolsTitle: "Kullanılan araçlar",
+      tools: [
+        { name: "Unity 6000.5.9f1", role: "Oyun motoru / runtime" },
+        { name: "Blender", role: "3D modelleme ve içerik üretimi" },
+        { name: "VS Code", role: "Kod düzenleme" },
+        { name: "GitHub", role: "Versiyon kontrolü / depo" },
+        { name: "Notion", role: "Dokümantasyon ve proje notları" }
+      ],
+      rolesTitle: "Ekip sorumlulukları",
+      roles: [
+        { person: "Nazım", role: "Teknik geliştirme", body: "Unity, C# sistemleri, Sandbox, entegrasyon ve teknik doğrulama." },
+        { person: "Ramtin", role: "Sanatsal geliştirme", body: "Modelleme, texture ve oyunun görsel varlıklarının üretimi." },
+        { person: "Ortak", role: "Tasarım ve kalite", body: "Oyun kararları, kapsam, içerik, dengeleme ve test değerlendirmesi." }
+      ],
+      flowTitle: "Üretim akışı",
+      flow: [
+        { number: "01", title: "Tasarım ve veri", body: "Mekanikleri tanımla; değişebilir değerleri yapılandırılabilir tut." },
+        { number: "02", title: "Core systems", body: "Oyuncu, interaction, kimlik, hafıza, UV, görev ve yaratık sistemlerini geliştir." },
+        { number: "03", title: "Sandbox", body: "Mekanikleri izole biçimde tetikle; farklı durumları debug araçlarıyla dene." },
+        { number: "04", title: "Entegrasyon", body: "Sistemlerin ortak zaman, envanter, kapı ve hata akışlarında birlikte çalışmasını kontrol et." },
+        { number: "05", title: "Ana oyun", body: "Stabil sistemleri gerçek tesis ve içerikle birleştir." },
+        { number: "06", title: "Vertical slice", body: "Kısa ama temsil gücü yüksek bir bölüm oluştur." },
+        { number: "07", title: "QA ve polish", body: "Testleri yinele; hataları düzelt; görsel ve sesli geri bildirimi iyileştir." }
+      ],
+      rulesTitle: "Üretim ilkeleri",
+      rules: ["Önce Sandbox, sonra ana oyun sahnesi.", "Sayılar ve dengeleme değerleri mümkün olduğunca data/config katmanından değiştirilebilir.", "Bir özellik yalnızca kodlandığında değil, entegre edilip test edildiğinde tamamlanmış sayılır.", "Bilinmeyen klasör, naming convention veya build kararları belirlenmeden kesinleşmiş gibi sunulmaz."],
+      currentStageTitle: "Mevcut üretim noktası",
+      currentStage: "Üretim planı, debug odaklı prototipte günlük program / vardiya akışına kadar ilerlemiş durumda. Bu sunum final build iddiasında bulunmaz; çalışan mekaniklerin bir araya getirilmesi ve test kanıtlarının güçlendirilmesi üzerine odaklanır."
+    },
+    week4: {
+      number: "HAFTA 04",
+      tag: "RAPID PROTOTYPING / PLAYABLE PROTOTYPE",
+      title: "Mekanikleri görünür ve test edilebilir kılmak",
+      intro: "Mevcut build, prototip seviyesinde birden fazla gameplay sistemini içeriyor. Bu aşamada amaç nihai görsel kaliteyi iddia etmek değil; sistemlerin nasıl davrandığını göstermek, test etmek ve temel döngünün birlikte çalışmasını doğrulamak.",
+      implementationLabel: "MEVCUT PROTOTİPTE BULUNAN SİSTEMLER",
+      implementationNote: "Aşağıdaki durum, ekip tarafından bildirilen prototip kapsamını gösterir. Bu ifade final polish, hatasızlık veya bütün kombinasyonların QA'dan geçtiği anlamına gelmez.",
+      features: [
+        { title: "FPS hareket ve etkileşim", body: "Oyuncu tesiste dolaşır ve dünyadaki nesnelerle etkileşir." },
+        { title: "NPC ve kimlik kontrolü", body: "Personel karşılaşmaları ve kimlik verileriyle karar akışı." },
+        { title: "Bilim insanı hafızası", body: "Önceki konuşma bilgisi ve tutarlılık sorusu mekaniği." },
+        { title: "UV dedektörü", body: "Skinwalker izlerini fiziksel kanıt olarak inceleme." },
+        { title: "Tesis görevleri", body: "Besleme ve / veya jeneratör tamiri gibi vardiya görevleri." },
+        { title: "Yaratık karşılaşmaları", body: "Doğrudan saldırı, pusu veya açık kapıdan sızma senaryoları." },
+        { title: "Günlük program / vardiya", body: "NPC akışını ve olay zamanlamasını düzenleyen günlük yapı." },
+        { title: "Sandbox debug araçları", body: "Gün, saat, NPC, eşya ve olayları kontrollü şekilde test etme." }
+      ],
+      testTitle: "Sunumda gösterilebilecek test senaryoları",
+      testIntro: "Bu senaryolar doğrulama planıdır. Ekran kaydı, test sonucu veya ölçüm eklenmedikçe her senaryonun tamamen geçtiği iddia edilmez.",
+      tests: [
+        { number: "TEST 01", title: "Kimlik doğrulama", steps: "Normal NPC → geçerli veri; şüpheli NPC → alan uyuşmazlığı", expected: "Oyuncu veriyi inceleyebilir ve geçiş / müdahale kararı verir." },
+        { number: "TEST 02", title: "Bilim insanı tutarlılığı", steps: "Bilim insanıyla konuş → daha sonra tekrar karşılaş → önceki bilgiyi sor", expected: "Gerçek bilim insanının tutarlılığı ve taklitçinin hafıza sınırlaması karşılaştırılır." },
+        { number: "TEST 03", title: "UV kanıtı", steps: "Normal NPC'yi ve Skinwalker'ı UV dedektörüyle incele", expected: "UV, doğrudan otomatik etiket yerine oyuncunun yorumladığı bir kanıt sağlar." },
+        { number: "TEST 04", title: "Görev ve fiziksel risk", steps: "Kulübeden ayrıl → görevi yap → açık kapı / yaratık olayını tetikle", expected: "Görev yönetimiyle tesis içi riskin aynı vardiyada birleştiği gösterilir." },
+        { number: "TEST 05", title: "Günlük akış ve debug", steps: "Günü / saati değiştir → NPC veya olay tetikle → vardiya durumunu incele", expected: "Sistemler farklı durumlarda tekrarlanabilir biçimde sınanabilir." }
+      ],
+      demoNoteTitle: "Prototip sunum notu",
+      demoNote: "Sunumda kısa bir oynanış kaydı veya canlı Sandbox gösterimi kullanılması önerilir. Test paneli ve placeholder varlıklar, prototip aşamasının parçası olarak açıkça etiketlenmelidir."
+    },
+    scope: {
+      tag: "SCOPE / TESLİM HEDEFİ",
+      title: "Ders hedefi ile uzun vadeli vizyonu ayırmak",
+      intro: "Proje fikri uzun bir demo hedeflese de ders değerlendirmesi için önce küçük, tamamlanmış ve temsil gücü yüksek bir bölüm hazırlanacak.",
+      cards: [
+        { label: "DERS TESLİMİ", value: "10–30 dakika", title: "Playable vertical slice", body: "Oyunun ana kancasını, temel döngüsünü, geri bildirimlerini ve kontrollü bir gerilim yükselişini gösterecek kısa deneyim." },
+        { label: "UZUN VADELİ HEDEF", value: "3–4 saat", title: "Genişletilmiş demo", body: "Daha fazla vardiya, olay ve içerik; kapsam ve üretim kapasitesi doğrulandıkça değerlendirilecek hedef." }
+      ],
+      nextTitle: "Sonraki kilometre taşı",
+      nextSteps: [
+        "Kimlik, hafıza, UV, görev, vardiya ve yaratık mekaniğini tek bir temsilî akışta test etmek.",
+        "Her senaryo için kısa ekran kaydı veya test notu saklamak.",
+        "Öncelikli entegrasyon hatalarını düzeltmek ve prototip akışını oyuncu gözüyle gözden geçirmek.",
+        "Ders için 10–30 dakikalık vertical slice kapsamını kilitlemek; uzun vadeli özellikleri ayrı backlog'da tutmak."
+      ],
+      risksTitle: "Takip edilen kapsam riskleri",
+      risks: [
+        { label: "Çok fazla sistem", body: "Çözüm: önce çekirdek akışı doğrula; ek özellikleri milestone'a bağla." },
+        { label: "Entegrasyon karmaşıklığı", body: "Çözüm: sistemleri Sandbox'ta izole ve birleşik senaryolarla sınamak." },
+        { label: "Polish için yetersiz süre", body: "Çözüm: dersin vertical slice hedefini uzun vadeli demo kapsamından ayrı tutmak." }
+      ]
+    },
+    footer: {
+      eyebrow: "MEVCUT DURUM",
+      title: "Konseptten test edilebilir bir oyun döngüsüne.",
+      body: "İlk dört haftanın odağı; fikri açıklamak, tasarım referanslarını değerlendirmek, üretim yöntemini tanımlamak ve mevcut prototipin hangi mekanikleri gösterebildiğini açıkça ortaya koymak.",
+      teamLabel: "EKİP",
+      toolsLabel: "ARAÇLAR",
+      sourcesLabel: "RAKİP OYUN KAYNAKLARI",
+      sourceNote: "Oyun açıklamaları için resmî Steam mağaza sayfaları. Karşılaştırma yorumları proje tasarımına yönelik nitel değerlendirmelerdir.",
+      close: "PROJECT: NIGHTWATCH · WORK IN PROGRESS"
+    }
+  },
+  en: {
+    navLabel: "Presentation sections",
+    topLabel: "THEOSDEV / LAB",
+    topMeta: "PROJECT FILE 001 · WEEKS 01—04",
+    heroKicker: "DEVELOPMENT JOURNAL / PROJECT OVERVIEW",
+    heroTitle: "PROJECT: NIGHTWATCH",
+    heroSubtitle: "A night shift. One wrong decision. Something may have already entered.",
+    heroBody: "A security guard at a secret laboratory must verify personnel and distinguish Skinwalkers hiding in human identities. But once the guard leaves the checkpoint, danger is no longer limited to the decisions made at the desk.",
+    status: "IN DEVELOPMENT · DEBUG PROTOTYPE",
+    heroMeta: [
+      { label: "GENRE", value: "First-person horror · Deduction" },
+      { label: "ENGINE", value: "Unity 6000.5.9f1" },
+      { label: "TEAM", value: "Nazım · Ramtin" },
+      { label: "COURSE TARGET", value: "10–30 min vertical slice" }
+    ],
+    facilityEyebrow: "FACILITY / SCHEMATIC",
+    facilityHeader: "NIGHT SHIFT",
+    facilityStatus: "SYSTEM STATUS: TEST",
+    facility: ["Authority area", "Machine room", "Containment corridor · 5 cells", "Entrance corridor", "Security booth"],
+    facilityFoot: "Planning schematic only; this is not the final level layout.",
+    tocTitle: "In this presentation",
+    toc: [
+      { id: "concept", label: "01 / Concept" },
+      { id: "market", label: "02 / Market Research" },
+      { id: "pipeline", label: "03 / Production Pipeline" },
+      { id: "prototype", label: "04 / Prototype & Test" },
+      { id: "next", label: "Next milestone" }
+    ],
+    introTitle: "Turning a concept into a production process",
+    introBody: "The first four weeks come together in one story: what the game is, what we learn from comparable titles, how the team plans to produce it, and which systems are present in the current prototype.",
+    factCards: [
+      { label: "PLAYER FANTASY", title: "Be the night guard", body: "Decide who people really are while carrying responsibility for the shift, limited resources, and your own safety." },
+      { label: "CORE HOOK", title: "Verify more than an ID", body: "Documents, remembered conversations, and UV-reactive traces provide complementary pieces of evidence." },
+      { label: "DESIGN PILLAR", title: "Information + time + risk", body: "Decisions at the checkpoint combine with the dangers of physically moving through the facility." },
+      { label: "PRODUCTION APPROACH", title: "Prove it, then polish it", body: "Mechanics are tried in a Sandbox/debug environment; integration and visual polish remain separate production steps." }
+    ],
+    week1: {
+      number: "WEEK 01",
+      tag: "CONCEPT / PROJECT DEFINITION",
+      title: "Built around one strong core idea",
+      intro: "The project entered the team's workflow with an existing concept. Rather than inventing three alternative ideas after the fact, this presentation documents the selected concept's design logic and production potential.",
+      pitchLabel: "ONE-LINE PITCH",
+      pitch: "A first-person horror and deduction game: verify staff using documents, memory, and UV traces; complete facility duties; and stay alive while away from the checkpoint.",
+      pillarsTitle: "Three design pillars",
+      pillars: [
+        { number: "01", title: "Information & deduction", body: "Compare identity records, remember earlier conversations with scientists, and interpret physical evidence." },
+        { number: "02", title: "Time & resources", body: "Prioritize personnel checks, feeding, generator repair, and the limited equipment you can carry." },
+        { number: "03", title: "Physical risk", body: "Leaving the booth makes tasks possible, but open doors and creature encounters increase danger." }
+      ],
+      loopTitle: "Core gameplay loop",
+      loop: ["Prepare the shift", "Inspect personnel", "Make a decision", "Manage facility duties", "End the shift at 09:00", "Carry outcomes into the next day"],
+      noteTitle: "Scope note",
+      note: "This section describes the selected concept, its player experience, hook, and design principles. It is not a retrospective list of ideas; no historical alternatives have been fabricated."
+    },
+    week2: {
+      number: "WEEK 02",
+      tag: "MARKET RESEARCH / CONCEPT DECK",
+      title: "Adding a different kind of risk to a familiar fantasy",
+      intro: "The game starts from legible interactions such as document checks, observation, and evidence evaluation. Its distinction is the combination of those decisions with first-person movement through a facility and physical threats.",
+      audienceTitle: "Target audience",
+      audience: "PC players who enjoy first-person horror, observation and deduction, job simulation, and system-driven tension.",
+      uspTitle: "Core distinction / USP",
+      usp: "Players do more than inspect documents: they can recall earlier conversations, interpret UV traces, and face creatures when leaving the checkpoint to handle facility duties.",
+      competitorTitle: "Five design references",
+      competitorIntro: "These are not templates to copy. They are references for studying adjacent player expectations, strong interactions, and the spaces in which our design can differ.",
+      competitors: [
+        { name: "That's Not My Neighbor", lens: "Identity checks / doppelgängers", strength: "Deciding who should be admitted by examining documents and visual details.", opportunity: "Project: Nightwatch expands this into a 3D facility, conversation memory, UV evidence, and physical danger.", url: "https://store.steampowered.com/app/3431040/Thats_not_my_Neighbor/" },
+        { name: "Papers, Please", lens: "Document inspection / consequences", strength: "Rule-based document checks, time pressure, and consequences for decisions.", opportunity: "Our focus adds memory consistency and the interpretation of supernatural evidence beyond paperwork.", url: "https://store.steampowered.com/app/239030/Papers_Please/" },
+        { name: "Contraband Police", lens: "First-person checkpoint", strength: "Combining document inspection with a physical work area and additional duties.", opportunity: "Facility maintenance creates a similar workload, while horror and the Skinwalker threat form the key distinction.", url: "https://store.steampowered.com/app/756800/Border_Officer/" },
+        { name: "I'm on Observation Duty", lens: "Observation / memory / anomalies", strength: "Spotting unusual events during a night shift by using attention and memory.", opportunity: "Instead of surveillance footage, our game relies on direct NPC interaction, identity checks, and UV traces.", url: "https://store.steampowered.com/app/1046820/" },
+        { name: "The Operator", lens: "Digital evidence / investigation", strength: "Gathering information and connecting clues through computer tools.", opportunity: "The facility computer remains an information hub, while the player must leave the desk and take physical risks.", url: "https://store.steampowered.com/app/1771980/The_Operator/" }
+      ],
+      researchNote: "These comparisons are qualitative design readings based on the core interactions described on each game's official store page and the goals of this project. They are not claims about sales or market size."
+    },
+    week3: {
+      number: "WEEK 03",
+      tag: "PRODUCTION PIPELINE / V1",
+      title: "Two production tracks, one shared goal",
+      intro: "Technical systems and visual content progress in parallel. Mechanics do not need to wait for final models; placeholder assets are acceptable during the first implementation. The pipeline aims to prove systems first and then move them into the main game flow.",
+      toolsTitle: "Tools in use",
+      tools: [
+        { name: "Unity 6000.5.9f1", role: "Game engine / runtime" },
+        { name: "Blender", role: "3D modelling and asset creation" },
+        { name: "VS Code", role: "Code editing" },
+        { name: "GitHub", role: "Version control / repository" },
+        { name: "Notion", role: "Documentation and project notes" }
+      ],
+      rolesTitle: "Team responsibilities",
+      roles: [
+        { person: "Nazım", role: "Technical development", body: "Unity, C# systems, Sandbox, integration, and technical validation." },
+        { person: "Ramtin", role: "Art production", body: "Modelling, textures, and production of visual assets." },
+        { person: "Shared", role: "Design and quality", body: "Game decisions, scope, content, balancing, and test review." }
+      ],
+      flowTitle: "Production flow",
+      flow: [
+        { number: "01", title: "Design & data", body: "Define mechanics and keep adjustable values configurable." },
+        { number: "02", title: "Core systems", body: "Build player, interaction, identity, memory, UV, task, and creature systems." },
+        { number: "03", title: "Sandbox", body: "Trigger mechanics in isolation and use debug tools to test different states." },
+        { number: "04", title: "Integration", body: "Check how systems work together through shared time, inventory, door, and error flows." },
+        { number: "05", title: "Main game", body: "Connect stable systems to the real facility and content." },
+        { number: "06", title: "Vertical slice", body: "Build a short but representative playable section." },
+        { number: "07", title: "QA & polish", body: "Repeat tests, fix bugs, and improve visual and audio feedback." }
+      ],
+      rulesTitle: "Production principles",
+      rules: ["Sandbox first; main scene later.", "Numbers and balancing values should be adjustable through data/configuration where possible.", "A feature is not complete when merely coded; it must be integrated and tested.", "Unknown folder, naming, or build decisions should not be presented as finalized."],
+      currentStageTitle: "Current production point",
+      currentStage: "The production plan has reached the daily schedule / shift-flow stage in a debug-oriented prototype workflow. This presentation does not claim a final build; it focuses on bringing existing mechanics together and strengthening test evidence."
+    },
+    week4: {
+      number: "WEEK 04",
+      tag: "RAPID PROTOTYPING / PLAYABLE PROTOTYPE",
+      title: "Making mechanics visible and testable",
+      intro: "The current build contains multiple gameplay systems at prototype level. The goal is not to claim final visual quality, but to show how the systems behave, test them, and validate the core loop as they work together.",
+      implementationLabel: "SYSTEMS PRESENT IN THE CURRENT PROTOTYPE",
+      implementationNote: "The status below reflects the prototype scope reported by the team. It does not imply final polish, bug-free operation, or that every system combination has passed QA.",
+      features: [
+        { title: "FPS movement & interaction", body: "The player moves through the facility and interacts with world objects." },
+        { title: "NPCs & identity checks", body: "Personnel encounters and a decision flow based on identity data." },
+        { title: "Scientist memory", body: "Earlier conversation information and consistency-question mechanics." },
+        { title: "UV detector", body: "Inspecting Skinwalker traces as physical evidence." },
+        { title: "Facility tasks", body: "Shift duties such as feeding and/or generator repair." },
+        { title: "Creature encounters", body: "Direct attacks, ambushes, or open-door infiltration scenarios." },
+        { title: "Daily schedule / shift", body: "A daily structure that organizes NPC flow and event timing." },
+        { title: "Sandbox debug tools", body: "Testing days, time, NPCs, items, and events in a controlled way." }
+      ],
+      testTitle: "Test scenarios to demonstrate",
+      testIntro: "These are validation scenarios. Unless a recording, result, or measurement is attached, the deck does not claim that every scenario has fully passed.",
+      tests: [
+        { number: "TEST 01", title: "Identity verification", steps: "Normal NPC → valid data; suspicious NPC → field mismatch", expected: "The player can inspect the data and choose whether to allow passage or intervene." },
+        { number: "TEST 02", title: "Scientist consistency", steps: "Talk to a scientist → meet again later → ask about earlier information", expected: "The consistency of a real scientist is compared with an impersonator's memory limitation." },
+        { number: "TEST 03", title: "UV evidence", steps: "Inspect a normal NPC and a Skinwalker with the UV detector", expected: "UV provides evidence for the player to interpret rather than an automatic identity label." },
+        { number: "TEST 04", title: "Task and physical risk", steps: "Leave the booth → perform a task → trigger an open-door / creature event", expected: "Task management and facility danger meet within the same shift." },
+        { number: "TEST 05", title: "Daily flow and debug", steps: "Change day/time → trigger an NPC or event → inspect shift state", expected: "Systems can be exercised repeatedly under different conditions." }
+      ],
+      demoNoteTitle: "Prototype presentation note",
+      demoNote: "A short gameplay recording or a live Sandbox walkthrough is recommended. The debug panel and placeholder assets should be clearly labelled as part of the prototype stage."
+    },
+    scope: {
+      tag: "SCOPE / DELIVERY TARGET",
+      title: "Separate the course target from the long-term vision",
+      intro: "The project aims for a longer demo, but the course submission should first deliver a small, complete, and representative playable section.",
+      cards: [
+        { label: "COURSE SUBMISSION", value: "10–30 minutes", title: "Playable vertical slice", body: "A short experience that demonstrates the core hook, gameplay loop, feedback, and a controlled rise in tension." },
+        { label: "LONG-TERM TARGET", value: "3–4 hours", title: "Expanded demo", body: "More shifts, events, and content; treated as an ambition to revisit as scope and production capacity are validated." }
+      ],
+      nextTitle: "Next milestone",
+      nextSteps: [
+        "Test identity, memory, UV, tasks, shift flow, and creature mechanics in one representative sequence.",
+        "Keep a short recording or test note for each scenario.",
+        "Fix the highest-priority integration issues and review the prototype flow from a player's perspective.",
+        "Lock the 10–30 minute vertical slice scope for the course; keep longer-term features in a separate backlog."
+      ],
+      risksTitle: "Scope risks to watch",
+      risks: [
+        { label: "Too many systems", body: "Response: validate the core flow first and attach additional features to milestones." },
+        { label: "Integration complexity", body: "Response: test systems in isolation and with combined Sandbox scenarios." },
+        { label: "Limited polish time", body: "Response: keep the course vertical slice separate from the long-term demo scope." }
+      ]
+    },
+    footer: {
+      eyebrow: "CURRENT STATUS",
+      title: "From a concept to a testable gameplay loop.",
+      body: "The first four weeks focus on explaining the idea, reviewing design references, defining the production method, and clearly showing which mechanics the current prototype can demonstrate.",
+      teamLabel: "TEAM",
+      toolsLabel: "TOOLS",
+      sourcesLabel: "COMPETITOR SOURCES",
+      sourceNote: "Game descriptions link to official Steam store pages. The comparisons are qualitative design analysis for this project.",
+      close: "PROJECT: NIGHTWATCH · WORK IN PROGRESS"
+    }
+  }
+};
+const versions = Object.entries(copy);
 ---
 
-<div class="lab-wrap">
-  <header class="lab-header">
-    <p class="eyebrow">TheosDev / {isEnglish ? 'In the lab' : 'Atölye'}</p>
-    <h1 class="page-title">{isEnglish ? 'Work in progress, shared carefully.' : 'Devam eden işleri, doğru zamanda paylaşmak.'}</h1>
-    <p class="page-intro">{isEnglish ? 'A quieter space for an unreleased project: development notes, presentation material, experiments, and decisions as they take shape.' : 'Yayınlanmamış bir proje için daha sakin bir alan: geliştirme notları, sunumlar, deneyler ve kararlar şekillendikçe burada birikecek.'}</p>
-  </header>
-
-  <section class="lab-project" aria-labelledby="current-project-title">
-    <div class="lab-project-index">01<br /><span>{isEnglish ? 'PRIVATE / IN PROGRESS' : 'GİZLİ / DEVAM EDİYOR'}</span></div>
-    <div>
-      <p class="eyebrow">{isEnglish ? 'Current project' : 'Güncel proje'}</p>
-      <h2 id="current-project-title">{isEnglish ? 'Project details are intentionally held back for now.' : 'Proje detayları şimdilik bilinçli olarak sınırlı tutuluyor.'}</h2>
-      <p>{isEnglish ? 'This page is ready for the project’s public moment. Until then, it can hold process material without exposing the parts that are still being tested.' : 'Bu sayfa projenin kamuya açık paylaşım anına hazır. O zamana kadar henüz test edilen bölümleri açığa çıkarmadan süreç materyallerini taşıyabilir.'}</p>
+<div class="nightwatch-presentation" data-project-presentation data-active-language={initialLanguage}>
+  <div class="presentation-bar">
+    <div class="presentation-brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span data-top-copy="tr" hidden={initialLanguage !== "tr"}>{copy.tr.topLabel}</span>
+      <span data-top-copy="en" hidden={initialLanguage !== "en"}>{copy.en.topLabel}</span>
+      <span class="bar-divider">/</span>
+      <span class="bar-meta" data-top-meta="tr" hidden={initialLanguage !== "tr"}>{copy.tr.topMeta}</span>
+      <span class="bar-meta" data-top-meta="en" hidden={initialLanguage !== "en"}>{copy.en.topMeta}</span>
     </div>
-  </section>
-
-  <section class="lab-stream" aria-labelledby="lab-stream-title">
-    <div class="section-label"><h2 id="lab-stream-title">{isEnglish ? 'What will live here' : 'Burada neler olacak'}</h2><span>02 — 04</span></div>
-    <div class="lab-grid">
-      <article><span>02</span><h3>{isEnglish ? 'Devlog notes' : 'Devlog notları'}</h3><p>{isEnglish ? 'Short entries about prototypes, technical decisions, failures, and the next experiment.' : 'Prototipler, teknik kararlar, başarısız denemeler ve sıradaki deney hakkında kısa yazılar.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
-      <article><span>03</span><h3>{isEnglish ? 'Presentation deck' : 'Sunum dosyaları'}</h3><p>{isEnglish ? 'A clear project brief, visual direction, system map, and selected progress snapshots.' : 'Net bir proje özeti, görsel yön, sistem haritası ve seçilmiş ilerleme görüntüleri.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
-      <article><span>04</span><h3>{isEnglish ? 'Build notes' : 'Build notları'}</h3><p>{isEnglish ? 'Milestones and release notes added when a build is stable enough to talk about.' : 'Bir build hakkında konuşmaya yetecek kadar kararlı olduğunda eklenecek kilometre taşları ve sürüm notları.'}</p><strong>{isEnglish ? 'Coming soon' : 'Yakında'}</strong></article>
+    <div class="language-control" role="group" aria-label="Presentation language">
+      <button type="button" data-language-toggle="tr" aria-pressed={initialLanguage === "tr"}>TR</button>
+      <button type="button" data-language-toggle="en" aria-pressed={initialLanguage === "en"}>EN</button>
     </div>
-  </section>
+  </div>
 
-  <section class="lab-guideline">
-    <p class="eyebrow">{isEnglish ? 'Publishing rule' : 'Paylaşım ilkesi'}</p>
-    <p>{isEnglish ? 'The project stays private until its core idea, presentation, and playable state are ready to represent it honestly.' : 'Proje; temel fikri, sunumu ve oynanabilir hali onu doğru temsil edecek duruma gelene kadar özel kalacak.'}</p>
-  </section>
+  {versions.map(([lang, t]) => (
+    <div class="deck-language" data-language-panel={lang} lang={lang} hidden={lang !== initialLanguage}>
+      <div class="deck-container">
+        <header class="deck-hero">
+          <div class="hero-copy">
+            <p class="eyebrow"><span>{t.heroKicker}</span><span class="eyebrow-line"></span></p>
+            <h1>{t.heroTitle}</h1>
+            <p class="hero-subtitle">{t.heroSubtitle}</p>
+            <p class="hero-body">{t.heroBody}</p>
+            <div class="hero-status"><span class="status-dot"></span>{t.status}</div>
+            <div class="hero-meta-grid">
+              {t.heroMeta.map((item) => (
+                <div class="hero-meta-item">
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+          <aside class="facility-card" aria-label={t.facilityEyebrow}>
+            <div class="facility-card-head">
+              <div><p>{t.facilityEyebrow}</p><strong>{t.facilityHeader}</strong></div>
+              <span class="facility-indicator"><i></i> {t.facilityStatus}</span>
+            </div>
+            <div class="facility-schematic">
+              {t.facility.map((room, index) => (
+                <div class:list={["facility-zone", index === 4 ? "zone-booth" : "", index === 0 ? "zone-restricted" : ""]}>
+                  <span class="zone-index">0{index + 1}</span>
+                  <span class="zone-name">{room}</span>
+                  <span class="zone-mark" aria-hidden="true">{index === 0 ? "×" : index === 4 ? "↔" : "·"}</span>
+                </div>
+              ))}
+            </div>
+            <p class="facility-foot"><span>↳</span> {t.facilityFoot}</p>
+            <div class="facility-card-bottom"><span>21:00</span><span class="timeline"><i></i></span><span>09:00</span></div>
+          </aside>
+        </header>
+
+        <div class="presentation-intro">
+          <div class="intro-index">00</div>
+          <div>
+            <h2>{t.introTitle}</h2>
+            <p>{t.introBody}</p>
+          </div>
+        </div>
+
+        <section class="fact-grid" aria-label="Project summary">
+          {t.factCards.map((card, index) => (
+            <article class="fact-card">
+              <div class="fact-card-top"><span>0{index + 1}</span><span class="fact-arrow">↗</span></div>
+              <p class="card-eyebrow">{card.label}</p>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </section>
+
+        <nav class="section-toc" aria-label={t.navLabel}>
+          <span class="toc-label">{t.tocTitle}</span>
+          <div class="toc-links">
+            {t.toc.map((item) => (
+              <a href={`#${item.id}-${lang}`}>{item.label}<span aria-hidden="true"> ↘</span></a>
+            ))}
+          </div>
+        </nav>
+
+        <section class="deck-section" id={`concept-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.week1.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.week1.tag}</p><h2>{t.week1.title}</h2><p class="section-intro">{t.week1.intro}</p></div>
+          </div>
+          <div class="concept-pitch">
+            <div class="pitch-label"><span class="small-square"></span>{t.week1.pitchLabel}</div>
+            <p>{t.week1.pitch}</p>
+            <span class="pitch-decoration" aria-hidden="true">“</span>
+          </div>
+          <div class="subsection-heading"><h3>{t.week1.pillarsTitle}</h3><span>01—03</span></div>
+          <div class="pillar-grid">
+            {t.week1.pillars.map((pillar) => (
+              <article class="pillar-card">
+                <span class="pillar-number">{pillar.number}</span>
+                <h4>{pillar.title}</h4>
+                <p>{pillar.body}</p>
+              </article>
+            ))}
+          </div>
+          <div class="loop-block">
+            <div class="subsection-heading"><h3>{t.week1.loopTitle}</h3><span>CORE LOOP</span></div>
+            <div class="loop-flow">
+              {t.week1.loop.map((step, index) => (
+                <div class="loop-step"><span>{String(index + 1).padStart(2, "0")}</span><strong>{step}</strong>{index < t.week1.loop.length - 1 && <i aria-hidden="true">→</i>}</div>
+              ))}
+            </div>
+          </div>
+          <aside class="editorial-note"><span class="note-mark">i</span><div><h3>{t.week1.noteTitle}</h3><p>{t.week1.note}</p></div></aside>
+        </section>
+
+        <section class="deck-section" id={`market-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.week2.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.week2.tag}</p><h2>{t.week2.title}</h2><p class="section-intro">{t.week2.intro}</p></div>
+          </div>
+          <div class="market-summary-grid">
+            <article class="market-summary"><span class="market-icon">◎</span><div><h3>{t.week2.audienceTitle}</h3><p>{t.week2.audience}</p></div></article>
+            <article class="market-summary market-summary-dark"><span class="market-icon">✳</span><div><h3>{t.week2.uspTitle}</h3><p>{t.week2.usp}</p></div></article>
+          </div>
+          <div class="subsection-heading competitor-heading"><h3>{t.week2.competitorTitle}</h3><span>05 REFERENCES</span></div>
+          <p class="section-intro competitor-intro">{t.week2.competitorIntro}</p>
+          <div class="competitor-list">
+            {t.week2.competitors.map((game, index) => (
+              <article class="competitor-row">
+                <div class="competitor-index">0{index + 1}</div>
+                <div class="competitor-main"><div class="competitor-titleline"><h3>{game.name}</h3><span>{game.lens}</span></div><p class="competitor-strength">{game.strength}</p><p class="competitor-opportunity"><strong>{lang === "tr" ? "Tasarım fırsatı" : "Design opportunity"}</strong>{game.opportunity}</p></div>
+                <a class="external-link" href={game.url} target="_blank" rel="noreferrer">{lang === "tr" ? "Resmî sayfa" : "Official page"}<span aria-hidden="true">↗</span></a>
+              </article>
+            ))}
+          </div>
+          <p class="source-note"><span>*</span> {t.week2.researchNote}</p>
+        </section>
+
+        <section class="deck-section" id={`pipeline-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.week3.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.week3.tag}</p><h2>{t.week3.title}</h2><p class="section-intro">{t.week3.intro}</p></div>
+          </div>
+          <div class="tools-block">
+            <div class="subsection-heading"><h3>{t.week3.toolsTitle}</h3><span>TOOLKIT</span></div>
+            <div class="tool-grid">
+              {t.week3.tools.map((tool) => (
+                <article class="tool-card"><span class="tool-mark">↗</span><h4>{tool.name}</h4><p>{tool.role}</p></article>
+              ))}
+            </div>
+          </div>
+          <div class="roles-block">
+            <div class="subsection-heading"><h3>{t.week3.rolesTitle}</h3><span>TEAM / 02</span></div>
+            <div class="role-grid">
+              {t.week3.roles.map((role) => (
+                <article class="role-card"><p class="card-eyebrow">{role.role}</p><h3>{role.person}</h3><p>{role.body}</p></article>
+              ))}
+            </div>
+          </div>
+          <div class="flow-block">
+            <div class="subsection-heading"><h3>{t.week3.flowTitle}</h3><span>PIPELINE</span></div>
+            <div class="production-flow">
+              {t.week3.flow.map((phase) => (
+                <article class="production-phase"><span>{phase.number}</span><div><h4>{phase.title}</h4><p>{phase.body}</p></div></article>
+              ))}
+            </div>
+          </div>
+          <div class="pipeline-bottom-grid">
+            <article class="principles-card"><div class="subsection-heading"><h3>{t.week3.rulesTitle}</h3><span>RULES</span></div><ul>{t.week3.rules.map((rule) => <li>{rule}</li>)}</ul></article>
+            <aside class="current-stage-card"><span class="card-eyebrow">{t.week3.currentStageTitle}</span><div class="stage-mark"><span>PHASE</span><strong>10</strong></div><p>{t.week3.currentStage}</p></aside>
+          </div>
+        </section>
+
+        <section class="deck-section prototype-section" id={`prototype-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.week4.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.week4.tag}</p><h2>{t.week4.title}</h2><p class="section-intro">{t.week4.intro}</p></div>
+          </div>
+          <div class="prototype-status-line"><span class="live-dot"></span><strong>{t.week4.implementationLabel}</strong><span class="status-chip">DEBUG BUILD</span></div>
+          <p class="prototype-disclaimer">{t.week4.implementationNote}</p>
+          <div class="feature-grid">
+            {t.week4.features.map((feature, index) => (
+              <article class="feature-card"><div class="feature-card-head"><span>0{index + 1}</span><span class="feature-check">✓</span></div><h3>{feature.title}</h3><p>{feature.body}</p><span class="feature-state">{lang === "tr" ? "PROTOTİPTE VAR" : "IN PROTOTYPE"}</span></article>
+            ))}
+          </div>
+          <div class="test-plan-block">
+            <div class="subsection-heading"><h3>{t.week4.testTitle}</h3><span>QA / PROTOTYPE</span></div>
+            <p class="section-intro">{t.week4.testIntro}</p>
+            <div class="test-grid">
+              {t.week4.tests.map((test) => (
+                <article class="test-card"><div class="test-card-top"><span>{test.number}</span><span class="test-circle">○</span></div><h3>{test.title}</h3><div class="test-field"><span>{lang === "tr" ? "AKIŞ" : "FLOW"}</span><p>{test.steps}</p></div><div class="test-field expected"><span>{lang === "tr" ? "BEKLENEN" : "EXPECTED"}</span><p>{test.expected}</p></div></article>
+              ))}
+            </div>
+          </div>
+          <aside class="editorial-note"><span class="note-mark">↗</span><div><h3>{t.week4.demoNoteTitle}</h3><p>{t.week4.demoNote}</p></div></aside>
+        </section>
+
+        <section class="deck-section scope-section" id={`next-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">NEXT</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.scope.tag}</p><h2>{t.scope.title}</h2><p class="section-intro">{t.scope.intro}</p></div>
+          </div>
+          <div class="scope-grid">
+            {t.scope.cards.map((card, index) => (
+              <article class:list={["scope-card", index === 0 ? "scope-card-primary" : ""]}><p class="card-eyebrow">{card.label}</p><div class="scope-value">{card.value}</div><h3>{card.title}</h3><p>{card.body}</p></article>
+            ))}
+          </div>
+          <div class="next-steps-grid">
+            <article class="next-steps-card"><div class="subsection-heading"><h3>{t.scope.nextTitle}</h3><span>01—04</span></div><ol>{t.scope.nextSteps.map((step) => <li>{step}</li>)}</ol></article>
+            <article class="risks-card"><div class="subsection-heading"><h3>{t.scope.risksTitle}</h3><span>WATCHLIST</span></div>{t.scope.risks.map((risk) => <div class="risk-item"><strong>{risk.label}</strong><p>{risk.body}</p></div>)}</article>
+          </div>
+        </section>
+
+        <footer class="deck-footer">
+          <div class="footer-main"><p class="eyebrow">{t.footer.eyebrow}</p><h2>{t.footer.title}</h2><p>{t.footer.body}</p><span class="footer-rule"></span><strong>{t.footer.close}</strong></div>
+          <div class="footer-details">
+            <div><span>{t.footer.teamLabel}</span><p>Nazım <small>— {lang === "tr" ? "Teknik" : "Technical"}</small></p><p>Ramtin <small>— {lang === "tr" ? "Sanat" : "Art"}</small></p></div>
+            <div><span>{t.footer.toolsLabel}</span><p>Unity · Blender · VS Code</p><p>GitHub · Notion</p></div>
+            <div><span>{t.footer.sourcesLabel}</span><p>{t.footer.sourceNote}</p><a href="https://store.steampowered.com/app/3431040/Thats_not_my_Neighbor/" target="_blank" rel="noreferrer">That's Not My Neighbor</a><a href="https://store.steampowered.com/app/239030/Papers_Please/" target="_blank" rel="noreferrer">Papers, Please</a><a href="https://store.steampowered.com/app/756800/Border_Officer/" target="_blank" rel="noreferrer">Contraband Police</a><a href="https://store.steampowered.com/app/1046820/" target="_blank" rel="noreferrer">I'm on Observation Duty</a><a href="https://store.steampowered.com/app/1771980/The_Operator/" target="_blank" rel="noreferrer">The Operator</a></div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  ))}
 </div>
+
+<script>
+  const presentation = document.querySelector('[data-project-presentation]');
+  if (presentation) {
+    const panels = Array.from(presentation.querySelectorAll<HTMLElement>('[data-language-panel]'));
+    const toggles = Array.from(presentation.querySelectorAll<HTMLButtonElement>('[data-language-toggle]'));
+    const topCopies = Array.from(presentation.querySelectorAll<HTMLElement>('[data-top-copy]'));
+    const topMetas = Array.from(presentation.querySelectorAll<HTMLElement>('[data-top-meta]'));
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const language = toggle.getAttribute('data-language-toggle');
+        panels.forEach((panel) => {
+          panel.hidden = panel.getAttribute('data-language-panel') !== language;
+        });
+        topCopies.forEach((item) => {
+          item.hidden = item.getAttribute('data-top-copy') !== language;
+        });
+        topMetas.forEach((item) => {
+          item.hidden = item.getAttribute('data-top-meta') !== language;
+        });
+        toggles.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button === toggle));
+        });
+        presentation.setAttribute('data-active-language', language || 'tr');
+      });
+    });
+  }
+</script>
+
+<style>
+  .nightwatch-presentation {
+    --nw-ink: var(--color-text, #202321);
+    --nw-muted: var(--color-muted, #777b76);
+    --nw-line: var(--color-border, #d9dcd6);
+    --nw-paper: var(--color-background, #f8f8f5);
+    --nw-panel: var(--color-surface, #f0f1ec);
+    --nw-dark: #202723;
+    --nw-accent: #a8c0a7;
+    color: var(--nw-ink);
+    background: var(--nw-paper);
+    font-family: inherit;
+    width: 100%;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .nightwatch-presentation * { box-sizing: border-box; }
+  .nightwatch-presentation [hidden] { display: none !important; }
+  .presentation-bar { max-width: 1240px; margin: 0 auto; padding: 18px clamp(18px, 4vw, 48px); display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid var(--nw-line); }
+  .presentation-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .09em; font-size: 10px; font-weight: 650; }
+  .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: #8ca48c; display: inline-block; box-shadow: 0 0 0 3px color-mix(in srgb, #8ca48c 18%, transparent); }
+  .bar-divider { color: var(--nw-muted); }
+  .bar-meta { color: var(--nw-muted); font-weight: 500; }
+  .language-control { display: inline-flex; align-items: center; border: 1px solid var(--nw-line); border-radius: 999px; padding: 3px; gap: 2px; flex-shrink: 0; }
+  .language-control button { appearance: none; border: 0; background: transparent; padding: 7px 11px; border-radius: 999px; color: var(--nw-muted); font: inherit; font-size: 10px; letter-spacing: .08em; cursor: pointer; }
+  .language-control button[aria-pressed="true"] { background: var(--nw-dark); color: #f7f8f3; }
+  .language-control button:focus-visible, .nightwatch-presentation a:focus-visible { outline: 2px solid #78987b; outline-offset: 3px; }
+  .deck-container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 48px); }
+  .deck-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .8fr); gap: clamp(36px, 6vw, 88px); align-items: center; padding: clamp(54px, 9vw, 112px) 0 72px; }
+  .eyebrow { margin: 0 0 15px; display: flex; gap: 12px; align-items: center; color: var(--nw-muted); text-transform: uppercase; letter-spacing: .13em; font-size: 10px; line-height: 1.5; font-weight: 650; }
+  .eyebrow-line { height: 1px; flex: 1; max-width: 58px; background: var(--nw-line); }
+  .deck-hero h1 { font-size: clamp(37px, 6vw, 76px); line-height: .98; letter-spacing: -.065em; font-weight: 560; max-width: 720px; margin: 0 0 23px; overflow-wrap: anywhere; }
+  .hero-subtitle { max-width: 660px; font-size: clamp(19px, 2.5vw, 29px); line-height: 1.25; letter-spacing: -.035em; margin: 0 0 20px; }
+  .hero-body { color: var(--nw-muted); max-width: 640px; font-size: 14px; line-height: 1.85; margin: 0; }
+  .hero-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 23px; padding: 8px 11px; border: 1px solid var(--nw-line); border-radius: 3px; text-transform: uppercase; font-size: 9px; letter-spacing: .1em; font-weight: 650; }
+  .status-dot, .live-dot { height: 6px; width: 6px; background: #9aab79; border-radius: 50%; display: inline-block; }
+  .hero-meta-grid { margin-top: 37px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--nw-line); }
+  .hero-meta-item { padding: 14px 14px 13px 0; border-bottom: 1px solid var(--nw-line); }
+  .hero-meta-item:nth-child(odd) { border-right: 1px solid var(--nw-line); }
+  .hero-meta-item:nth-child(even) { padding-left: 17px; }
+  .hero-meta-item span { display: block; color: var(--nw-muted); font-size: 9px; letter-spacing: .11em; margin-bottom: 7px; }
+  .hero-meta-item strong { display: block; font-size: 12px; font-weight: 600; line-height: 1.45; }
+
+  .facility-card { background: #222a25; color: #edf0e9; padding: 22px 22px 17px; min-width: 0; position: relative; overflow: hidden; border: 1px solid #303b33; box-shadow: 0 18px 52px rgb(22 31 25 / 9%); }
+  .facility-card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14; background: repeating-linear-gradient(to bottom, transparent 0, transparent 4px, #a9c7a6 5px); }
+  .facility-card-head, .facility-card-bottom, .facility-indicator, .facility-card-head > div { position: relative; }
+  .facility-card-head { display: flex; justify-content: space-between; align-items: start; gap: 14px; padding-bottom: 21px; border-bottom: 1px solid #465249; }
+  .facility-card-head p { margin: 0 0 7px; color: #a5b3a4; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+  .facility-card-head strong { font-size: 15px; letter-spacing: .03em; font-weight: 550; }
+  .facility-indicator { color: #acbca3; font-size: 8px; line-height: 1.5; letter-spacing: .04em; text-align: right; max-width: 96px; }
+  .facility-indicator i { display: inline-block; background: #b2ca8a; width: 5px; height: 5px; border-radius: 50%; margin: 0 4px 1px 0; }
+  .facility-schematic { padding: 20px 0 13px; position: relative; }
+  .facility-schematic::before { content: ""; width: 1px; position: absolute; top: 25px; bottom: 21px; left: 14px; background: #71816f; }
+  .facility-zone { display: grid; grid-template-columns: 29px minmax(0, 1fr) 18px; align-items: center; min-height: 43px; position: relative; gap: 4px; }
+  .zone-index { z-index: 1; display: inline-grid; place-items: center; height: 25px; width: 25px; border: 1px solid #7a8c78; border-radius: 50%; background: #222a25; color: #b9c9b0; font-size: 8px; }
+  .zone-name { color: #d9e2d4; font-size: 11px; line-height: 1.4; padding: 8px 9px; border-bottom: 1px solid #3d4940; }
+  .zone-mark { color: #a8c59c; text-align: center; font-size: 13px; }
+  .zone-restricted .zone-index { border-color: #a37d71; color: #d3a293; }
+  .zone-restricted .zone-mark { color: #d3a293; }
+  .zone-booth .zone-name { background: rgb(168 192 167 / 9%); border-bottom-color: #647661; }
+  .facility-foot { display: flex; gap: 8px; color: #98a59a; font-size: 9px; line-height: 1.5; margin: 7px 0 21px; position: relative; }
+  .facility-foot span { color: #c2d5b5; }
+  .facility-card-bottom { border-top: 1px solid #465249; padding-top: 13px; display: flex; align-items: center; gap: 10px; font-size: 9px; color: #b9c5b6; letter-spacing: .07em; }
+  .timeline { height: 2px; flex: 1; background: #51604f; position: relative; }
+  .timeline i { height: 6px; width: 6px; display: block; border-radius: 50%; background: #c8d6b5; position: absolute; left: 48%; top: -2px; }
+
+  .presentation-intro { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 28px; padding: 36px 0; border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); }
+  .intro-index { color: var(--nw-muted); font-size: 11px; letter-spacing: .1em; padding-top: 7px; }
+  .presentation-intro h2 { font-size: clamp(23px, 3vw, 34px); line-height: 1.15; letter-spacing: -.04em; font-weight: 540; margin: 0 0 10px; }
+  .presentation-intro p { max-width: 790px; color: var(--nw-muted); margin: 0; font-size: 13px; line-height: 1.8; }
+  .fact-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--nw-line); }
+  .fact-card { padding: 20px 19px 24px 0; min-width: 0; }
+  .fact-card + .fact-card { border-left: 1px solid var(--nw-line); padding-left: 19px; }
+  .fact-card-top { display: flex; justify-content: space-between; color: var(--nw-muted); font-size: 10px; letter-spacing: .08em; margin-bottom: 27px; }
+  .fact-arrow { color: var(--nw-muted); font-size: 13px; }
+  .card-eyebrow { color: var(--nw-muted); text-transform: uppercase; letter-spacing: .12em; font-size: 9px; margin: 0 0 9px; font-weight: 650; }
+  .fact-card h3 { font-size: 15px; line-height: 1.3; letter-spacing: -.025em; font-weight: 600; margin: 0 0 8px; }
+  .fact-card > p:last-child { color: var(--nw-muted); font-size: 11px; line-height: 1.75; margin: 0; }
+  .section-toc { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 21px 0; border-bottom: 1px solid var(--nw-line); }
+  .toc-label { color: var(--nw-muted); text-transform: uppercase; letter-spacing: .12em; font-size: 9px; font-weight: 650; flex-shrink: 0; }
+  .toc-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px 20px; }
+  .toc-links a { color: var(--nw-ink); text-decoration: none; font-size: 10px; }
+  .toc-links a span { color: var(--nw-muted); }
+  .toc-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .deck-section { padding: clamp(52px, 7vw, 86px) 0 0; scroll-margin-top: 28px; }
+  .section-heading { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 28px; margin-bottom: 35px; }
+  .section-number { color: var(--nw-muted); font-size: 10px; letter-spacing: .1em; padding-top: 6px; }
+  .section-heading-main .eyebrow { margin-bottom: 11px; }
+  .section-heading h2 { font-size: clamp(28px, 4vw, 46px); line-height: 1.05; font-weight: 540; letter-spacing: -.055em; margin: 0 0 16px; max-width: 780px; }
+  .section-intro { color: var(--nw-muted); font-size: 13px; line-height: 1.85; max-width: 790px; margin: 0; }
+  .concept-pitch { position: relative; background: var(--nw-panel); padding: 26px clamp(22px, 4vw, 45px) 28px; border-left: 3px solid #9eb69e; margin-bottom: 37px; overflow: hidden; }
+  .pitch-label { display: flex; align-items: center; gap: 9px; color: var(--nw-muted); font-size: 9px; letter-spacing: .12em; font-weight: 650; margin-bottom: 14px; }
+  .small-square { display: inline-block; width: 7px; height: 7px; background: #8ca88c; }
+  .concept-pitch p { position: relative; z-index: 1; max-width: 830px; font-size: clamp(18px, 2.5vw, 26px); letter-spacing: -.03em; line-height: 1.45; margin: 0; }
+  .pitch-decoration { position: absolute; right: 13px; bottom: -66px; font-family: Georgia, serif; font-size: 200px; color: color-mix(in srgb, #789478 12%, transparent); line-height: 1; }
+  .subsection-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; border-bottom: 1px solid var(--nw-line); padding-bottom: 11px; margin-bottom: 18px; }
+  .subsection-heading h3 { font-size: 15px; font-weight: 600; letter-spacing: -.025em; margin: 0; }
+  .subsection-heading > span { color: var(--nw-muted); font-size: 9px; letter-spacing: .1em; flex-shrink: 0; }
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); }
+  .pillar-card { padding: 19px 23px 23px 0; }
+  .pillar-card + .pillar-card { border-left: 1px solid var(--nw-line); padding-left: 23px; }
+  .pillar-number { display: block; color: #829782; font-size: 11px; margin-bottom: 29px; }
+  .pillar-card h4 { font-size: 16px; font-weight: 600; letter-spacing: -.025em; margin: 0 0 9px; }
+  .pillar-card p { font-size: 12px; line-height: 1.8; color: var(--nw-muted); margin: 0; }
+  .loop-block { margin-top: 38px; }
+  .loop-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
+  .loop-step { padding: 15px 12px; min-height: 111px; position: relative; border-right: 1px solid var(--nw-line); display: flex; flex-direction: column; align-items: start; gap: 22px; }
+  .loop-step:last-child { border-right: 0; background: var(--nw-panel); }
+  .loop-step > span { color: var(--nw-muted); font-size: 9px; }
+  .loop-step strong { font-size: 11px; line-height: 1.45; font-weight: 600; }
+  .loop-step i { font-style: normal; position: absolute; right: -6px; z-index: 1; top: 48px; width: 12px; color: var(--nw-muted); background: var(--nw-paper); text-align: center; font-size: 10px; }
+  .editorial-note { display: flex; gap: 15px; align-items: flex-start; border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); padding: 20px 0; margin-top: 31px; }
+  .note-mark { border: 1px solid var(--nw-line); border-radius: 50%; height: 22px; width: 22px; display: inline-grid; place-items: center; flex-shrink: 0; font-size: 11px; color: var(--nw-muted); }
+  .editorial-note h3 { font-size: 12px; font-weight: 650; margin: 0 0 5px; }
+  .editorial-note p { color: var(--nw-muted); font-size: 11px; line-height: 1.75; margin: 0; max-width: 890px; }
+
+  .market-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 42px; }
+  .market-summary { background: var(--nw-panel); padding: 22px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 15px; }
+  .market-icon { display: inline-grid; place-items: center; border: 1px solid var(--nw-line); width: 31px; height: 31px; font-size: 16px; color: var(--nw-muted); }
+  .market-summary h3 { font-size: 14px; margin: 1px 0 8px; font-weight: 600; }
+  .market-summary p { color: var(--nw-muted); font-size: 12px; line-height: 1.8; margin: 0; }
+  .market-summary-dark { background: #232c25; color: #eef0e8; }
+  .market-summary-dark .market-icon { border-color: #5a695a; color: #c9d8be; }
+  .market-summary-dark p { color: #c0c8bc; }
+  .competitor-heading { margin-bottom: 12px; }
+  .competitor-intro { margin-bottom: 18px; }
+  .competitor-list { border-top: 1px solid var(--nw-line); }
+  .competitor-row { display: grid; grid-template-columns: 38px minmax(0, 1fr) 100px; gap: 15px; padding: 19px 0 20px; border-bottom: 1px solid var(--nw-line); align-items: start; }
+  .competitor-index { font-size: 10px; color: var(--nw-muted); padding-top: 5px; }
+  .competitor-titleline { display: flex; align-items: baseline; gap: 13px; flex-wrap: wrap; margin-bottom: 7px; }
+  .competitor-titleline h3 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: -.02em; }
+  .competitor-titleline span { color: var(--nw-muted); font-size: 9px; letter-spacing: .04em; }
+  .competitor-strength { font-size: 12px; line-height: 1.65; margin: 0 0 7px; }
+  .competitor-opportunity { color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin: 0; }
+  .competitor-opportunity strong { color: var(--nw-ink); font-weight: 600; display: inline-block; margin-right: 7px; }
+  .external-link { display: flex; align-items: center; justify-content: flex-end; gap: 7px; color: var(--nw-muted); text-align: right; text-decoration: none; font-size: 10px; padding-top: 5px; }
+  .external-link:hover { color: var(--nw-ink); text-decoration: underline; text-underline-offset: 4px; }
+  .source-note { display: flex; gap: 10px; color: var(--nw-muted); font-size: 10px; line-height: 1.8; margin: 17px 0 0; }
+  .source-note span { color: #849982; }
+
+  .tools-block, .roles-block, .flow-block { margin-top: 36px; }
+  .tool-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
+  .tool-card { min-height: 130px; padding: 15px 13px; position: relative; border-right: 1px solid var(--nw-line); }
+  .tool-card:last-child { border-right: 0; }
+  .tool-mark { color: #899f88; font-size: 12px; }
+  .tool-card h4 { font-size: 12px; line-height: 1.4; font-weight: 650; margin: 22px 0 5px; overflow-wrap: anywhere; }
+  .tool-card p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 0; }
+  .role-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .role-card { border: 1px solid var(--nw-line); padding: 19px; min-height: 150px; }
+  .role-card h3 { font-size: 21px; letter-spacing: -.04em; font-weight: 550; margin: 0 0 9px; }
+  .role-card > p:last-child { color: var(--nw-muted); font-size: 11px; line-height: 1.8; margin: 0; }
+  .production-flow { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); }
+  .production-phase { padding: 16px 13px 18px 0; position: relative; min-width: 0; }
+  .production-phase + .production-phase { padding-left: 13px; border-left: 1px solid var(--nw-line); }
+  .production-phase > span { color: #829982; font-size: 10px; display: block; margin-bottom: 26px; }
+  .production-phase h4 { font-size: 12px; line-height: 1.35; margin: 0 0 8px; font-weight: 650; }
+  .production-phase p { color: var(--nw-muted); font-size: 10px; line-height: 1.65; margin: 0; }
+  .pipeline-bottom-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr); gap: 26px; margin-top: 38px; }
+  .principles-card ul { list-style: none; padding: 0; margin: 0; }
+  .principles-card li { padding: 12px 0 12px 23px; position: relative; font-size: 11px; line-height: 1.75; border-bottom: 1px solid var(--nw-line); }
+  .principles-card li::before { content: "↗"; color: #829982; position: absolute; left: 0; top: 12px; }
+  .current-stage-card { padding: 23px; background: var(--nw-panel); }
+  .stage-mark { display: flex; align-items: baseline; gap: 12px; margin: 20px 0 15px; }
+  .stage-mark span { color: var(--nw-muted); font-size: 9px; letter-spacing: .12em; }
+  .stage-mark strong { font-size: 60px; line-height: .9; font-weight: 530; letter-spacing: -.06em; }
+  .current-stage-card > p:last-child { color: var(--nw-muted); font-size: 11px; line-height: 1.8; margin: 0; }
+
+  .prototype-section { padding-top: clamp(58px, 8vw, 96px); }
+  .prototype-status-line { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; padding: 14px 0; border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); }
+  .prototype-status-line strong { font-size: 10px; letter-spacing: .09em; font-weight: 650; }
+  .status-chip { margin-left: auto; border: 1px solid var(--nw-line); border-radius: 2px; color: var(--nw-muted); font-size: 8px; letter-spacing: .12em; padding: 6px 8px; }
+  .prototype-disclaimer { font-size: 10px; color: var(--nw-muted); line-height: 1.7; margin: 11px 0 18px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .feature-card { padding: 17px; border: 1px solid var(--nw-line); min-height: 185px; display: flex; flex-direction: column; align-items: start; }
+  .feature-card-head { display: flex; justify-content: space-between; width: 100%; font-size: 10px; color: var(--nw-muted); margin-bottom: 20px; }
+  .feature-check { display: inline-grid; place-items: center; color: #758e75; border: 1px solid #b9c8b6; border-radius: 50%; height: 19px; width: 19px; font-size: 10px; }
+  .feature-card h3 { font-size: 14px; letter-spacing: -.025em; line-height: 1.35; margin: 0 0 8px; font-weight: 600; }
+  .feature-card > p { color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin: 0 0 18px; }
+  .feature-state { color: #748b73; font-size: 8px; letter-spacing: .09em; font-weight: 650; margin-top: auto; }
+  .test-plan-block { margin-top: 43px; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+  .test-card { border: 1px solid var(--nw-line); padding: 17px; }
+  .test-card-top { display: flex; justify-content: space-between; align-items: center; color: var(--nw-muted); font-size: 9px; letter-spacing: .1em; margin-bottom: 20px; }
+  .test-circle { font-size: 17px; color: #859985; }
+  .test-card h3 { font-size: 14px; font-weight: 600; margin: 0 0 18px; }
+  .test-field { border-top: 1px solid var(--nw-line); padding-top: 10px; margin-top: 10px; }
+  .test-field span { color: var(--nw-muted); font-size: 8px; letter-spacing: .12em; }
+  .test-field p { margin: 6px 0 0; font-size: 11px; line-height: 1.7; }
+  .test-field.expected p { color: var(--nw-muted); }
+
+  .scope-section { padding-bottom: clamp(48px, 7vw, 84px); }
+  .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .scope-card { border: 1px solid var(--nw-line); padding: clamp(20px, 3vw, 30px); }
+  .scope-card-primary { background: #232c25; color: #eef1e9; border-color: #232c25; }
+  .scope-card-primary .card-eyebrow, .scope-card-primary > p:last-child { color: #bdc8b9; }
+  .scope-value { font-size: clamp(31px, 4vw, 46px); line-height: 1; letter-spacing: -.06em; margin: 28px 0 13px; font-weight: 540; }
+  .scope-card h3 { font-size: 16px; font-weight: 600; margin: 0 0 10px; }
+  .scope-card > p:last-child { color: var(--nw-muted); font-size: 12px; line-height: 1.8; max-width: 480px; margin: 0; }
+  .next-steps-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 28px; margin-top: 40px; }
+  .next-steps-card ol { margin: 0; padding: 0; list-style: none; counter-reset: next; }
+  .next-steps-card li { counter-increment: next; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--nw-line); font-size: 11px; line-height: 1.8; }
+  .next-steps-card li::before { content: "0" counter(next); color: #829982; font-size: 9px; padding-top: 3px; }
+  .risk-item { border-bottom: 1px solid var(--nw-line); padding: 13px 0; }
+  .risk-item strong { font-size: 12px; font-weight: 600; }
+  .risk-item p { font-size: 11px; line-height: 1.75; color: var(--nw-muted); margin: 6px 0 0; }
+  .deck-footer { border-top: 1px solid var(--nw-line); padding: 32px 0 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr); gap: 48px; }
+  .footer-main h2 { font-size: clamp(23px, 3vw, 34px); letter-spacing: -.045em; line-height: 1.15; font-weight: 540; max-width: 530px; margin: 0 0 13px; }
+  .footer-main > p:not(.eyebrow) { color: var(--nw-muted); font-size: 12px; line-height: 1.8; max-width: 550px; margin: 0; }
+  .footer-rule { display: block; height: 1px; max-width: 70px; background: var(--nw-line); margin: 24px 0 13px; }
+  .footer-main > strong { color: var(--nw-muted); font-size: 8px; letter-spacing: .13em; font-weight: 600; }
+  .footer-details { display: grid; grid-template-columns: 1fr 1fr; align-content: start; gap: 25px 20px; }
+  .footer-details > div > span { color: var(--nw-muted); display: block; text-transform: uppercase; font-size: 8px; letter-spacing: .13em; margin-bottom: 12px; }
+  .footer-details p { font-size: 10px; line-height: 1.65; margin: 0 0 4px; }
+  .footer-details small { color: var(--nw-muted); font-size: 9px; }
+  .footer-details > div:last-child { grid-column: 1 / -1; border-top: 1px solid var(--nw-line); padding-top: 18px; }
+  .footer-details > div:last-child p { color: var(--nw-muted); max-width: 480px; margin-bottom: 12px; }
+  .footer-details a { display: inline-block; margin: 0 13px 6px 0; color: var(--nw-ink); font-size: 10px; text-decoration: none; border-bottom: 1px solid var(--nw-line); padding-bottom: 2px; }
+  .footer-details a:hover { border-color: var(--nw-ink); }
+
+  @media (max-width: 900px) {
+    .deck-hero { grid-template-columns: minmax(0, 1fr) minmax(270px, .8fr); gap: 28px; }
+    .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fact-card:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--nw-line); }
+    .fact-card:nth-child(4) { border-top: 1px solid var(--nw-line); }
+    .tool-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .tool-card { border-bottom: 1px solid var(--nw-line); }
+    .tool-card:nth-child(3) { border-right: 0; }
+    .tool-card:nth-child(4), .tool-card:nth-child(5) { border-bottom: 0; }
+    .production-flow { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .production-phase:nth-child(5) { border-left: 0; padding-left: 0; }
+    .production-phase:nth-child(n+5) { border-top: 1px solid var(--nw-line); }
+    .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .test-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 650px) {
+    .presentation-bar { padding: 13px 17px; align-items: flex-start; }
+    .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
+    .bar-meta { width: 100%; }
+    .bar-divider { display: none; }
+    .language-control button { padding: 7px 9px; }
+    .deck-container { padding: 0 18px; }
+    .deck-hero { grid-template-columns: minmax(0, 1fr); padding: 50px 0 43px; gap: 32px; }
+    .deck-hero h1 { font-size: clamp(36px, 12vw, 55px); }
+    .hero-subtitle { font-size: 22px; }
+    .hero-body { font-size: 13px; }
+    .facility-card { padding: 18px; }
+    .presentation-intro { grid-template-columns: 30px minmax(0, 1fr); gap: 13px; padding: 27px 0; }
+    .presentation-intro h2 { font-size: 25px; }
+    .presentation-intro p { font-size: 12px; }
+    .fact-card { padding: 17px 13px 19px 0; }
+    .fact-card + .fact-card { padding-left: 13px; }
+    .fact-card:nth-child(3) { padding-left: 0; }
+    .fact-card h3 { font-size: 14px; }
+    .fact-card > p:last-child { font-size: 10px; }
+    .section-toc { display: block; padding: 17px 0; }
+    .toc-label { display: block; margin-bottom: 12px; }
+    .toc-links { justify-content: flex-start; gap: 11px 17px; }
+    .toc-links a { font-size: 10px; }
+    .deck-section { padding-top: 50px; }
+    .section-heading { grid-template-columns: 1fr; gap: 9px; margin-bottom: 26px; }
+    .section-number { padding: 0; }
+    .section-heading h2 { font-size: 31px; }
+    .section-intro { font-size: 12px; }
+    .concept-pitch { padding: 21px 19px 24px; }
+    .concept-pitch p { font-size: 19px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .pillar-card { padding: 17px 0 19px; }
+    .pillar-card + .pillar-card { border-left: 0; border-top: 1px solid var(--nw-line); padding-left: 0; }
+    .pillar-number { margin-bottom: 15px; }
+    .loop-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .loop-step { min-height: 91px; border-bottom: 1px solid var(--nw-line); }
+    .loop-step:nth-child(2n) { border-right: 0; }
+    .loop-step:nth-last-child(-n+2) { border-bottom: 0; }
+    .loop-step i { top: 40px; }
+    .loop-step:nth-child(2n) i { display: none; }
+    .market-summary-grid { grid-template-columns: 1fr; }
+    .market-summary { padding: 18px; }
+    .competitor-row { grid-template-columns: 24px minmax(0, 1fr); gap: 10px; }
+    .competitor-index { grid-row: 1 / span 2; }
+    .external-link { grid-column: 2; justify-content: flex-start; text-align: left; padding-top: 3px; }
+    .competitor-titleline { display: block; }
+    .competitor-titleline h3 { margin-bottom: 5px; }
+    .tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tool-card { min-height: 112px; }
+    .tool-card:nth-child(2n) { border-right: 0; }
+    .tool-card:nth-child(3) { border-right: 1px solid var(--nw-line); }
+    .tool-card:nth-child(4) { border-bottom: 1px solid var(--nw-line); }
+    .tool-card:nth-child(5) { grid-column: 1 / -1; border-top: 0; min-height: 92px; }
+    .tool-card:nth-child(5) h4 { margin-top: 10px; }
+    .role-grid { grid-template-columns: 1fr; }
+    .role-card { min-height: 0; }
+    .production-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .production-phase { padding: 14px 12px 17px 0; }
+    .production-phase + .production-phase { padding-left: 12px; }
+    .production-phase:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .production-phase:nth-child(5) { border-left: 0; }
+    .production-phase:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
+    .production-phase > span { margin-bottom: 16px; }
+    .pipeline-bottom-grid { grid-template-columns: 1fr; gap: 26px; }
+    .current-stage-card { padding: 20px; }
+    .feature-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .feature-card { padding: 13px; min-height: 185px; }
+    .feature-card h3 { font-size: 13px; }
+    .feature-card > p { font-size: 10px; }
+    .feature-state { font-size: 7px; }
+    .test-grid { grid-template-columns: 1fr; }
+    .test-card { padding: 15px; }
+    .status-chip { margin-left: 0; }
+    .scope-grid { grid-template-columns: 1fr; }
+    .scope-value { margin-top: 21px; }
+    .next-steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    .deck-footer { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
+    .footer-details { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .nightwatch-presentation .deck-language { animation: fade-in .24s ease-out; }
+    @keyframes fade-in { from { opacity: .65; } to { opacity: 1; } }
+  }
+</style>
