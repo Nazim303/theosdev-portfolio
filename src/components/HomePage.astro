@@ -50,6 +50,19 @@ const projects = isEnglish
     <div><strong>Small tools</strong><span>{isEnglish ? 'Web, apps, and bots' : 'Web, uygulama ve botlar'}</span></div>
   </section>
 
+  <section class="current-project" aria-labelledby="current-project-title">
+    <div class="current-project-index">NOW</div>
+    <div class="current-project-copy">
+      <p class="eyebrow">{isEnglish ? 'Current project' : 'Şu an üzerinde çalışıyorum'}</p>
+      <h2 id="current-project-title">Coldline Disconnect</h2>
+      <p>{isEnglish ? 'I am working as a developer on Coldline Disconnect. Discover the game on Steam or learn more about the team behind it.' : 'Coldline Disconnect üzerinde developer olarak çalışıyorum. Oyunu Steam’de keşfedin veya arkasındaki ekip hakkında daha fazla bilgi edinin.'}</p>
+      <div class="current-project-actions">
+        <a class="button button-primary" href="https://store.steampowered.com/app/4667970/Coldline_Disconnect/" target="_blank" rel="noopener noreferrer">{isEnglish ? 'View on Steam' : 'Steam’de görüntüle'} <span aria-hidden="true">↗</span></a>
+        <a class="button button-outline" href="https://www.grawirestudio.com/" target="_blank" rel="noopener noreferrer">{isEnglish ? 'Visit Grawire Studio' : 'Grawire Studio’yu ziyaret et'} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="home-section" id="selected-work" aria-labelledby="selected-work-title">
     <div class="section-label"><h2 id="selected-work-title">{isEnglish ? 'Selected work' : 'Seçili işler'}</h2><a href={projectsPath}>{isEnglish ? 'View archive ↗' : 'Arşivi gör ↗'}</a></div>
     <div class="featured-project">
