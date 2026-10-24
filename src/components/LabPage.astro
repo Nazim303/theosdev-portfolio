@@ -37,6 +37,7 @@ const copy = {
       { id: "market", label: "02 / Market Research" },
       { id: "pipeline", label: "03 / Production Pipeline" },
       { id: "prototype", label: "04 / Prototype & Test" },
+      { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "next", label: "Sonraki adım" }
     ],
     introTitle: "Bir fikrin üretim sürecine dönüşmesi",
@@ -148,6 +149,56 @@ const copy = {
       demoNoteTitle: "Prototip sunum notu",
       demoNote: "Sunumda kısa bir oynanış kaydı veya canlı Sandbox gösterimi kullanılması önerilir. Test paneli ve placeholder varlıklar, prototip aşamasının parçası olarak açıkça etiketlenmelidir."
     },
+    week5: {
+      number: "HAFTA 05",
+      tag: "CORE LOOP & GAME FEEL / PHASE 11",
+      title: "Sistemleri tek bir vardiyada hissettirmek",
+      intro: "Beşinci haftanın odağı yeni mekanik sayısını artırmak değil; entegre edilen sistemleri oyuncunun okuyabildiği, tepki verebildiği ve sonuçlarını hissedebildiği kısa bir oynanış akışında birleştirmek.",
+      milestoneTitle: "Onaylanan kilometre taşı",
+      milestone: "Phase 11 — Sandbox içindeki sistem entegrasyonu tamamlandı. Görev, kabinden ayrılma, kapı riski, yaratık karşılaşması ve kontrol noktasına dönüş artık aynı akışta birlikte çalıştırılabiliyor.",
+      loopTitle: "Gece vardiyası döngüsü",
+      loop: [
+        { number: "01", title: "Hazırlan", body: "Bilgisayar, günlük liste ve e-postaları gözden geçir." },
+        { number: "02", title: "Doğrula", body: "Kimlik, hafıza ve UV kanıtlarını birlikte değerlendir." },
+        { number: "03", title: "Karar ver", body: "Geçiş izni ver veya müdahale et." },
+        { number: "04", title: "Karşılık ver", body: "Tesis görevini, envanteri ve yaratık riskini yönet." },
+        { number: "05", title: "Vardiyayı bitir", body: "09.00'da çıkış, sonuçlar ve kayıt." }
+      ],
+      integrationTitle: "Entegrasyon akışı",
+      integration: [
+        { number: "01", title: "Görev tetiklenir", body: "Jeneratör arızası veya besleme görevi yeni bir öncelik oluşturur." },
+        { number: "02", title: "Kabinden ayrıl", body: "Oyuncu zamanını ve sınırlı envanterini riske atar." },
+        { number: "03", title: "Kapı riski", body: "Açık kapı, tesise sızma ihtimalini artırır." },
+        { number: "04", title: "Karşılaşma", body: "Yaratık saldırabilir veya pusu kurabilir." },
+        { number: "05", title: "Kontrol noktasına dön", body: "Kimlik ve UV kararıyla ana döngüye geri bağlan." }
+      ],
+      artTitle: "Sanat prototipi ve çevre",
+      artIntro: "Retro workstation, güvenlik kulübesi blockout'u, metal kapı ve duvar saati mevcut görsel üretim aşamasını belgeliyor. Bunlar final materyal veya kilitlenmiş sanat yönü iddiası taşımıyor.",
+      artCards: [
+        { title: "Retro workstation", body: "CRT monitör, klavye, mouse ve PC tower; bilgi merkezinin düşük poligonlu temel varlıkları." },
+        { title: "Güvenlik kulübesi", body: "Masa, kapı ve okunabilir etkileşim alanını test eden erken çevre blockout'u." },
+        { title: "Temel model seti", body: "Karakter head blockout'u, metal kapı ve duvar saati; mekânın ölçeği ve zaman hissi için referanslar." }
+      ],
+      prototypeTitle: "Mevcut prototip durumu",
+      prototypeNote: "Aşağıdaki sistemler Sandbox akışında çalışıyor olarak raporlandı. Dengeleme, kullanılabilirlik kontrolleri, ana sahne içeriği ve polish hâlâ sonraki adımlar.",
+      systems: ["FPS hareket ve etkileşim", "NPC ve kimlik kontrolü", "Bilim insanı hafızası", "UV dedektörü", "Tesis görevi", "Yaratık karşılaşması", "Vardiya programı", "Sandbox debug araçları"],
+      objectiveTitle: "Bu haftanın değerlendirme hedefi",
+      objectives: ["Vardiya bilgisini incele.", "Bir kişiyi kontrol edip kanıt topla.", "Sonuç doğuran bir karar ver.", "Bir tesis görevi veya tehditle ilgilen.", "Kontrol noktasına dönüp akışı sürdür."],
+      feelTitle: "Game feel kontrol listesi",
+      feel: [
+        { title: "Okunabilirlik", body: "Oyuncu neyle etkileşebileceğini anlayabiliyor mu?" },
+        { title: "Geri bildirim", body: "Aksiyonlar başarıyı, başarısızlığı veya tehlikeyi iletiyor mu?" },
+        { title: "Kontrol", body: "Hareket, bakış ve etkileşim tahmin edilebilir mi?" },
+        { title: "Tempo", body: "İnceleme ve fiziksel görevler karışıklık yaratmadan dönüşümlü ilerliyor mu?" }
+      ],
+      statusTitle: "Üretim durumu",
+      status: [
+        { label: "TAMAMLANDI", value: "Phase 11", body: "Sandbox sistem entegrasyonu" },
+        { label: "SIRADA", value: "Phase 12", body: "Ana oyun sahnesinin kurulması" },
+        { label: "SONRA", value: "Phase 13", body: "Campaign, progression ve ending" },
+        { label: "DAHA SONRA", value: "Phase 14", body: "Dengeleme, QA ve polish" }
+      ]
+    },
     scope: {
       tag: "SCOPE / TESLİM HEDEFİ",
       title: "Ders hedefi ile uzun vadeli vizyonu ayırmak",
@@ -207,6 +258,7 @@ const copy = {
       { id: "market", label: "02 / Market Research" },
       { id: "pipeline", label: "03 / Production Pipeline" },
       { id: "prototype", label: "04 / Prototype & Test" },
+      { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "next", label: "Next milestone" }
     ],
     introTitle: "Turning a concept into a production process",
@@ -318,6 +370,56 @@ const copy = {
       demoNoteTitle: "Prototype presentation note",
       demoNote: "A short gameplay recording or a live Sandbox walkthrough is recommended. The debug panel and placeholder assets should be clearly labelled as part of the prototype stage."
     },
+    week5: {
+      number: "WEEK 05",
+      tag: "CORE LOOP & GAME FEEL / PHASE 11",
+      title: "Making the integrated systems feel like one shift",
+      intro: "Week five is not about adding more mechanics. It is about connecting the integrated systems into a short playable flow where the player's actions are readable, consequential, and felt.",
+      milestoneTitle: "Confirmed milestone",
+      milestone: "Phase 11 — System integration in Sandbox is complete. Task, leaving the booth, door risk, creature encounters, and returning to the checkpoint can now be exercised in one connected flow.",
+      loopTitle: "The night-shift loop",
+      loop: [
+        { number: "01", title: "Prepare", body: "Review the computer, daily list, and emails." },
+        { number: "02", title: "Verify", body: "Evaluate identity, memory, and UV evidence together." },
+        { number: "03", title: "Decide", body: "Allow passage or intervene." },
+        { number: "04", title: "Respond", body: "Manage the facility task, inventory, and creature risk." },
+        { number: "05", title: "End the shift", body: "Leave at 09:00, record the outcome, and continue." }
+      ],
+      integrationTitle: "Integration flow",
+      integration: [
+        { number: "01", title: "Task triggers", body: "A generator failure or feeding task creates a new priority." },
+        { number: "02", title: "Leave the booth", body: "The player commits time and limited inventory." },
+        { number: "03", title: "Door risk", body: "An open door increases the chance of infiltration." },
+        { number: "04", title: "Encounter", body: "A creature may attack or ambush the player." },
+        { number: "05", title: "Return to checkpoint", body: "Reconnect with the identity and UV decision flow." }
+      ],
+      artTitle: "Art prototype and environment",
+      artIntro: "The retro workstation, security booth blockout, metal door, and wall clock document the current visual production stage. They do not claim final materials or a locked art direction.",
+      artCards: [
+        { title: "Retro workstation", body: "CRT monitor, keyboard, mouse, and PC tower form the low-poly information hub." },
+        { title: "Security booth", body: "An early environment blockout testing the desk, door, and readable interaction space." },
+        { title: "Base model set", body: "A character head blockout, metal door, and wall clock establish scale and the long-shift time reference." }
+      ],
+      prototypeTitle: "Current prototype status",
+      prototypeNote: "These systems are reported as working in the Sandbox flow. Balancing, usability checks, main-scene content, and polish remain ahead.",
+      systems: ["FPS movement & interaction", "NPC & identity check", "Scientist memory", "UV detector", "Facility task", "Creature encounter", "Shift schedule", "Sandbox debug tools"],
+      objectiveTitle: "This week's evaluation target",
+      objectives: ["Review the shift information.", "Inspect a person and gather evidence.", "Make a consequential decision.", "Handle one facility task or threat.", "Return to the checkpoint and continue the flow."],
+      feelTitle: "Game feel checklist",
+      feel: [
+        { title: "Readability", body: "Can the player understand what can be interacted with?" },
+        { title: "Feedback", body: "Do actions communicate success, failure, or danger?" },
+        { title: "Control", body: "Do movement, looking, and interaction feel predictable?" },
+        { title: "Pacing", body: "Can inspection and physical tasks alternate without confusion?" }
+      ],
+      statusTitle: "Production status",
+      status: [
+        { label: "DONE", value: "Phase 11", body: "System integration in Sandbox" },
+        { label: "NEXT", value: "Phase 12", body: "Main game construction" },
+        { label: "AFTER", value: "Phase 13", body: "Campaign, progression, and ending" },
+        { label: "LATER", value: "Phase 14", body: "Balance, QA, and polish" }
+      ]
+    },
     scope: {
       tag: "SCOPE / DELIVERY TARGET",
       title: "Separate the course target from the long-term vision",
@@ -382,10 +484,10 @@ const versions = Object.entries(copy);
         <strong>{initialLanguage === "tr" ? "Prototip ve test" : "Prototype & test"}</strong>
         <small>{initialLanguage === "tr" ? "Hafta 04" : "Week 04"}</small>
       </a>
-      <a href="/downloads/project-nightwatch-week-05.pdf" target="_blank" rel="noreferrer" download>
+      <a href={`#week5-${initialLanguage}`} data-presentation-link="week5">
         <span>05</span>
         <strong>{initialLanguage === "tr" ? "Hafta 05 sunumu" : "Week 05 presentation"}</strong>
-        <small>{initialLanguage === "tr" ? "PDF'yi aç / indir ↗" : "Open / download PDF ↗"}</small>
+        <small>{initialLanguage === "tr" ? "Core loop & game feel ↘" : "Core loop & game feel ↘"}</small>
       </a>
     </div>
   </section>
@@ -581,6 +683,42 @@ const versions = Object.entries(copy);
             </div>
           </div>
           <aside class="editorial-note"><span class="note-mark">↗</span><div><h3>{t.week4.demoNoteTitle}</h3><p>{t.week4.demoNote}</p></div></aside>
+        </section>
+
+        <section class="deck-section week5-section" id={`week5-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.week5.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.week5.tag}</p><h2>{t.week5.title}</h2><p class="section-intro">{t.week5.intro}</p></div>
+          </div>
+          <div class="week5-milestone">
+            <div><p class="card-eyebrow">{t.week5.milestoneTitle}</p><div class="stage-mark"><span>PHASE</span><strong>11</strong></div></div>
+            <p>{t.week5.milestone}</p>
+          </div>
+          <div class="subsection-heading"><h3>{t.week5.loopTitle}</h3><span>CORE LOOP / 05</span></div>
+          <div class="week5-loop">
+            {t.week5.loop.map((step) => <article><span>{step.number}</span><h3>{step.title}</h3><p>{step.body}</p></article>)}
+          </div>
+          <div class="subsection-heading"><h3>{t.week5.integrationTitle}</h3><span>PHASE 11</span></div>
+          <div class="production-flow week5-integration">
+            {t.week5.integration.map((step) => <article class="production-phase"><span>{step.number}</span><div><h4>{step.title}</h4><p>{step.body}</p></div></article>)}
+          </div>
+          <div class="subsection-heading"><h3>{t.week5.artTitle}</h3><span>ART / WIP</span></div>
+          <p class="section-intro week5-art-intro">{t.week5.artIntro}</p>
+          <div class="role-grid week5-art-grid">
+            {t.week5.artCards.map((card) => <article class="role-card"><p class="card-eyebrow">WORK IN PROGRESS</p><h3>{card.title}</h3><p>{card.body}</p></article>)}
+          </div>
+          <div class="prototype-status-line"><span class="live-dot"></span><strong>{t.week5.prototypeTitle}</strong><span class="status-chip">SANDBOX / INTEGRATED</span></div>
+          <p class="prototype-disclaimer">{t.week5.prototypeNote}</p>
+          <div class="feature-grid week5-system-grid">
+            {t.week5.systems.map((system, index) => <article class="feature-card"><div class="feature-card-head"><span>0{index + 1}</span><span class="feature-check">✓</span></div><h3>{system}</h3><span class="feature-state">{lang === "tr" ? "SANDBOX'TA VAR" : "IN SANDBOX"}</span></article>)}
+          </div>
+          <div class="week5-bottom-grid">
+            <article class="next-steps-card"><div class="subsection-heading"><h3>{t.week5.objectiveTitle}</h3><span>PLAYABLE SEQUENCE</span></div><ol>{t.week5.objectives.map((objective) => <li>{objective}</li>)}</ol></article>
+            <article class="risks-card"><div class="subsection-heading"><h3>{t.week5.feelTitle}</h3><span>CHECKLIST</span></div>{t.week5.feel.map((item) => <div class="risk-item"><strong>{item.title}</strong><p>{item.body}</p></div>)}</article>
+          </div>
+          <div class="week5-status-grid">
+            {t.week5.status.map((item) => <article><span>{item.label}</span><strong>{item.value}</strong><p>{item.body}</p></article>)}
+          </div>
         </section>
 
         <section class="deck-section scope-section" id={`next-${lang}`}>
@@ -849,6 +987,27 @@ const versions = Object.entries(copy);
 
   .scope-section { padding-bottom: clamp(48px, 7vw, 84px); }
   .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .week5-milestone { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 26px; background: var(--nw-dark); color: #f2f5ee; padding: 24px; margin-bottom: 40px; }
+  .week5-milestone .card-eyebrow { color: #b8c8b5; }
+  .week5-milestone .stage-mark { margin-top: 16px; }
+  .week5-milestone > p { align-self: center; color: #c9d2c5; font-size: 12px; line-height: 1.8; margin: 0; max-width: 700px; }
+  .week5-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--nw-line); margin-bottom: 40px; }
+  .week5-loop article { min-width: 0; padding: 17px 14px 19px; border-right: 1px solid var(--nw-line); }
+  .week5-loop article:last-child { border-right: 0; }
+  .week5-loop span { color: #829982; font-size: 9px; letter-spacing: .1em; }
+  .week5-loop h3 { font-size: 14px; margin: 23px 0 8px; }
+  .week5-loop p { color: var(--nw-muted); font-size: 10px; line-height: 1.7; margin: 0; }
+  .week5-integration { margin-bottom: 40px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .week5-art-intro { margin-bottom: 18px; }
+  .week5-art-grid { margin-bottom: 40px; }
+  .week5-system-grid { margin-bottom: 40px; }
+  .week5-bottom-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 28px; margin-top: 40px; }
+  .week5-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--nw-line); margin-top: 40px; }
+  .week5-status-grid article { min-width: 0; padding: 17px 14px 19px; border-right: 1px solid var(--nw-line); }
+  .week5-status-grid article:last-child { border-right: 0; }
+  .week5-status-grid span { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .12em; margin-bottom: 22px; }
+  .week5-status-grid strong { display: block; font-size: 19px; letter-spacing: -.04em; }
+  .week5-status-grid p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 7px 0 0; }
   .scope-card { border: 1px solid var(--nw-line); padding: clamp(20px, 3vw, 30px); }
   .scope-card-primary { background: #232c25; color: #eef1e9; border-color: #232c25; }
   .scope-card-primary .card-eyebrow, .scope-card-primary > p:last-child { color: #bdc8b9; }
@@ -893,6 +1052,12 @@ const versions = Object.entries(copy);
     .production-phase:nth-child(n+5) { border-top: 1px solid var(--nw-line); }
     .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .test-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .week5-loop, .week5-integration { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .week5-loop article:nth-child(3), .week5-integration .production-phase:nth-child(3) { border-right: 0; }
+    .week5-loop article:nth-child(n+4), .week5-integration .production-phase:nth-child(n+4) { border-top: 1px solid var(--nw-line); }
+    .week5-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .week5-status-grid article:nth-child(2) { border-right: 0; }
+    .week5-status-grid article:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
   }
   @media (max-width: 650px) {
     .presentation-index { padding: 22px 17px; }
@@ -980,6 +1145,13 @@ const versions = Object.entries(copy);
     .next-steps-grid { grid-template-columns: 1fr; gap: 32px; }
     .deck-footer { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
     .footer-details { grid-template-columns: 1fr 1fr; }
+    .week5-milestone { grid-template-columns: 1fr; gap: 12px; padding: 19px; }
+    .week5-loop, .week5-integration { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .week5-loop article:nth-child(3), .week5-integration .production-phase:nth-child(3) { border-right: 1px solid var(--nw-line); }
+    .week5-loop article:nth-child(2n), .week5-integration .production-phase:nth-child(2n) { border-right: 0; }
+    .week5-loop article:nth-child(n+3), .week5-integration .production-phase:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
+    .week5-bottom-grid { grid-template-columns: 1fr; gap: 32px; }
+    .week5-status-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .nightwatch-presentation .deck-language { animation: fade-in .24s ease-out; }
