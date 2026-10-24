@@ -356,6 +356,39 @@ const versions = Object.entries(copy);
 ---
 
 <div class="nightwatch-presentation" data-project-presentation data-active-language={initialLanguage}>
+  <section class="presentation-index" aria-labelledby="presentation-index-title">
+    <div class="presentation-index-heading">
+      <p class="eyebrow" id="presentation-index-title">{initialLanguage === "tr" ? "SUNUM ARŞİVİ" : "PRESENTATION ARCHIVE"}</p>
+      <p>{initialLanguage === "tr" ? "Haftalara ayrı ayrı ulaş." : "Jump to each week separately."}</p>
+    </div>
+    <div class="presentation-index-grid">
+      <a href={`#concept-${initialLanguage}`} data-presentation-link="concept">
+        <span>01</span>
+        <strong>{initialLanguage === "tr" ? "Konsept" : "Concept"}</strong>
+        <small>{initialLanguage === "tr" ? "Hafta 01" : "Week 01"}</small>
+      </a>
+      <a href={`#market-${initialLanguage}`} data-presentation-link="market">
+        <span>02</span>
+        <strong>{initialLanguage === "tr" ? "Pazar araştırması" : "Market research"}</strong>
+        <small>{initialLanguage === "tr" ? "Hafta 02" : "Week 02"}</small>
+      </a>
+      <a href={`#pipeline-${initialLanguage}`} data-presentation-link="pipeline">
+        <span>03</span>
+        <strong>{initialLanguage === "tr" ? "Üretim hattı" : "Production pipeline"}</strong>
+        <small>{initialLanguage === "tr" ? "Hafta 03" : "Week 03"}</small>
+      </a>
+      <a href={`#prototype-${initialLanguage}`} data-presentation-link="prototype">
+        <span>04</span>
+        <strong>{initialLanguage === "tr" ? "Prototip ve test" : "Prototype & test"}</strong>
+        <small>{initialLanguage === "tr" ? "Hafta 04" : "Week 04"}</small>
+      </a>
+      <a href="/downloads/project-nightwatch-week-05.pdf" target="_blank" rel="noreferrer" download>
+        <span>05</span>
+        <strong>{initialLanguage === "tr" ? "Hafta 05 sunumu" : "Week 05 presentation"}</strong>
+        <small>{initialLanguage === "tr" ? "PDF'yi aç / indir ↗" : "Open / download PDF ↗"}</small>
+      </a>
+    </div>
+  </section>
   <div class="presentation-bar">
     <div class="presentation-brand">
       <span class="brand-dot" aria-hidden="true"></span>
@@ -586,6 +619,7 @@ const versions = Object.entries(copy);
     const toggles = Array.from(presentation.querySelectorAll<HTMLButtonElement>('[data-language-toggle]'));
     const topCopies = Array.from(presentation.querySelectorAll<HTMLElement>('[data-top-copy]'));
     const topMetas = Array.from(presentation.querySelectorAll<HTMLElement>('[data-top-meta]'));
+    const presentationLinks = Array.from(presentation.querySelectorAll<HTMLAnchorElement>('[data-presentation-link]'));
     toggles.forEach((toggle) => {
       toggle.addEventListener('click', () => {
         const language = toggle.getAttribute('data-language-toggle');
@@ -597,6 +631,9 @@ const versions = Object.entries(copy);
         });
         topMetas.forEach((item) => {
           item.hidden = item.getAttribute('data-top-meta') !== language;
+        });
+        presentationLinks.forEach((link) => {
+          link.href = `#${link.getAttribute('data-presentation-link')}-${language || 'tr'}`;
         });
         toggles.forEach((button) => {
           button.setAttribute('aria-pressed', String(button === toggle));
@@ -626,6 +663,17 @@ const versions = Object.entries(copy);
 
   .nightwatch-presentation * { box-sizing: border-box; }
   .nightwatch-presentation [hidden] { display: none !important; }
+  .presentation-index { max-width: 1240px; margin: 0 auto; padding: 26px clamp(18px, 4vw, 48px); border-bottom: 1px solid var(--nw-line); }
+  .presentation-index-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 15px; }
+  .presentation-index-heading .eyebrow { margin: 0; }
+  .presentation-index-heading > p:last-child { color: var(--nw-muted); font-size: 10px; margin: 0; }
+  .presentation-index-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
+  .presentation-index-grid a { min-width: 0; padding: 13px 14px 14px; color: var(--nw-ink); text-decoration: none; border-right: 1px solid var(--nw-line); transition: background 180ms ease, color 180ms ease; }
+  .presentation-index-grid a:last-child { border-right: 0; }
+  .presentation-index-grid a:hover { background: var(--nw-dark); color: #f7f8f3; }
+  .presentation-index-grid span, .presentation-index-grid small { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+  .presentation-index-grid a:hover span, .presentation-index-grid a:hover small { color: #b8c8b5; }
+  .presentation-index-grid strong { display: block; min-height: 30px; margin: 14px 0 8px; font-size: 11px; line-height: 1.35; font-weight: 600; }
   .presentation-bar { max-width: 1240px; margin: 0 auto; padding: 18px clamp(18px, 4vw, 48px); display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid var(--nw-line); }
   .presentation-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .09em; font-size: 10px; font-weight: 650; }
   .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: #8ca48c; display: inline-block; box-shadow: 0 0 0 3px color-mix(in srgb, #8ca48c 18%, transparent); }
@@ -829,6 +877,9 @@ const versions = Object.entries(copy);
   .footer-details a:hover { border-color: var(--nw-ink); }
 
   @media (max-width: 900px) {
+    .presentation-index-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .presentation-index-grid a:nth-child(3) { border-right: 0; }
+    .presentation-index-grid a:nth-child(n+4) { border-top: 1px solid var(--nw-line); }
     .deck-hero { grid-template-columns: minmax(0, 1fr) minmax(270px, .8fr); gap: 28px; }
     .fact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .fact-card:nth-child(3) { border-left: 0; padding-left: 0; border-top: 1px solid var(--nw-line); }
@@ -844,6 +895,13 @@ const versions = Object.entries(copy);
     .test-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 650px) {
+    .presentation-index { padding: 22px 17px; }
+    .presentation-index-heading { display: block; }
+    .presentation-index-heading > p:last-child { margin-top: 7px; }
+    .presentation-index-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .presentation-index-grid a:nth-child(3) { border-right: 1px solid var(--nw-line); }
+    .presentation-index-grid a:nth-child(2n) { border-right: 0; }
+    .presentation-index-grid a:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
     .presentation-bar { padding: 13px 17px; align-items: flex-start; }
     .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
     .bar-meta { width: 100%; }
