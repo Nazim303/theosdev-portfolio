@@ -64,8 +64,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
 
 .home-wrap { margin: 0 auto; max-width: var(--max-width); padding: 0 28px 100px; }
 .home-hero { border-bottom: 1px solid var(--line); display: grid; gap: 30px; grid-template-columns: minmax(0, 1fr) 150px; min-height: 560px; padding: 110px 0 76px; }
-.hero-copy { max-width: 850px; }
-.home-hero h1 { color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.4rem, 8vw, 7.5rem); font-weight: 400; letter-spacing: 0; line-height: 0.98; margin: 0 0 34px; max-width: 900px; overflow-wrap: normal; }
+.hero-copy { max-width: 850px; min-width: 0; }
+.home-hero h1 { color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.4rem, 8vw, 7.5rem); font-weight: 400; letter-spacing: 0; line-height: 0.98; margin: 0 0 34px; max-width: 900px; overflow-wrap: anywhere; }
 .hero-lede { color: var(--muted); font-size: 1.16rem; line-height: 1.75; margin: 0; max-width: 620px; }
 .hero-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 24px; margin-top: 38px; }
 .button { display: inline-flex; font-size: 0.83rem; font-weight: 800; gap: 12px; letter-spacing: 0.04em; padding: 15px 20px; text-decoration: none; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
@@ -169,6 +169,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
 .archive-summary { color: var(--muted); display: flex; font-size: 0.76rem; font-weight: 800; justify-content: space-between; letter-spacing: 0.08em; padding: 38px 0 18px; text-transform: uppercase; }
 .archive-summary span:first-child { color: var(--accent-dark); }
 .archive-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+.archive-item { min-width: 0; }
 .archive-item[hidden] { display: none; }
 .empty-state { border: 1px dashed var(--line); color: var(--muted); padding: 48px; text-align: center; }
 .detail-wrap { margin: 0 auto; max-width: var(--max-width); padding: 52px 28px 110px; }
@@ -192,6 +193,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
   .home-hero { grid-template-columns: 1fr; min-height: auto; padding: 70px 0 58px; }
   .hero-index { align-self: auto; flex-direction: row; writing-mode: initial; }
   .intro-band, .home-project-grid, .capability-grid { grid-template-columns: 1fr; }
+  .archive-grid { grid-template-columns: 1fr; }
   .intro-band div, .intro-band div:first-child { border-bottom: 1px solid var(--line); border-right: 0; padding: 16px 0; }
   .intro-band div:last-child { border-bottom: 0; }
   .current-project { grid-template-columns: 1fr; margin-top: 36px; padding: 28px; }
