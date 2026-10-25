@@ -38,6 +38,7 @@ const copy = {
       { id: "pipeline", label: "03 / Production Pipeline" },
       { id: "prototype", label: "04 / Prototype & Test" },
       { id: "week5", label: "05 / Core Loop & Game Feel" },
+      { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
       { id: "next", label: "Sonraki adım" }
     ],
     introTitle: "Bir fikrin üretim sürecine dönüşmesi",
@@ -199,6 +200,73 @@ const copy = {
         { label: "DAHA SONRA", value: "Phase 14", body: "Dengeleme, QA ve polish" }
       ]
     },
+    engineering: {
+      number: "PHASE 12—19",
+      tag: "ENGINEERING LOG / TECHNICAL PROGRESS",
+      title: "Sandbox sistemlerinden entegre oyun deneyimine",
+      intro: "Phase 12–19 raporu; atmosfer, debug araçları, oyuncuya dönük arayüzler, NPC yaşam döngüsü, input kararlılığı ve prosedürel tesis prototiplemesini tek bir teknik ilerleme çizgisinde topluyor.",
+      overview: "Unity 6 ve URP üzerinde geliştirilen birinci şahıs retro-korku ve dedüksiyon oyunu. Nazım programlama, teknik mimari ve entegrasyondan; Ramtin modelleme, texture ve görsel üretimden sorumlu. Bu aşamanın amacı doğrulanmış Sandbox sistemlerini daha bütünlüklü ve sunulabilir bir oyun deneyimine taşımak.",
+      milestonesTitle: "Uygulanan teknik kilometre taşları",
+      milestones: [
+        { phase: "12", title: "Atmosfer, ışık ve vardiya raporu", body: "AudioManager merkezi ses yönetimini toplar. FacilityLightingEffects jeneratör arızası gibi olaylarda acil ışık ve flicker geri bildirimini yönetir. ShiftReportUI vardiya sonu performansını ve sonuçlarını sunar." },
+        { phase: "13", title: "İzole debug ve runtime state", body: "DebugController F1 ile geliştirici panelini açıp kapatır. PauseMenuUI ESC ile duraklatma, cursor ve oyun/UI input geçişini yönetir. Debug kontrolleri normal oyuncu deneyiminden ayrılır." },
+        { phase: "14—19", title: "Ana teknik geliştirme", body: "Diyalog hafızası, NPC tesis yaşam döngüsü, input çatışmalarının çözümü ve prosedürel 3D tesis blockout'u birden fazla sistemi ortak bir oyun akışında buluşturur." }
+      ],
+      dialogueTitle: "Scientist Dialogue UI & Memory Architecture",
+      dialogueIntro: "Diyalog sunumu OnGUI bağımlılığından Unity UGUI Canvas bileşenlerine taşındı. Arayüz, oyun mantığını kopyalamak yerine mevcut bilim insanı verilerini, cevap tablolarını ve hafıza sistemini kullanır.",
+      dialoguePoints: [
+        "ScientistDialogueUI, ScientistComponent, ScientistSystem ve ScientistDataSO arasında sunum, veri ve oyun mantığı ayrımı korunur.",
+        "Önceden tanımlı soru listeleri boş olduğunda dinamik soru üretimi fallback davranışı sağlar.",
+        "EventSystem ve InputSystemUIInputModule gerektiğinde başlatılır; son diyalog kapatılıp açıldığında görünür kalabilir.",
+        "Tekrarlanan soru sayıları mevcut complaint davranışını tetikleyebilir.",
+        "Consistency check oyuncuya doğru kararı söylemez; UI karakteri doğrudan Skinwalker olarak etiketlemez."
+      ],
+      lifecycleTitle: "NPC Facility Lifecycle & Exit Check",
+      lifecycleIntro: "CheckpointManager, NPCController ve TimeManager birlikte çalışarak tesise giriş ve çıkış döngüsünü kurar.",
+      lifecycle: [
+        "NPC giriş checkpoint'inden geçer.",
+        "Mevcut runtime data üzerinden tesisteki varlığı takip edilir.",
+        "Çıkış zamanı oyun saati sistemiyle planlanır.",
+        "NPC checkpoint'e geri döner.",
+        "Oyuncu çıkış incelemesini yapar.",
+        "Çıkış kararı sonrası NPC tesisten ayrılabilir."
+      ],
+      inputTitle: "Input & Event Conflict Resolution",
+      inputIntro: "PlayerWeaponHandler, PlayerItemHolder, PlayerInteraction, PlayerHUD, PauseMenuUI ve ScientistDialogueUI arasındaki geçişlerde aynı frame input sızıntısını azaltan korumalar kullanılır.",
+      inputPoints: [
+        "Korumalı UI açıkken ateş etme veya reload engellenir.",
+        "UI tıklamaları ilgisiz gameplay input'una dönüşmez.",
+        "JustClosedThisFrame benzeri guard, arayüz kapanışında aynı frame tetiklenmesini azaltır.",
+        "Cursor ve UI/gameplay input geçişleri birlikte yönetilir.",
+        "Legacy IMGUI ile UGUI Canvas katmanlarının etkileşimi ayrıca kontrol edilir."
+      ],
+      mapTitle: "Procedural 3D Facility Map Builder",
+      mapIntro: "FacilityMapBuilder ve FacilityMapEditor, elle çizilmiş tesis planını Unity primitive ve collider'larıyla test edilebilir bir 3D blockout'a çevirir. Architectural_Facility_Map.prefab çıktısı mimari prototip olarak kullanılabilir.",
+      mapZones: [
+        { label: "ZEMİN KAT", body: "Güvenlik/inspection odası, merkezi gözlem alanı, airlock ve kilitli arşiv." },
+        { label: "ÜST KAT", body: "Containment sektörü, güvenlik köprüsü, gate ve altı containment hücresi." },
+        { label: "BODRUM", body: "Teknik alanlar ve tesisin bakım/servis akışını test eden bağlantılar." }
+      ],
+      mapNote: "Rampalar, kapılar, çarpışma geometrisi ve TextMesh etiketleri alanı navigable ve test edilebilir kılar. Generator izole koordinat bölgesinde çalışarak mevcut sahne objelerini korur; sonuç final çevre sanatı değil, level-prototyping çıktısıdır.",
+      architectureTitle: "Technical architecture & integration",
+      architecture: [
+        { title: "Core & time", body: "TimeManager vardiya akışını sürdürür; CheckpointManager ve NPCController tesis yaşam döngüsünü bağlar." },
+        { title: "Deduction systems", body: "ScientistSystem, ScientistComponent, ScientistDataSO ve SkinwalkerComponent veri, hafıza ve consistency check katmanlarını ayırır." },
+        { title: "Player & input", body: "PlayerInteraction, PlayerItemHolder ve PlayerWeaponHandler gameplay input'unu; UI guard'ları arayüz geçişlerini düzenler." },
+        { title: "Presentation", body: "ScientistDialogueUI, PauseMenuUI, PlayerHUD ve ShiftReportUI oyuncuya dönük sunumu yönetir." },
+        { title: "World feedback", body: "FacilityLightingEffects ve AudioManager olayların ışık ve ses geri bildirimini üretir." },
+        { title: "Level prototype", body: "FacilityMapBuilder ve FacilityMapEditor prosedürel tesis blockout'u oluşturur." }
+      ],
+      validationTitle: "Validation & engineering quality",
+      validation: "Raporlanan doğrulama komutu `dotnet build \"Assembly-CSharp.csproj\" --no-restore` sıfır compilation error ile tamamlandı. Bu bir C# proje derleme kontrolüdür; tam Unity Play Mode testi, regression suite, performans testi veya release build başarısı anlamına gelmez. Unity 6 uyumlu API'ler, obsolete hale gelen eski API'lerin yerine kullanıldı.",
+      statusTitle: "Current state & next direction",
+      status: [
+        { label: "REPORTED COMPLETE", value: "PHASE 12—19", body: "Teknik sistemler ve araçlar rapora göre uygulandı; final oyunun tamamlandığı iddia edilmez." },
+        { label: "BLOCKOUT", value: "FACILITY MAP", body: "Procedural çıktı test edilebilir mimari prototiptir; final environment art değildir." },
+        { label: "NEXT FOCUS", value: "MAIN SCENE", body: "Oyuncuya dönük UI, etkileşim polish'i, feedback ve campaign reliability." },
+        { label: "QUALITY", value: "VERIFY & TEST", body: "Entegrasyon, kullanılabilirlik ve gameplay akışı daha geniş testlerle doğrulanmalı." }
+      ]
+    },
     scope: {
       tag: "SCOPE / TESLİM HEDEFİ",
       title: "Ders hedefi ile uzun vadeli vizyonu ayırmak",
@@ -259,6 +327,7 @@ const copy = {
       { id: "pipeline", label: "03 / Production Pipeline" },
       { id: "prototype", label: "04 / Prototype & Test" },
       { id: "week5", label: "05 / Core Loop & Game Feel" },
+      { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
       { id: "next", label: "Next milestone" }
     ],
     introTitle: "Turning a concept into a production process",
@@ -420,6 +489,73 @@ const copy = {
         { label: "LATER", value: "Phase 14", body: "Balance, QA, and polish" }
       ]
     },
+    engineering: {
+      number: "PHASE 12—19",
+      tag: "ENGINEERING LOG / TECHNICAL PROGRESS",
+      title: "From Sandbox systems to an integrated game experience",
+      intro: "The Phase 12–19 report brings atmosphere, debug tools, player-facing interfaces, NPC lifecycle behavior, input stability, and procedural facility prototyping into one technical progress line.",
+      overview: "A first-person retro-horror and deduction game built with Unity 6 and URP. Nazım leads programming, technical architecture, and integration; Ramtin leads modeling, textures, and visual production. This stage moves validated Sandbox systems toward a more integrated and presentable game experience.",
+      milestonesTitle: "Implemented technical milestones",
+      milestones: [
+        { phase: "12", title: "Atmosphere, lighting & shift reporting", body: "AudioManager centralizes audio. FacilityLightingEffects handles emergency lighting and implemented flicker feedback during events such as generator failure. ShiftReportUI presents performance and relevant outcomes at shift end." },
+        { phase: "13", title: "Isolated debug & runtime state", body: "DebugController toggles the developer panel with F1. PauseMenuUI handles ESC pause behavior, cursor state, and UI/gameplay input transitions. Debug controls remain separate from the intended player experience." },
+        { phase: "14—19", title: "Main technical development", body: "Dialogue memory, NPC facility lifecycle, input conflict resolution, and procedural 3D facility blockout connect multiple systems into a shared gameplay flow." }
+      ],
+      dialogueTitle: "Scientist Dialogue UI & Memory Architecture",
+      dialogueIntro: "Dialogue presentation moved from an OnGUI-dependent approach to Unity UGUI Canvas components. The UI uses existing scientist data, answer tables, and memory systems instead of duplicating gameplay logic.",
+      dialoguePoints: [
+        "ScientistDialogueUI, ScientistComponent, ScientistSystem, and ScientistDataSO keep presentation, data, and gameplay logic separated.",
+        "Dynamic question generation provides fallback behavior when predefined question lists are empty.",
+        "EventSystem and InputSystemUIInputModule are initialized where necessary; the latest transcript can remain visible after reopening.",
+        "Repeated-question counts can trigger the existing complaint behavior.",
+        "Consistency checks remain gameplay logic; the UI does not label a character as a Skinwalker or reveal the correct decision."
+      ],
+      lifecycleTitle: "NPC Facility Lifecycle & Exit Check",
+      lifecycleIntro: "CheckpointManager, NPCController, and TimeManager work together to establish the facility entry and exit cycle.",
+      lifecycle: [
+        "An NPC passes the entry checkpoint.",
+        "Facility presence is tracked using existing runtime data.",
+        "An exit time is scheduled through the game-time system.",
+        "The NPC returns to the checkpoint.",
+        "The player performs an exit inspection.",
+        "The NPC can leave after the exit decision."
+      ],
+      inputTitle: "Input & Event Conflict Resolution",
+      inputIntro: "Transitions between PlayerWeaponHandler, PlayerItemHolder, PlayerInteraction, PlayerHUD, PauseMenuUI, and ScientistDialogueUI use safeguards that reduce same-frame input leakage.",
+      inputPoints: [
+        "Weapon firing and reloading are blocked while protected UI interactions are active.",
+        "UI clicks do not trigger unrelated gameplay input.",
+        "A JustClosedThisFrame-style guard reduces input leakage when interfaces close.",
+        "Cursor state and UI/gameplay input transitions are managed together.",
+        "Legacy IMGUI and UGUI Canvas layer interactions are handled explicitly."
+      ],
+      mapTitle: "Procedural 3D Facility Map Builder",
+      mapIntro: "FacilityMapBuilder and FacilityMapEditor translate a hand-drawn facility plan into a testable 3D blockout using Unity primitives and colliders. Architectural_Facility_Map.prefab can be produced as an architectural prototype.",
+      mapZones: [
+        { label: "GROUND FLOOR", body: "Security/inspection room, central observation area, airlock, and locked archive." },
+        { label: "UPPER FLOOR", body: "Containment sector, security bridge, gate, and six containment cells." },
+        { label: "BASEMENT", body: "Technical areas and connections for testing the facility maintenance flow." }
+      ],
+      mapNote: "Ramps, doors, collision geometry, and TextMesh labels make the space navigable and testable. The generator works in an isolated coordinate region to protect existing scene objects; this is a level-prototyping output, not final environment art.",
+      architectureTitle: "Technical architecture & integration",
+      architecture: [
+        { title: "Core & time", body: "TimeManager maintains the shift flow; CheckpointManager and NPCController connect the facility lifecycle." },
+        { title: "Deduction systems", body: "ScientistSystem, ScientistComponent, ScientistDataSO, and SkinwalkerComponent separate data, memory, and consistency checks." },
+        { title: "Player & input", body: "PlayerInteraction, PlayerItemHolder, and PlayerWeaponHandler handle gameplay input; UI guards manage transitions." },
+        { title: "Presentation", body: "ScientistDialogueUI, PauseMenuUI, PlayerHUD, and ShiftReportUI manage player-facing presentation." },
+        { title: "World feedback", body: "FacilityLightingEffects and AudioManager produce lighting and audio feedback for events." },
+        { title: "Level prototype", body: "FacilityMapBuilder and FacilityMapEditor generate the procedural facility blockout." }
+      ],
+      validationTitle: "Validation & engineering quality",
+      validation: "The reported command `dotnet build \"Assembly-CSharp.csproj\" --no-restore` completed with zero compilation errors. This is a C# project compilation check; it is not a complete Unity Play Mode test, regression suite, performance test, or release build validation. Unity 6-compatible APIs replaced older APIs that had become obsolete.",
+      statusTitle: "Current state & next direction",
+      status: [
+        { label: "REPORTED COMPLETE", value: "PHASE 12—19", body: "Technical systems and tools are reported as implemented; the complete final game is not claimed." },
+        { label: "BLOCKOUT", value: "FACILITY MAP", body: "The procedural output is a testable architectural prototype, not final environment art." },
+        { label: "NEXT FOCUS", value: "MAIN SCENE", body: "Player-facing UI, interaction polish, feedback, and campaign reliability." },
+        { label: "QUALITY", value: "VERIFY & TEST", body: "Integration, usability, and gameplay flow require broader validation." }
+      ]
+    },
     scope: {
       tag: "SCOPE / DELIVERY TARGET",
       title: "Separate the course target from the long-term vision",
@@ -488,6 +624,11 @@ const versions = Object.entries(copy);
         <span>05</span>
         <strong>{initialLanguage === "tr" ? "Hafta 05 sunumu" : "Week 05 presentation"}</strong>
         <small>{initialLanguage === "tr" ? "Core loop & game feel ↘" : "Core loop & game feel ↘"}</small>
+      </a>
+      <a href={`#engineering-${initialLanguage}`} data-presentation-link="engineering">
+        <span>06</span>
+        <strong>{initialLanguage === "tr" ? "Teknik ilerleme" : "Technical progress"}</strong>
+        <small>{initialLanguage === "tr" ? "Phase 12—19 ↘" : "Phase 12—19 ↘"}</small>
       </a>
     </div>
   </section>
@@ -721,6 +862,55 @@ const versions = Object.entries(copy);
           </div>
         </section>
 
+        <section class="deck-section engineering-section" id={`engineering-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{t.engineering.number}</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.engineering.tag}</p><h2>{t.engineering.title}</h2><p class="section-intro">{t.engineering.intro}</p></div>
+          </div>
+          <div class="engineering-overview"><p>{t.engineering.overview}</p></div>
+          <div class="subsection-heading"><h3>{t.engineering.milestonesTitle}</h3><span>12—19</span></div>
+          <div class="engineering-milestones">
+            {t.engineering.milestones.map((milestone) => <article><span>{milestone.phase}</span><h3>{milestone.title}</h3><p>{milestone.body}</p></article>)}
+          </div>
+          <div class="engineering-two-column">
+            <article class="engineering-panel">
+              <div class="subsection-heading"><h3>{t.engineering.dialogueTitle}</h3><span>UI / MEMORY</span></div>
+              <p class="section-intro">{t.engineering.dialogueIntro}</p>
+              <ul>{t.engineering.dialoguePoints.map((point) => <li>{point}</li>)}</ul>
+            </article>
+            <article class="engineering-panel">
+              <div class="subsection-heading"><h3>{t.engineering.lifecycleTitle}</h3><span>NPC / EXIT</span></div>
+              <p class="section-intro">{t.engineering.lifecycleIntro}</p>
+              <ol>{t.engineering.lifecycle.map((step) => <li>{step}</li>)}</ol>
+            </article>
+          </div>
+          <div class="engineering-two-column">
+            <article class="engineering-panel">
+              <div class="subsection-heading"><h3>{t.engineering.inputTitle}</h3><span>INPUT / UI</span></div>
+              <p class="section-intro">{t.engineering.inputIntro}</p>
+              <ul>{t.engineering.inputPoints.map((point) => <li>{point}</li>)}</ul>
+            </article>
+            <article class="engineering-panel map-panel">
+              <div class="subsection-heading"><h3>{t.engineering.mapTitle}</h3><span>LEVEL / BLOCKOUT</span></div>
+              <p class="section-intro">{t.engineering.mapIntro}</p>
+              <div class="map-zones">{t.engineering.mapZones.map((zone) => <div><strong>{zone.label}</strong><p>{zone.body}</p></div>)}</div>
+              <p class="source-note"><span>*</span> {t.engineering.mapNote}</p>
+            </article>
+          </div>
+          <div class="subsection-heading"><h3>{t.engineering.architectureTitle}</h3><span>DEPENDENCY MAP</span></div>
+          <div class="architecture-grid">
+            {t.engineering.architecture.map((item, index) => <article><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.body}</p></article>)}
+          </div>
+          <div class="engineering-validation">
+            <div><div class="subsection-heading"><h3>{t.engineering.validationTitle}</h3><span>BUILD CHECK</span></div><p>{t.engineering.validation}</p></div>
+            <div class="validation-command"><span>COMMAND</span><code>dotnet build "Assembly-CSharp.csproj" --no-restore</code><strong>0 compilation errors</strong></div>
+          </div>
+          <div class="subsection-heading"><h3>{t.engineering.statusTitle}</h3><span>STATUS / NEXT</span></div>
+          <div class="engineering-status-grid">
+            {t.engineering.status.map((item) => <article><span>{item.label}</span><strong>{item.value}</strong><p>{item.body}</p></article>)}
+          </div>
+        </section>
+
         <section class="deck-section scope-section" id={`next-${lang}`}>
           <div class="section-heading">
             <div class="section-number">NEXT</div>
@@ -805,7 +995,7 @@ const versions = Object.entries(copy);
   .presentation-index-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 15px; }
   .presentation-index-heading .eyebrow { margin: 0; }
   .presentation-index-heading > p:last-child { color: var(--nw-muted); font-size: 10px; margin: 0; }
-  .presentation-index-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
+  .presentation-index-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
   .presentation-index-grid a { min-width: 0; padding: 13px 14px 14px; color: var(--nw-ink); text-decoration: none; border-right: 1px solid var(--nw-line); transition: background 180ms ease, color 180ms ease; }
   .presentation-index-grid a:last-child { border-right: 0; }
   .presentation-index-grid a:hover { background: var(--nw-dark); color: #f7f8f3; }
@@ -1008,6 +1198,45 @@ const versions = Object.entries(copy);
   .week5-status-grid span { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .12em; margin-bottom: 22px; }
   .week5-status-grid strong { display: block; font-size: 19px; letter-spacing: -.04em; }
   .week5-status-grid p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 7px 0 0; }
+  .engineering-overview { background: var(--nw-panel); border-left: 3px solid #9eb69e; padding: 23px 26px; margin-bottom: 38px; }
+  .engineering-overview p { color: var(--nw-muted); font-size: 13px; line-height: 1.8; max-width: 850px; margin: 0; }
+  .engineering-milestones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--nw-line); margin-bottom: 40px; }
+  .engineering-milestones article { min-width: 0; padding: 19px 16px 21px; border-right: 1px solid var(--nw-line); }
+  .engineering-milestones article:last-child { border-right: 0; }
+  .engineering-milestones article > span, .architecture-grid article > span { color: #829982; font-size: 10px; letter-spacing: .1em; }
+  .engineering-milestones h3 { font-size: 15px; line-height: 1.3; margin: 22px 0 9px; }
+  .engineering-milestones p, .architecture-grid p, .engineering-panel p { color: var(--nw-muted); font-size: 11px; line-height: 1.75; margin: 0; }
+  .engineering-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-bottom: 34px; }
+  .engineering-panel { min-width: 0; border-top: 1px solid var(--nw-line); padding-top: 18px; }
+  .engineering-panel .subsection-heading { margin-bottom: 17px; }
+  .engineering-panel ul, .engineering-panel ol { margin: 18px 0 0; padding: 0; list-style: none; }
+  .engineering-panel li { border-bottom: 1px solid var(--nw-line); color: var(--nw-ink); font-size: 11px; line-height: 1.7; padding: 10px 0 10px 22px; position: relative; }
+  .engineering-panel li::before { content: "↗"; color: #829982; position: absolute; left: 0; top: 10px; }
+  .engineering-panel ol { counter-reset: lifecycle; }
+  .engineering-panel ol li { counter-increment: lifecycle; padding-left: 29px; }
+  .engineering-panel ol li::before { content: "0" counter(lifecycle); font-size: 9px; }
+  .map-zones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--nw-line); margin-top: 18px; }
+  .map-zones > div { padding: 13px 11px; min-width: 0; }
+  .map-zones strong { font-size: 9px; letter-spacing: .08em; }
+  .map-zones p { font-size: 10px; margin-top: 8px; }
+  .map-panel .source-note { margin-top: 17px; }
+  .architecture-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--nw-line); margin-bottom: 38px; }
+  .architecture-grid article { min-width: 0; padding: 17px 14px 19px; border-right: 1px solid var(--nw-line); }
+  .architecture-grid article:nth-child(3n) { border-right: 0; }
+  .architecture-grid article:nth-child(n+4) { border-top: 1px solid var(--nw-line); }
+  .architecture-grid h3 { font-size: 14px; margin: 18px 0 8px; }
+  .engineering-validation { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, .7fr); gap: 28px; border-top: 1px solid var(--nw-line); padding-top: 22px; margin-bottom: 38px; }
+  .engineering-validation > div > p { color: var(--nw-muted); font-size: 11px; line-height: 1.8; margin: 0; max-width: 700px; }
+  .validation-command { align-self: start; background: var(--nw-dark); color: #dce7d8; padding: 18px; }
+  .validation-command span { display: block; color: #9eb69e; font-size: 8px; letter-spacing: .13em; margin-bottom: 12px; }
+  .validation-command code { display: block; font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+  .validation-command strong { display: block; color: #b8c8b5; font-size: 10px; letter-spacing: .08em; margin-top: 16px; }
+  .engineering-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--nw-line); }
+  .engineering-status-grid article { min-width: 0; padding: 17px 14px 19px; border-right: 1px solid var(--nw-line); }
+  .engineering-status-grid article:last-child { border-right: 0; }
+  .engineering-status-grid span { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; margin-bottom: 20px; }
+  .engineering-status-grid strong { display: block; font-size: 17px; letter-spacing: -.03em; }
+  .engineering-status-grid p { color: var(--nw-muted); font-size: 10px; line-height: 1.65; margin: 8px 0 0; }
   .scope-card { border: 1px solid var(--nw-line); padding: clamp(20px, 3vw, 30px); }
   .scope-card-primary { background: #232c25; color: #eef1e9; border-color: #232c25; }
   .scope-card-primary .card-eyebrow, .scope-card-primary > p:last-child { color: #bdc8b9; }
@@ -1058,6 +1287,17 @@ const versions = Object.entries(copy);
     .week5-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .week5-status-grid article:nth-child(2) { border-right: 0; }
     .week5-status-grid article:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
+    .engineering-milestones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .engineering-milestones article:nth-child(2) { border-right: 0; }
+    .engineering-milestones article:nth-child(3) { border-top: 1px solid var(--nw-line); }
+    .engineering-milestones article:nth-child(3) { grid-column: 1 / -1; }
+    .architecture-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .architecture-grid article:nth-child(3n) { border-right: 1px solid var(--nw-line); }
+    .architecture-grid article:nth-child(2n) { border-right: 0; }
+    .architecture-grid article:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
+    .engineering-status-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .engineering-status-grid article:nth-child(2) { border-right: 0; }
+    .engineering-status-grid article:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
   }
   @media (max-width: 650px) {
     .presentation-index { padding: 22px 17px; }
@@ -1152,6 +1392,15 @@ const versions = Object.entries(copy);
     .week5-loop article:nth-child(n+3), .week5-integration .production-phase:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
     .week5-bottom-grid { grid-template-columns: 1fr; gap: 32px; }
     .week5-status-grid { grid-template-columns: 1fr 1fr; }
+    .engineering-two-column, .engineering-validation { grid-template-columns: 1fr; gap: 32px; }
+    .engineering-milestones { grid-template-columns: 1fr; }
+    .engineering-milestones article, .engineering-milestones article:nth-child(2) { border-right: 0; }
+    .engineering-milestones article + article { border-top: 1px solid var(--nw-line); }
+    .engineering-milestones article:nth-child(3) { grid-column: auto; }
+    .map-zones, .architecture-grid { grid-template-columns: 1fr; }
+    .architecture-grid article, .architecture-grid article:nth-child(3n), .architecture-grid article:nth-child(2n) { border-right: 0; }
+    .architecture-grid article + article { border-top: 1px solid var(--nw-line); }
+    .engineering-status-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .nightwatch-presentation .deck-language { animation: fade-in .24s ease-out; }
