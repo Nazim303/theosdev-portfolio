@@ -631,6 +631,14 @@ const versions = Object.entries(copy);
         <small>{initialLanguage === "tr" ? "Phase 12—19 ↘" : "Phase 12—19 ↘"}</small>
       </a>
     </div>
+    <a class="build-download" href="/downloads/hafta-06-build.zip" download="hafta-06-build.zip">
+      <span class="build-download-index">06 / BUILD</span>
+      <span class="build-download-copy">
+        <strong>{initialLanguage === "tr" ? "Hafta 6 build'ini indir" : "Download the Week 6 build"}</strong>
+        <small>{initialLanguage === "tr" ? "Project: Nightwatch · ZIP arşivi" : "Project: Nightwatch · ZIP archive"}</small>
+      </span>
+      <span class="build-download-arrow" aria-hidden="true">↓</span>
+    </a>
   </section>
   <div class="presentation-bar">
     <div class="presentation-brand">
@@ -1002,6 +1010,14 @@ const versions = Object.entries(copy);
   .presentation-index-grid span, .presentation-index-grid small { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
   .presentation-index-grid a:hover span, .presentation-index-grid a:hover small { color: #b8c8b5; }
   .presentation-index-grid strong { display: block; min-height: 30px; margin: 14px 0 8px; font-size: 11px; line-height: 1.35; font-weight: 600; }
+  .build-download { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 12px; padding: 16px 18px; border: 1px solid var(--nw-line); color: var(--nw-ink); text-decoration: none; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+  .build-download:hover { background: var(--nw-dark); border-color: var(--nw-dark); color: #f7f8f3; }
+  .build-download-index { color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; }
+  .build-download-copy { display: flex; flex: 1; align-items: baseline; justify-content: space-between; gap: 18px; min-width: 0; }
+  .build-download-copy strong { font-size: 11px; font-weight: 600; }
+  .build-download-copy small { color: var(--nw-muted); font-size: 9px; }
+  .build-download:hover .build-download-index, .build-download:hover .build-download-copy small { color: #b8c8b5; }
+  .build-download-arrow { color: #829982; font-size: 16px; line-height: 1; }
   .presentation-bar { max-width: 1240px; margin: 0 auto; padding: 18px clamp(18px, 4vw, 48px); display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid var(--nw-line); }
   .presentation-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .09em; font-size: 10px; font-weight: 650; }
   .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: #8ca48c; display: inline-block; box-shadow: 0 0 0 3px color-mix(in srgb, #8ca48c 18%, transparent); }
@@ -1307,6 +1323,9 @@ const versions = Object.entries(copy);
     .presentation-index-grid a:nth-child(3) { border-right: 1px solid var(--nw-line); }
     .presentation-index-grid a:nth-child(2n) { border-right: 0; }
     .presentation-index-grid a:nth-child(n+3) { border-top: 1px solid var(--nw-line); }
+    .build-download { align-items: flex-start; }
+    .build-download-copy { display: block; }
+    .build-download-copy small { display: block; margin-top: 6px; }
     .presentation-bar { padding: 13px 17px; align-items: flex-start; }
     .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
     .bar-meta { width: 100%; }
