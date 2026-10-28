@@ -1,0 +1,114 @@
+---
+interface Props {
+  lang?: 'tr' | 'en';
+  gameTitle: string;
+  gameSlug: string;
+  requiresPassword?: boolean;
+}
+
+const { lang = 'en', gameTitle, gameSlug, requiresPassword = false } = Astro.props;
+const isEnglish = lang === 'en';
+const passwordHash = '55fdec963805de594b61b2c1692cadc2c1dfb844d6ac10c5bfed33c842087b2e';
+const gamePath = `/games/${gameSlug}/index.html`;
+const playPath = isEnglish ? '/en/play' : '/play';
+---
+
+<div class="game-page" data-game-page data-game-slug={gameSlug} data-password-hash={requiresPassword ? passwordHash : undefined}>
+  <header class="game-header">
+    <a class="text-link" href={playPath}>← {isEnglish ? 'Back to Play' : 'Oyna sayfasına dön'}</a>
+    <p class="eyebrow">TheosDev / {isEnglish ? 'Play' : 'Oyna'}</p>
+    <h1 class="page-title">{gameTitle}</h1>
+    <p class="page-intro">{isEnglish ? 'A playable Unity WebGL build running directly in the browser.' : 'Tarayıcıda doğrudan oynanabilen Unity WebGL buildi.'}</p>
+  </header>
+
+  {requiresPassword ? (
+    <section class="game-access" data-game-access>
+      <p class="eyebrow">{isEnglish ? 'Private build' : 'Özel build'}</p>
+      <h2>{isEnglish ? 'Enter the access code' : 'Erişim kodunu gir'}</h2>
+      <p>{isEnglish ? 'This prototype is currently shared with a limited audience.' : 'Bu prototip şu anda sınırlı bir izleyiciyle paylaşılıyor.'}</p>
+      <form data-game-form>
+        <label for="game-password">{isEnglish ? 'Access code' : 'Erişim kodu'}</label>
+        <div class="game-password-row">
+          <input id="game-password" name="password" type="password" inputmode="numeric" autocomplete="off" required />
+          <button class="button button-dark" type="submit">{isEnglish ? 'Unlock' : 'Aç'}</button>
+        </div>
+        <p class="game-error" data-game-error role="alert" hidden>{isEnglish ? 'The access code is not correct.' : 'Erişim kodu doğru değil.'}</p>
+      </form>
+    </section>
+  ) : null}
+
+  <section class:list={['game-frame-wrap', requiresPassword ? 'game-frame-locked' : '']} data-game-frame-wrap hidden={requiresPassword}>
+    <div class="game-frame-toolbar">
+      <span>{isEnglish ? 'PLAYABLE BUILD' : 'OYNANABİLİR BUILD'}</span>
+      {!requiresPassword && <a href={gamePath} target="_blank" rel="noopener noreferrer">{isEnglish ? 'Open fullscreen ↗' : 'Tam ekran aç ↗'}</a>}
+    </div>
+    <iframe class="game-frame" src={requiresPassword ? undefined : gamePath} data-game-frame title={gameTitle} allow="fullscreen; autoplay" loading="lazy"></iframe>
+  </section>
+</div>
+
+<script>
+  const gamePage = document.querySelector<HTMLElement>('[data-game-page]');
+  const gameForm = gamePage?.querySelector<HTMLFormElement>('[data-game-form]');
+  const gameFrameWrap = gamePage?.querySelector<HTMLElement>('[data-game-frame-wrap]');
+  const gameFrame = gamePage?.querySelector<HTMLIFrameElement>('[data-game-frame]');
+  const gameError = gamePage?.querySelector<HTMLElement>('[data-game-error]');
+
+  if (gamePage && gameForm && gameFrameWrap && gameFrame) {
+    const storageKey = `theosdev-game-access:${gamePage.dataset.gameSlug}`;
+    const unlock = () => {
+      gameFrame.src = `/games/${gamePage.dataset.gameSlug}/index.html`;
+      gameFrameWrap.hidden = false;
+      gameFrameWrap.classList.remove('game-frame-locked');
+      gamePage.querySelector<HTMLElement>('[data-game-access]')?.setAttribute('hidden', '');
+    };
+
+    if (sessionStorage.getItem(storageKey) === 'unlocked') {
+      unlock();
+    }
+
+    gameForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const input = gameForm.elements.namedItem('password');
+      if (!(input instanceof HTMLInputElement)) return;
+      const encoded = new TextEncoder().encode(input.value);
+      const digest = await crypto.subtle.digest('SHA-256', encoded);
+      const hash = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+      if (hash === gamePage.dataset.passwordHash) {
+        sessionStorage.setItem(storageKey, 'unlocked');
+        gameError.hidden = true;
+        unlock();
+      } else {
+        gameError.hidden = false;
+        input.select();
+      }
+    });
+  }
+</script>
+
+<style>
+  .game-page { max-width: 1240px; margin: 0 auto; padding: 82px clamp(18px, 5vw, 64px) 100px; }
+  .game-header { max-width: 730px; margin-bottom: 42px; }
+  .game-header .text-link { display: inline-block; margin-bottom: 45px; }
+  .game-header .eyebrow { margin-bottom: 14px; }
+  .game-header .page-title { margin-bottom: 16px; }
+  .game-header .page-intro { max-width: 560px; }
+  .game-access { max-width: 580px; padding: 28px; border: 1px solid var(--color-border); background: var(--color-surface); }
+  .game-access h2 { margin: 0 0 10px; font-size: clamp(24px, 4vw, 36px); letter-spacing: -.04em; }
+  .game-access > p:not(.eyebrow), .game-error { color: var(--color-muted); font-size: 13px; line-height: 1.7; }
+  .game-access form { margin-top: 26px; }
+  .game-access label { display: block; color: var(--color-muted); font-size: 10px; letter-spacing: .1em; margin-bottom: 8px; text-transform: uppercase; }
+  .game-password-row { display: flex; gap: 10px; }
+  .game-password-row input { min-width: 0; flex: 1; border: 1px solid var(--color-border); background: var(--color-background); color: var(--color-text); padding: 12px 13px; font: inherit; }
+  .game-error { color: #a14d43 !important; margin: 11px 0 0; }
+  .game-frame-wrap[hidden] { display: none; }
+  .game-frame-wrap { border: 1px solid var(--color-border); background: #171b18; }
+  .game-frame-toolbar { display: flex; justify-content: space-between; gap: 15px; padding: 12px 15px; color: #b7c3b4; font-size: 9px; letter-spacing: .1em; }
+  .game-frame-toolbar a { color: #d7e1d3; text-decoration: none; }
+  .game-frame { display: block; width: 100%; height: min(72vw, 760px); min-height: 500px; border: 0; background: #101311; }
+  @media (max-width: 600px) {
+    .game-page { padding: 48px 18px 70px; }
+    .game-header .text-link { margin-bottom: 34px; }
+    .game-password-row { display: grid; }
+    .game-frame { height: 70vw; min-height: 300px; }
+  }
+</style>
