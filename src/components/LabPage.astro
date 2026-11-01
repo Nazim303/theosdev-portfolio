@@ -590,6 +590,20 @@ const copy = {
     }
   }
 };
+const scientistCards = {
+  tr: [
+    { name: "Dr. Emily Hayes", role: "Containment Beslenme Protokolü", code: "48271936", age: "38", height: "1.68 m", appearance: "Soluk ten, koyu kahverengi gözler, siyah ve dağınık toplanmış saçlar. Göz altlarında belirgin mor halkalar.", personality: "Hayattan bıkmış, kuru mizahlı ve enerjisi tükenmiş. Kısa cümlelerle konuşur, sık sık iç çeker; zekâsı ve iş bilgisi ise yerindedir.", memory: "Kedisi Tırmık onun tek dostudur. Üçüncü kattaki kahve makinesi parasını yuttu ve her hafta istifa dilekçesi yazmayı düşünüyor.", mark: "YORGUN / İRONİK" },
+    { name: "Dr. Richard Coleman", role: "Skinwalker Davranış Araştırmaları Başkanı", code: "73056184", age: "52", height: "1.82 m", appearance: "Güneşten yanmış buğday ten, gri-yeşil gözler, kısa kırlaşmış saç, derin alın çizgileri ve kalın kaşlar.", personality: "Otoriter, sabırsız ve huysuz. Güvenlik görevlisini 'kapıdaki çocuk' olarak görür; sakin ve saygılı davranılırsa nadiren ipucu verir.", memory: "Oğlu Kerem gelecek hafta mezun oluyor. Arabası serviste ve araştırma fonunun kesilmesi yüzünden müdürle tartıştı.", mark: "OTORİTER / SABIRSIZ" },
+    { name: "Dr. Lily Anderson", role: "Containment Hücre Gözlem ve Beslenme Araştırmacısı", code: "19384627", age: "29", height: "1.60 m", appearance: "Çilli açık buğday ten, ela gözler, kızıl kestane kıvırcık saç, gamzeler ve sürekli gülümseyen bir ifade.", personality: "Enerjik, geveze ve hayat dolu. Konuyu dağıtır, sohbet etmeyi sever ve her soruya beş cevap verir.", memory: "Arkadaşlarıyla kampa gidecek, annesine limonlu pasta yapacak ve masasındaki sukulentin adı Fikret.", mark: "NEŞELİ / ENERJİK" },
+    { name: "Dr. Walter Brooks", role: "Elektrik ve Jeneratör Sistemleri Araştırmacısı", code: "60519347", age: "44", height: "1.75 m", appearance: "Soluk zeytin ten, açık kahverengi gözler, seyrek kumral saç, uzun burun ve sapı bantlı kalın çerçeveli gözlük.", personality: "Gergin, ürkek ve aşırı kibar. Her sesi takip eder, cümlelerine 'şey… yani…' diye başlar ve kendi kimliğinden bile şüphe eder.", memory: "Kızı Defne'nin cuma günü piyano konseri var. Jeneratör odasında metal sürtünmesine benzer bir ses duydu; gözlüğünün yeni çerçevesi hâlâ gelmedi.", mark: "GERGİN / PARANOYAK" }
+  ],
+  en: [
+    { name: "Dr. Emily Hayes", role: "Containment Feeding Protocol", code: "48271936", age: "38", height: "1.68 m / 5'6\"", appearance: "Pale skin, dark brown eyes, and messy shoulder-length black hair. Noticeable dark circles under the eyes.", personality: "Tired of everything, dryly humorous, and out of energy. She speaks in short sentences and sighs often, but remains sharp and capable.", memory: "Her cat Tırmık is her only friend. The third-floor coffee machine swallowed her money, and she considers writing a resignation letter every week.", mark: "TIRED / IRONIC" },
+    { name: "Dr. Richard Coleman", role: "Head of Skinwalker Behavioral Research", code: "73056184", age: "52", height: "1.82 m / 5'11\"", appearance: "Tan, sun-weathered skin, gray-green eyes, short graying hair, deep forehead lines, and thick eyebrows.", personality: "Authoritative, impatient, and irritable. He sees the guard as 'the kid at the door', but may reveal a clue when treated calmly.", memory: "His son Kerem graduates next week. His car is at the shop, and he argued with the director about research funding.", mark: "AUTHORITATIVE / IMPATIENT" },
+    { name: "Dr. Lily Anderson", role: "Containment Cell Observation & Feeding Research", code: "19384627", age: "29", height: "1.60 m / 5'3\"", appearance: "Light tan freckled skin, hazel eyes, curly auburn-chestnut hair, dimples, and a constant smile.", personality: "Energetic, chatty, and full of life. She jumps between subjects, enjoys talking, and gives five answers to every question.", memory: "She is going camping with friends, will make her mother a lemon cake, and the succulent on her desk is named Fikret.", mark: "CHEERFUL / ENERGETIC" },
+    { name: "Dr. Walter Brooks", role: "Electrical & Generator Systems Research", code: "60519347", age: "44", height: "1.75 m / 5'9\"", appearance: "Pale olive skin, light brown eyes, thinning light brown hair, a long nose, and thick-framed glasses held with tape.", personality: "Tense, timid, and excessively polite. He tracks every sound, starts with 'um… I mean…', and even doubts his own identity.", memory: "His daughter Defne has a piano recital on Friday. He heard metal scraping in the generator room, and his replacement glasses still have not arrived.", mark: "TENSE / PARANOID" }
+  ]
+} as const;
 const versions = Object.entries(copy);
 ---
 
@@ -631,6 +645,11 @@ const versions = Object.entries(copy);
         <small>{initialLanguage === "tr" ? "Phase 12—19 ↘" : "Phase 12—19 ↘"}</small>
       </a>
     </div>
+    <a class="scientist-archive-link" href={`#scientists-${initialLanguage}`} data-presentation-link="scientists">
+      <span>06—07 / NPC FILES</span>
+      <strong>{initialLanguage === "tr" ? "Bilim insanı kimlik kartları" : "Scientist identity cards"}</strong>
+      <small>{initialLanguage === "tr" ? "Hafta 6 ve 7 arasında · dört personel dosyası ↘" : "Between Week 6 and 7 · four personnel files ↘"}</small>
+    </a>
     <a class="build-download" href="/downloads/hafta-06-build.zip" download="hafta-06-build.zip">
       <span class="build-download-index">06 / BUILD</span>
       <span class="build-download-copy">
@@ -919,6 +938,47 @@ const versions = Object.entries(copy);
           </div>
         </section>
 
+        <section class="deck-section scientist-section" id={`scientists-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">06—07</div>
+            <div class="section-heading-main"><p class="eyebrow">{lang === "tr" ? "NPC DOSYALARI / KİMLİK VE HAFIZA" : "NPC FILES / IDENTITY & MEMORY"}</p><h2>{lang === "tr" ? "Bilim insanı kimlik kartları" : "Scientist identity cards"}</h2><p class="section-intro">{lang === "tr" ? "Dört bilim insanının kimlik bilgilerini, tavrını ve oyuncunun hafızasında tutması gereken kişisel ayrıntıları incele. Kartı çevirerek dosyanın arka yüzündeki kişilik notlarına geçebilirsin." : "Study the identity details, manner, and personal details the player must remember for four scientists. Flip each card to read the personality notes on the back."}</p></div>
+          </div>
+          <div class="scientist-deck" data-scientist-deck>
+            <button class="scientist-arrow" type="button" data-scientist-prev aria-label={lang === "tr" ? "Önceki bilim insanı" : "Previous scientist"}>←</button>
+            <div class="scientist-stage">
+              {scientistCards[lang as 'tr' | 'en'].map((scientist, index) => (
+                <article class:list={["scientist-card", index === 0 ? "is-active" : ""]} data-scientist-card data-card-index={index}>
+                  <div class="scientist-card-inner">
+                    <div class="scientist-card-face scientist-card-front">
+                      <div class="scientist-card-top"><span>SKINWALKER LABORATORY</span><strong>IDENTIFICATION</strong></div>
+                      <div class="scientist-card-portrait" aria-hidden="true"><span>{scientist.name.split(" ").slice(-1)[0].slice(0, 1)}</span></div>
+                      <div class="scientist-card-identity"><p class="card-eyebrow">{scientist.mark}</p><h3>{scientist.name}</h3><p>{scientist.role}</p></div>
+                      <dl class="scientist-id-grid">
+                        <div><dt>{lang === "tr" ? "PERSONEL KODU" : "PERSONNEL CODE"}</dt><dd>{scientist.code}</dd></div>
+                        <div><dt>{lang === "tr" ? "YAŞ" : "AGE"}</dt><dd>{scientist.age}</dd></div>
+                        <div><dt>{lang === "tr" ? "BOY" : "HEIGHT"}</dt><dd>{scientist.height}</dd></div>
+                        <div><dt>{lang === "tr" ? "DURUM" : "STATUS"}</dt><dd>{lang === "tr" ? "AKTİF PERSONEL" : "ACTIVE STAFF"}</dd></div>
+                      </dl>
+                      <p class="scientist-appearance"><strong>{lang === "tr" ? "AYIRT EDİCİ GÖRÜNÜM" : "DISTINGUISHING APPEARANCE"}</strong>{scientist.appearance}</p>
+                      <button class="scientist-flip" type="button" data-scientist-flip>{lang === "tr" ? "Kartın arkasını gör" : "View the reverse side"} <span>↻</span></button>
+                    </div>
+                    <div class="scientist-card-face scientist-card-back">
+                      <div class="scientist-card-top"><span>PERSONAL FILE / MEMORY</span><strong>RESTRICTED</strong></div>
+                      <div class="scientist-back-heading"><span class="scientist-back-number">0{index + 1}</span><div><p class="card-eyebrow">{lang === "tr" ? "HAYAT VE KİŞİLİK" : "LIFE & PERSONALITY"}</p><h3>{scientist.name}</h3></div></div>
+                      <div class="scientist-note"><span>{lang === "tr" ? "TAVIR" : "MANNER"}</span><p>{scientist.personality}</p></div>
+                      <div class="scientist-note"><span>{lang === "tr" ? "HAFIZA NOTU" : "MEMORY NOTE"}</span><p>{scientist.memory}</p></div>
+                      <div class="scientist-back-warning"><span>!</span><p>{lang === "tr" ? "Skinwalker görünüşü ve kimlik bilgilerini taklit eder; hafızaya erişemez." : "A Skinwalker can mimic appearance and ID data, but cannot access memory."}</p></div>
+                      <button class="scientist-flip" type="button" data-scientist-flip>{lang === "tr" ? "Kimlik kartına dön" : "Return to ID card"} <span>↻</span></button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <button class="scientist-arrow" type="button" data-scientist-next aria-label={lang === "tr" ? "Sonraki bilim insanı" : "Next scientist"}>→</button>
+          </div>
+          <div class="scientist-pagination" data-scientist-pagination></div>
+        </section>
+
         <section class="deck-section scope-section" id={`next-${lang}`}>
           <div class="section-heading">
             <div class="section-number">NEXT</div>
@@ -978,6 +1038,41 @@ const versions = Object.entries(copy);
       });
     });
   }
+
+  document.querySelectorAll<HTMLElement>('[data-scientist-deck]').forEach((deck) => {
+    const cards = Array.from(deck.querySelectorAll<HTMLElement>('[data-scientist-card]'));
+    const pagination = deck.parentElement?.querySelector<HTMLElement>('[data-scientist-pagination]');
+    let activeIndex = 0;
+    const update = () => {
+      cards.forEach((card, index) => {
+        card.classList.toggle('is-active', index === activeIndex);
+        card.classList.remove('is-flipped');
+      });
+      if (pagination) {
+        pagination.innerHTML = cards.map((_, index) => `<button type="button" aria-label="Scientist ${index + 1}" aria-current="${index === activeIndex}">${String(index + 1).padStart(2, '0')}</button>`).join('');
+        pagination.querySelectorAll<HTMLButtonElement>('button').forEach((button, index) => {
+          button.addEventListener('click', () => {
+            activeIndex = index;
+            update();
+          });
+        });
+      }
+    };
+    deck.querySelector<HTMLButtonElement>('[data-scientist-prev]')?.addEventListener('click', () => {
+      activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+      update();
+    });
+    deck.querySelector<HTMLButtonElement>('[data-scientist-next]')?.addEventListener('click', () => {
+      activeIndex = (activeIndex + 1) % cards.length;
+      update();
+    });
+    cards.forEach((card) => {
+      card.querySelectorAll<HTMLButtonElement>('[data-scientist-flip]').forEach((button) => {
+        button.addEventListener('click', () => card.classList.toggle('is-flipped'));
+      });
+    });
+    update();
+  });
 </script>
 
 <style>
@@ -1010,6 +1105,11 @@ const versions = Object.entries(copy);
   .presentation-index-grid span, .presentation-index-grid small { display: block; color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
   .presentation-index-grid a:hover span, .presentation-index-grid a:hover small { color: #b8c8b5; }
   .presentation-index-grid strong { display: block; min-height: 30px; margin: 14px 0 8px; font-size: 11px; line-height: 1.35; font-weight: 600; }
+  .scientist-archive-link { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: 18px; margin-top: 12px; padding: 14px 18px; border: 1px solid var(--nw-line); color: var(--nw-ink); text-decoration: none; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+  .scientist-archive-link:hover { background: var(--nw-panel); border-color: #9eb69e; }
+  .scientist-archive-link span, .scientist-archive-link small { color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; }
+  .scientist-archive-link strong { font-size: 11px; font-weight: 600; }
+  .scientist-archive-link:hover span, .scientist-archive-link:hover small { color: #607160; }
   .build-download { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 12px; padding: 16px 18px; border: 1px solid var(--nw-line); color: var(--nw-ink); text-decoration: none; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
   .build-download:hover { background: var(--nw-dark); border-color: var(--nw-dark); color: #f7f8f3; }
   .build-download-index { color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; }
@@ -1279,6 +1379,47 @@ const versions = Object.entries(copy);
   .footer-details > div:last-child p { color: var(--nw-muted); max-width: 480px; margin-bottom: 12px; }
   .footer-details a { display: inline-block; margin: 0 13px 6px 0; color: var(--nw-ink); font-size: 10px; text-decoration: none; border-bottom: 1px solid var(--nw-line); padding-bottom: 2px; }
   .footer-details a:hover { border-color: var(--nw-ink); }
+  .scientist-deck { display: grid; grid-template-columns: 48px minmax(0, 680px) 48px; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 36px); margin: 35px auto 0; }
+  .scientist-stage { width: 100%; perspective: 1800px; }
+  .scientist-card { display: none; min-height: 620px; }
+  .scientist-card.is-active { display: block; }
+  .scientist-card-inner { position: relative; min-height: 620px; transform-style: preserve-3d; transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
+  .scientist-card.is-flipped .scientist-card-inner { transform: rotateY(180deg); }
+  .scientist-card-face { position: absolute; inset: 0; display: flex; flex-direction: column; backface-visibility: hidden; border: 1px solid #536154; background: #e8ebe4; color: #202723; padding: clamp(22px, 4vw, 44px); overflow: hidden; }
+  .scientist-card-front { background: linear-gradient(135deg, #f1f3ed 0%, #dfe5dc 100%); }
+  .scientist-card-back { transform: rotateY(180deg); background: #232c25; color: #eff3ea; border-color: #5b6d5b; }
+  .scientist-card-top { display: flex; justify-content: space-between; gap: 15px; color: #607160; font-size: 9px; letter-spacing: .14em; }
+  .scientist-card-back .scientist-card-top { color: #b6c8b3; }
+  .scientist-card-top strong { font-weight: 650; }
+  .scientist-card-portrait { display: grid; place-items: center; width: clamp(100px, 18vw, 145px); height: clamp(120px, 22vw, 175px); margin: 45px auto 25px; border: 1px solid #9aab98; background: repeating-linear-gradient(0deg, transparent 0 9px, rgba(91, 112, 91, .1) 10px), #d2dbcf; }
+  .scientist-card-portrait span { display: grid; place-items: center; width: 60px; height: 60px; border: 1px solid #829982; border-radius: 50%; color: #5d765d; font-size: 28px; font-weight: 550; }
+  .scientist-card-identity { text-align: center; }
+  .scientist-card-identity .card-eyebrow { color: #718471; margin-bottom: 8px; }
+  .scientist-card-identity h3 { font-size: clamp(25px, 4vw, 38px); letter-spacing: -.05em; margin: 0 0 7px; }
+  .scientist-card-identity > p:last-child { color: #607160; font-size: 12px; margin: 0; }
+  .scientist-id-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 40px 0 23px; padding: 14px 0; border-top: 1px solid #b8c5b5; border-bottom: 1px solid #b8c5b5; }
+  .scientist-id-grid div { min-width: 0; }
+  .scientist-id-grid dt, .scientist-appearance strong, .scientist-note > span { display: block; color: #718471; font-size: 8px; letter-spacing: .1em; margin-bottom: 7px; }
+  .scientist-id-grid dd { margin: 0; font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
+  .scientist-appearance { max-width: 530px; color: #607160; font-size: 11px; line-height: 1.75; margin: 0; }
+  .scientist-flip { align-self: flex-start; margin-top: auto; padding: 12px 0 0; border: 0; border-top: 1px solid #b8c5b5; background: transparent; color: #536b53; font: inherit; font-size: 10px; cursor: pointer; }
+  .scientist-flip span { display: inline-block; margin-left: 8px; font-size: 17px; vertical-align: -2px; }
+  .scientist-back-heading { display: flex; align-items: flex-start; gap: 20px; margin: 64px 0 42px; }
+  .scientist-back-number { color: #b6c8b3; font-size: 31px; letter-spacing: -.05em; }
+  .scientist-back-heading .card-eyebrow { color: #b6c8b3; margin-bottom: 9px; }
+  .scientist-back-heading h3 { font-size: clamp(25px, 4vw, 38px); letter-spacing: -.05em; margin: 0; }
+  .scientist-note { border-top: 1px solid #516351; padding: 19px 0; }
+  .scientist-note > span { color: #b6c8b3; }
+  .scientist-note p { color: #d3ddd0; font-size: 13px; line-height: 1.85; margin: 0; max-width: 560px; }
+  .scientist-back-warning { display: flex; gap: 12px; margin-top: auto; padding: 15px; border: 1px solid #536b53; color: #c5d3c1; }
+  .scientist-back-warning span { display: grid; place-items: center; width: 18px; height: 18px; border: 1px solid #9eb69e; border-radius: 50%; flex-shrink: 0; }
+  .scientist-back-warning p { font-size: 10px; line-height: 1.65; margin: 0; }
+  .scientist-card-back .scientist-flip { color: #c5d3c1; border-color: #536b53; }
+  .scientist-arrow { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--nw-line); border-radius: 50%; background: transparent; color: var(--nw-ink); font-size: 20px; cursor: pointer; transition: background 180ms ease, color 180ms ease; }
+  .scientist-arrow:hover { background: var(--nw-dark); color: #f7f8f3; }
+  .scientist-pagination { display: flex; justify-content: center; gap: 8px; margin: 22px 0 0; }
+  .scientist-pagination button { border: 0; border-bottom: 1px solid var(--nw-line); background: transparent; color: var(--nw-muted); padding: 6px 8px; font: inherit; font-size: 9px; cursor: pointer; }
+  .scientist-pagination button[aria-current="true"] { border-color: #829982; color: var(--nw-ink); }
 
   @media (max-width: 900px) {
     .presentation-index-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1326,6 +1467,18 @@ const versions = Object.entries(copy);
     .build-download { align-items: flex-start; }
     .build-download-copy { display: block; }
     .build-download-copy small { display: block; margin-top: 6px; }
+    .scientist-archive-link { grid-template-columns: 1fr auto; gap: 7px 12px; }
+    .scientist-archive-link strong { grid-column: 1 / -1; grid-row: 2; }
+    .scientist-archive-link small { grid-column: 1 / -1; grid-row: 3; }
+    .scientist-deck { grid-template-columns: 35px minmax(0, 1fr) 35px; gap: 7px; }
+    .scientist-card, .scientist-card-inner { min-height: 570px; }
+    .scientist-card-face { padding: 21px; }
+    .scientist-card-top { font-size: 7px; }
+    .scientist-card-portrait { margin-top: 30px; }
+    .scientist-id-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 28px; row-gap: 17px; }
+    .scientist-note p { font-size: 11px; }
+    .scientist-back-heading { margin-top: 38px; margin-bottom: 27px; }
+    .scientist-arrow { width: 34px; height: 34px; font-size: 17px; }
     .presentation-bar { padding: 13px 17px; align-items: flex-start; }
     .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
     .bar-meta { width: 100%; }
