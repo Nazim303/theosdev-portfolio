@@ -1043,35 +1043,52 @@ const versions = Object.entries(copy);
     const cards = Array.from(deck.querySelectorAll<HTMLElement>('[data-scientist-card]'));
     const pagination = deck.parentElement?.querySelector<HTMLElement>('[data-scientist-pagination]');
     let activeIndex = 0;
-    const update = () => {
+    let transitionTimer: number | undefined;
+    const update = (direction = 1, animate = true) => {
+      const currentCard = cards.find((card) => card.classList.contains('is-active'));
+      if (animate && currentCard && cards[activeIndex] !== currentCard) {
+        currentCard.style.setProperty('--card-exit-direction', String(direction));
+        currentCard.classList.remove('is-active');
+        currentCard.classList.add('is-leaving');
+        window.clearTimeout(transitionTimer);
+        transitionTimer = window.setTimeout(() => currentCard.classList.remove('is-leaving'), 700);
+      }
       cards.forEach((card, index) => {
-        card.classList.toggle('is-active', index === activeIndex);
         card.classList.remove('is-flipped');
+        if (index === activeIndex) {
+          card.style.setProperty('--card-enter-direction', String(direction));
+          requestAnimationFrame(() => card.classList.add('is-active'));
+        } else if (card !== currentCard) {
+          card.classList.remove('is-active', 'is-leaving');
+        }
       });
       if (pagination) {
         pagination.innerHTML = cards.map((_, index) => `<button type="button" aria-label="Scientist ${index + 1}" aria-current="${index === activeIndex}">${String(index + 1).padStart(2, '0')}</button>`).join('');
         pagination.querySelectorAll<HTMLButtonElement>('button').forEach((button, index) => {
           button.addEventListener('click', () => {
+            const direction = index >= activeIndex ? 1 : -1;
             activeIndex = index;
-            update();
+            update(direction);
           });
         });
       }
     };
     deck.querySelector<HTMLButtonElement>('[data-scientist-prev]')?.addEventListener('click', () => {
+      const direction = -1;
       activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-      update();
+      update(direction);
     });
     deck.querySelector<HTMLButtonElement>('[data-scientist-next]')?.addEventListener('click', () => {
+      const direction = 1;
       activeIndex = (activeIndex + 1) % cards.length;
-      update();
+      update(direction);
     });
     cards.forEach((card) => {
       card.querySelectorAll<HTMLButtonElement>('[data-scientist-flip]').forEach((button) => {
         button.addEventListener('click', () => card.classList.toggle('is-flipped'));
       });
     });
-    update();
+    update(1, false);
   });
 </script>
 
@@ -1379,10 +1396,11 @@ const versions = Object.entries(copy);
   .footer-details > div:last-child p { color: var(--nw-muted); max-width: 480px; margin-bottom: 12px; }
   .footer-details a { display: inline-block; margin: 0 13px 6px 0; color: var(--nw-ink); font-size: 10px; text-decoration: none; border-bottom: 1px solid var(--nw-line); padding-bottom: 2px; }
   .footer-details a:hover { border-color: var(--nw-ink); }
-  .scientist-deck { display: grid; grid-template-columns: 48px minmax(0, 680px) 48px; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 36px); margin: 35px auto 0; }
-  .scientist-stage { width: 100%; perspective: 1800px; }
-  .scientist-card { display: none; min-height: 620px; }
-  .scientist-card.is-active { display: block; }
+  .scientist-deck { display: grid; grid-template-columns: 48px minmax(0, 920px) 48px; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 36px); margin: 35px auto 0; }
+  .scientist-stage { position: relative; width: 100%; min-height: 620px; perspective: 1800px; }
+  .scientist-card { position: absolute; inset: 0; min-height: 620px; opacity: 0; pointer-events: none; transform: translateX(calc(var(--card-enter-direction, 1) * 7%)) rotateY(calc(var(--card-enter-direction, 1) * -13deg)) scale(.96); transition: opacity 450ms ease, transform 650ms cubic-bezier(.2,.7,.2,1); }
+  .scientist-card.is-active { z-index: 2; opacity: 1; pointer-events: auto; transform: translateX(0) rotateY(0) scale(1); }
+  .scientist-card.is-leaving { z-index: 1; opacity: 0; transform: translateX(calc(var(--card-exit-direction, 1) * -7%)) rotateY(calc(var(--card-exit-direction, 1) * 13deg)) scale(.96); }
   .scientist-card-inner { position: relative; min-height: 620px; transform-style: preserve-3d; transition: transform 650ms cubic-bezier(.2,.7,.2,1); }
   .scientist-card.is-flipped .scientist-card-inner { transform: rotateY(180deg); }
   .scientist-card-face { position: absolute; inset: 0; display: flex; flex-direction: column; backface-visibility: hidden; border: 1px solid #536154; background: #e8ebe4; color: #202723; padding: clamp(22px, 4vw, 44px); overflow: hidden; }
@@ -1471,7 +1489,7 @@ const versions = Object.entries(copy);
     .scientist-archive-link strong { grid-column: 1 / -1; grid-row: 2; }
     .scientist-archive-link small { grid-column: 1 / -1; grid-row: 3; }
     .scientist-deck { grid-template-columns: 35px minmax(0, 1fr) 35px; gap: 7px; }
-    .scientist-card, .scientist-card-inner { min-height: 570px; }
+    .scientist-stage, .scientist-card, .scientist-card-inner { min-height: 570px; }
     .scientist-card-face { padding: 21px; }
     .scientist-card-top { font-size: 7px; }
     .scientist-card-portrait { margin-top: 30px; }
