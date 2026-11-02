@@ -604,6 +604,28 @@ const scientistCards = {
     { name: "Dr. Walter Brooks", role: "Electrical & Generator Systems Research", code: "60519347", age: "44", height: "1.75 m / 5'9\"", appearance: "Pale olive skin, light brown eyes, thinning light brown hair, a long nose, and thick-framed glasses held with tape.", personality: "Tense, timid, and excessively polite. He tracks every sound, starts with 'um… I mean…', and even doubts his own identity.", memory: "His daughter Defne has a piano recital on Friday. He heard metal scraping in the generator room, and his replacement glasses still have not arrived.", mark: "TENSE / PARANOID" }
   ]
 } as const;
+const week7Slides = {
+  tr: [
+    { number: "01", title: "Koddan oynanabilir döngüye", points: ["Phase 19 sonrası hedef: Skinwalker dedüksiyonu ile tesis yönetimini aynı vardiyada birleştirmek.", "Unity 6 + URP üzerinde modüler C# sistemleriyle geliştirilen demo akışı.", "DemoFacility kapsam dışı bırakılarak oynanış kodunun entegrasyonuna odaklanıldı."], problem: "Kimlik kontrolü, görevler ve tehditler ayrı prototipler olarak kalıyordu.", solution: "Girişten çıkışa kadar bilgi, zaman ve kaynak baskısını tek oynanabilir vardiyada birleştiren sistem akışı.", note: "Bu haftanın ölçütü yeni özellik sayısı değil; mevcut mekaniklerin tek bir karar döngüsünde birlikte çalışmasıdır." },
+    { number: "02", title: "Hafıza, Skinwalker açığına dönüşüyor", points: ["Bilim insanı girişte ve çıkışta iki aşamalı soru-cevap zincirinden geçer.", "Gerçek kişi önceki kişisel bilgiyi tutarlı biçimde hatırlar.", "Taklitçi görünüşü ve ID verisini kopyalar, ancak hedefin anılarına erişemez."], problem: "Sadece kart ve görünüş kontrolü yapan oyuncu kusursuz taklitçiyi ayırt edemiyordu.", solution: "ScientistDialogueUI üzerinden serbest açılıp kapanabilen gişe diyaloğu ve tekrar sorulabilir hafıza bilgileri.", note: "Oyuncuya cevabı doğrudan söylemek yerine, hatırlama yükünü ve tutarsızlık okumasını oyuncuya bırakıyoruz." },
+    { number: "03", title: "Combat feel: mesafe değil karar", points: ["Pompalı tüfek, optimize edilmiş raycast layer mask ile personel ve sızan yaratıklara tutarlı biçimde ulaşır.", "Prosedürel CameraShake, namlu alevi, kurma animasyonu ve mekanik ses vuruşu destekler.", "Silah geri bildirimi tehdidi çözmenin yanı sıra hata kararının ağırlığını da hissettirir."], problem: "Vuruş mesafesi ve zayıf geri bildirim, savunma anlarını belirsizleştiriyordu.", solution: "Hedef katmanlarını açıkça filtreleyen raycast ve atış eylemini görsel, işitsel ve kamera tepkileriyle paketleyen combat akışı.", note: "Combat burada ayrı bir aksiyon oyunu katmanı değil; dedüksiyon kararının geri döndürülemez sonucudur." },
+    { number: "04", title: "NPC’ler kapıya kadar yaşayacak", points: ["Çıkış izni alan bilim insanları kapı eşiğine takılmadan güvenilir biçimde navigasyon yapar.", "Etkisiz hale getirilen personel yerinde ceset olarak kalır.", "NPC durum makinesi canlı, çıkışta, etkisiz ve ceset geçişlerini ayrıştırır."], problem: "NPC’ler çıkış kapısında takılıyor veya etkisiz hale gelince dünyadan kayboluyordu.", solution: "Çıkış navigasyonu ile state machine geçişlerini ayırıp dünya durumunu koruyan kalıcı ceset akışı.", note: "Bir NPC’nin sahneden çıkması da bir olaydır; oyuncunun önceki kararı mekânda görünür kalmalıdır." },
+    { number: "05", title: "Gri küplerden fiziksel kanıta", points: ["Et, pompalı, 12 Gauge mermi ve tamir anahtarı PS1 tarzı 3D modellerle değiştirildi.", "E toplama, Q bırakma ve dünya görevleri aynı eşya sistemi üzerinden çalışır.", "Hücre besleme ve jeneratör görevleri envanter kararlarını oynanışa bağlar."], problem: "Placeholder küpler, oyuncunun hangi nesnenin görev açısından önemli olduğunu okunaksızlaştırıyordu.", solution: "Otantik düşük poligonlu modelleri veri odaklı eşya davranışlarıyla bağlayan ortak pickup/drop akışı.", note: "Görsel değişim yalnızca polish değildir; eşyanın dünyadaki rolünü ve oyuncunun önceliklendirmesini görünür kılar." },
+    { number: "06", title: "Ses, görünmeyeni işaretlemez", points: ["AudioManager ayak seslerini, pompalı mekaniklerini, kalp atışını ve ortam dronunu merkezden yönetir.", "UV incelemesi otomatik işaretleme yapmaz; oyuncu delili kendisi gözlemler ve yorumlar.", "Ses katmanları tehlikeyi açıklamak yerine gerilim ve dikkat baskısı üretir."], problem: "Otomatik UI işaretleri ve kopuk sesler, oyuncunun gözlem sorumluluğunu azaltıyordu.", solution: "Merkezi ses mimarisi ve saf gözleme dayalı UV kanıtı ile bilgiye ulaşma maliyetini korumak.", note: "Korku, oyuncuya her şeyi göstermekten değil, doğru sinyali kaçırma ihtimalinden doğuyor." },
+    { number: "07", title: "Her kararın ışığı yanar", points: ["Gerçek bilim insanını vurmak veya yaratığı kaçırmak Mistake Lights cezasını tetikler.", "Zaman, bilgi ve kaynak baskısı tek bir HUD üzerinde okunur.", "Hata sistemi, dedüksiyon kararını vardiyanın genel durumuna bağlar."], problem: "Hatalar yalnızca anlık olaylar olarak kalıyor, vardiyanın geri kalanını etkilemiyordu.", solution: "Karar sonuçlarını görünür hata ışıkları, HUD durumu ve zaman baskısıyla aynı geri bildirim döngüsünde birleştirmek.", note: "Oyuncunun hatayı anlaması kadar, hatadan sonra vardiyayı nasıl kurtaracağı da tasarımın parçasıdır." },
+    { number: "08", title: "Modüler mimari, doğrulanabilir demo", points: ["Sistemler ayrık sorumluluklarla C# modülleri halinde çalışır.", "Unity 6 LTS / URP uyumluluğu korunur.", "Derleme sonucu: 0 hata; oynanış akışı teknik olarak sunulabilir bir demo seviyesinde."], problem: "Birbirine sıkı bağlanan prototip kodu, yeni mekaniklerin entegrasyonunu ve hata ayıklamayı yavaşlatıyordu.", solution: "Arayüz, veri, NPC state, envanter, ses ve combat sorumluluklarını ayrıştıran modüler entegrasyon.", note: "Sonuç tamamlanmış oyun iddiası değil; bir sonraki vertical slice adımı için çalışan ve ölçülebilir bir teknik taban." }
+  ],
+  en: [
+    { number: "01", title: "From code to a playable shift", points: ["Post-Phase 19 goal: combine Skinwalker deduction and facility management in one shift.", "A Unity 6 + URP demo flow built with modular C# systems.", "DemoFacility is excluded so the focus stays on gameplay-code integration."], problem: "Identity checks, tasks, and threats existed as separate prototypes.", solution: "A playable shift that connects information, time, and resource pressure from entry to exit.", note: "The measure of this week is not feature count; it is whether existing mechanics work inside one decision loop." },
+    { number: "02", title: "Memory becomes the Skinwalker weakness", points: ["Scientists pass through a two-stage question chain on entry and exit.", "The real person answers remembered personal details consistently.", "The mimic copies appearance and ID data, but cannot access the target's memories."], problem: "A player relying only on the card and appearance could not detect a perfect mimic.", solution: "A freely toggleable booth dialogue interface, ScientistDialogueUI, with repeatable memory checks.", note: "The game does not hand the answer to the player; it makes consistency reading and remembering the player's responsibility." },
+    { number: "03", title: "Combat feel: decisions, not distance", points: ["A shotgun reaches staff and escaped creatures consistently through an optimized raycast layer mask.", "Procedural CameraShake, muzzle flash, pump animation, and mechanical audio reinforce the shot.", "Weapon feedback makes both threat resolution and the weight of a wrong decision felt."], problem: "Inconsistent hit distance and weak feedback made defensive moments unclear.", solution: "Explicit target-layer filtering plus a shot sequence composed of visual, audio, and camera responses.", note: "Combat is not a separate action-game layer; it is the irreversible consequence of a deduction decision." },
+    { number: "04", title: "NPCs live all the way to the door", points: ["Scientists with exit permission navigate to the threshold without getting stuck.", "Neutralized staff remain in the world as bodies.", "The NPC state machine separates active, exiting, neutralized, and corpse transitions."], problem: "NPCs could stall at the exit or disappear after being neutralized.", solution: "Separating exit navigation from state transitions while preserving world-state consequences.", note: "An NPC leaving the scene is also an event; the player's earlier decision should remain visible in the space." },
+    { number: "05", title: "From gray cubes to physical evidence", points: ["Meat, shotgun, 12 Gauge shells, and repair wrench use PS1-style 3D models.", "Pick up with E, drop with Q, and world tasks use the same item system.", "Feeding cells and repairing the generator connect inventory decisions to gameplay."], problem: "Placeholder cubes made task-critical objects difficult to read.", solution: "Authentic low-poly models connected to shared data-driven pickup and drop behavior.", note: "The visual change is not only polish; it makes each item's role and the player's priorities legible." },
+    { number: "06", title: "Sound does not point at the unseen", points: ["AudioManager centrally handles footsteps, shotgun mechanics, heartbeat, and ambient drone.", "UV inspection does not auto-mark evidence; the player observes and interprets it.", "Audio layers create attention pressure rather than explaining every threat."], problem: "Automatic UI markers and disconnected audio reduced the player's observation responsibility.", solution: "Central audio architecture and observation-based UV evidence preserve the cost of acquiring information.", note: "Horror comes from the possibility of missing the right signal, not from showing everything." },
+    { number: "07", title: "Every decision turns on a light", points: ["Shooting a real scientist or letting a creature escape triggers Mistake Lights penalties.", "Time, information, and resources are readable in one HUD.", "The error system connects deduction decisions to the overall shift state."], problem: "Mistakes were isolated moments that did not affect the rest of the shift.", solution: "Visible mistake lights, HUD state, and time pressure in one consequence feedback loop.", note: "Understanding the mistake matters, but so does deciding how to recover from it." },
+    { number: "08", title: "Modular architecture, verifiable demo", points: ["Systems run as C# modules with separated responsibilities.", "Unity 6 LTS / URP compatibility is preserved.", "Build result: 0 errors; the gameplay flow is ready to present as a technical demo."], problem: "Tightly coupled prototype code slowed integration and debugging.", solution: "Separated responsibilities across UI, data, NPC state, inventory, audio, and combat integration.", note: "This is not a finished-game claim; it is a working, measurable technical base for the next vertical-slice step." }
+  ]
+} as const;
 const versions = Object.entries(copy);
 ---
 
@@ -649,6 +671,11 @@ const versions = Object.entries(copy);
       <span>06—07 / NPC FILES</span>
       <strong>{initialLanguage === "tr" ? "Bilim insanı kimlik kartları" : "Scientist identity cards"}</strong>
       <small>{initialLanguage === "tr" ? "Hafta 6 ve 7 arasında · dört personel dosyası ↘" : "Between Week 6 and 7 · four personnel files ↘"}</small>
+    </a>
+    <a class="scientist-archive-link week7-archive-link" href={`#week7-${initialLanguage}`} data-presentation-link="week7">
+      <span>07 / CODE & MECHANICS</span>
+      <strong>{initialLanguage === "tr" ? "Hafta 7 · Kod ve mekanikler" : "Week 7 · Code & mechanics"}</strong>
+      <small>{initialLanguage === "tr" ? "Phase 19 sonrası teknik sunum · 8 slayt ↘" : "Post-Phase 19 technical deck · 8 slides ↘"}</small>
     </a>
     <a class="build-download" href="/downloads/hafta-06-build.zip" download="hafta-06-build.zip">
       <span class="build-download-index">06 / BUILD</span>
@@ -977,6 +1004,33 @@ const versions = Object.entries(copy);
             <button class="scientist-arrow" type="button" data-scientist-next aria-label={lang === "tr" ? "Sonraki bilim insanı" : "Next scientist"}>→</button>
           </div>
           <div class="scientist-pagination" data-scientist-pagination></div>
+        </section>
+
+        <section class="deck-section week7-section" id={`week7-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">HAFTA 07</div>
+            <div class="section-heading-main"><p class="eyebrow">{lang === "tr" ? "CODE & MECHANICS / PHASE 19+" : "CODE & MECHANICS / PHASE 19+"}</p><h2>{lang === "tr" ? "Gölge vardiyayı sisteme dönüştürmek" : "Turning the shadow shift into a system"}</h2><p class="section-intro">{lang === "tr" ? "Phase 19 sonrasında Project: Nightwatch’ın kod ve mekanik entegrasyonu. Her slayt, tasarım problemini ve onu çözen Unity tabanlı teknik yaklaşımı birlikte gösterir." : "The post-Phase 19 code and mechanics integration for Project: Nightwatch. Each slide pairs a design problem with the Unity-based technical approach that solves it."}</p></div>
+          </div>
+          <div class="week7-video-block">
+            <div class="week7-video-copy"><p class="card-eyebrow">{lang === "tr" ? "HAFTA 07 / DEMO KAYDI" : "WEEK 07 / DEMO RECORDING"}</p><h3>{lang === "tr" ? "Sistemin vardiya içindeki karşılığı" : "The system inside the shift"}</h3><p>{lang === "tr" ? "Yeni build ve mekanik entegrasyonundan kısa bir görüntü. Videoyu izlerken bilgi, risk ve kaynak baskısının aynı akışta nasıl birleştiğine dikkat et." : "A short recording of the new build and mechanics integration. Watch how information, risk, and resource pressure meet in one flow."}</p></div>
+            <video class="week7-video" controls preload="metadata" playsinline>
+              <source src="/media/nightwatch-week-07-demo.mp4" type="video/mp4" />
+              {lang === "tr" ? "Tarayıcın video oynatmayı desteklemiyor." : "Your browser does not support video playback."}
+            </video>
+          </div>
+          <div class="week7-slide-grid">
+            {week7Slides[lang as 'tr' | 'en'].map((slide) => (
+              <article class="week7-slide">
+                <div class="week7-slide-top"><span>{slide.number} / 08</span><span>PROBLEM → SOLUTION</span></div>
+                <h3>{slide.title}</h3>
+                <ul>{slide.points.map((point) => <li>{point}</li>)}</ul>
+                <div class="week7-problem"><span>{lang === "tr" ? "PROBLEM" : "PROBLEM"}</span><p>{slide.problem}</p></div>
+                <div class="week7-solution"><span>{lang === "tr" ? "KOD TABANLI ÇÖZÜM" : "CODE-BASED SOLUTION"}</span><p>{slide.solution}</p></div>
+                <aside class="week7-speaker-note"><strong>{lang === "tr" ? "KONUŞMACI NOTU" : "SPEAKER NOTE"}</strong><p>{slide.note}</p></aside>
+              </article>
+            ))}
+          </div>
+          <div class="week7-validation"><span class="live-dot"></span><strong>{lang === "tr" ? "TEKNİK SONUÇ" : "TECHNICAL OUTCOME"}</strong><p>{lang === "tr" ? "Unity 6 LTS / URP uyumlu modüler C# mimarisi · 0 derleme hatası · yeni oynanabilir build Play sayfasında." : "Unity 6 LTS / URP-compatible modular C# architecture · 0 compilation errors · new playable build available on the Play page."}</p><a class="text-link" href={lang === "tr" ? "/play/nightwatch-demo" : "/en/play/nightwatch-demo"}>{lang === "tr" ? "Buildi oyna" : "Play the build"} <span aria-hidden="true">↗</span></a></div>
         </section>
 
         <section class="deck-section scope-section" id={`next-${lang}`}>
@@ -1438,6 +1492,30 @@ const versions = Object.entries(copy);
   .scientist-pagination { display: flex; justify-content: center; gap: 8px; margin: 22px 0 0; }
   .scientist-pagination button { border: 0; border-bottom: 1px solid var(--nw-line); background: transparent; color: var(--nw-muted); padding: 6px 8px; font: inherit; font-size: 9px; cursor: pointer; }
   .scientist-pagination button[aria-current="true"] { border-color: #829982; color: var(--nw-ink); }
+  .week7-section { padding-bottom: clamp(52px, 7vw, 86px); }
+  .week7-video-block { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: 25px; align-items: center; padding: 20px; margin-bottom: 38px; background: var(--nw-dark); color: #eef1e9; }
+  .week7-video-copy { padding: 8px 8px 8px 4px; }
+  .week7-video-copy .card-eyebrow { color: #b8c8b5; }
+  .week7-video-copy h3 { font-size: 22px; letter-spacing: -.04em; line-height: 1.15; margin: 0 0 11px; }
+  .week7-video-copy > p:last-child { color: #c9d2c5; font-size: 11px; line-height: 1.8; margin: 0; }
+  .week7-video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #101311; }
+  .week7-slide-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .week7-slide { min-width: 0; border: 1px solid var(--nw-line); padding: 19px; }
+  .week7-slide-top { display: flex; justify-content: space-between; gap: 12px; color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; }
+  .week7-slide h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.04em; margin: 24px 0 17px; }
+  .week7-slide ul { margin: 0 0 18px; padding: 0 0 0 17px; }
+  .week7-slide li { color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin-bottom: 6px; }
+  .week7-problem, .week7-solution { border-top: 1px solid var(--nw-line); padding-top: 12px; margin-top: 12px; }
+  .week7-problem span, .week7-solution span { color: var(--nw-muted); font-size: 8px; letter-spacing: .1em; }
+  .week7-problem p, .week7-solution p { font-size: 11px; line-height: 1.7; margin: 6px 0 0; }
+  .week7-solution { border-left: 2px solid #9eb69e; padding-left: 12px; }
+  .week7-speaker-note { margin-top: 19px; padding: 13px; background: var(--nw-panel); }
+  .week7-speaker-note strong { color: #748b73; font-size: 8px; letter-spacing: .1em; }
+  .week7-speaker-note p { color: var(--nw-muted); font-size: 10px; line-height: 1.7; margin: 6px 0 0; }
+  .week7-validation { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: 10px; margin-top: 28px; padding: 16px 0; border-top: 1px solid var(--nw-line); border-bottom: 1px solid var(--nw-line); }
+  .week7-validation strong { font-size: 9px; letter-spacing: .1em; }
+  .week7-validation p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 0; }
+  .week7-validation .text-link { font-size: 10px; }
 
   @media (max-width: 900px) {
     .presentation-index-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1497,6 +1575,11 @@ const versions = Object.entries(copy);
     .scientist-note p { font-size: 11px; }
     .scientist-back-heading { margin-top: 38px; margin-bottom: 27px; }
     .scientist-arrow { width: 34px; height: 34px; font-size: 17px; }
+    .week7-video-block { grid-template-columns: 1fr; gap: 18px; padding: 17px; }
+    .week7-slide-grid { grid-template-columns: 1fr; }
+    .week7-validation { grid-template-columns: auto minmax(0, 1fr); }
+    .week7-validation p { grid-column: 1 / -1; }
+    .week7-validation .text-link { grid-column: 1 / -1; }
     .presentation-bar { padding: 13px 17px; align-items: flex-start; }
     .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
     .bar-meta { width: 100%; }
