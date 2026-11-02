@@ -1022,7 +1022,7 @@ const versions = Object.entries(copy);
             {week7Slides[lang as 'tr' | 'en'].map((slide) => (
               <article class="week7-slide">
                 <div class="week7-slide-top"><span>{slide.number} / 08</span><span>PROBLEM → SOLUTION</span></div>
-                <img class="week7-slide-image" src={`/media/week7-pdf/page-${slide.number}.jpg`} alt={lang === "tr" ? `Hafta 7 sunum görseli ${slide.number}` : `Week 7 presentation visual ${slide.number}`} loading="lazy" />
+                {slide.number !== "01" && slide.number !== "08" && <img class="week7-slide-image" src={`/media/week7-pdf/page-${slide.number}.jpg`} alt={lang === "tr" ? `Hafta 7 sunum görseli ${slide.number}` : `Week 7 presentation visual ${slide.number}`} loading="lazy" />}
                 <h3>{slide.title}</h3>
                 <ul>{slide.points.map((point) => <li>{point}</li>)}</ul>
                 <div class="week7-problem"><span>{lang === "tr" ? "PROBLEM" : "PROBLEM"}</span><p>{slide.problem}</p></div>
