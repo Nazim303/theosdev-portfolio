@@ -1033,6 +1033,17 @@ const versions = Object.entries(copy);
           <div class="week7-validation"><span class="live-dot"></span><strong>{lang === "tr" ? "TEKNİK SONUÇ" : "TECHNICAL OUTCOME"}</strong><p>{lang === "tr" ? "Unity 6 LTS / URP uyumlu modüler C# mimarisi · 0 derleme hatası · yeni oynanabilir build Play sayfasında." : "Unity 6 LTS / URP-compatible modular C# architecture · 0 compilation errors · new playable build available on the Play page."}</p><a class="text-link" href={lang === "tr" ? "/play/nightwatch-week-07" : "/en/play/nightwatch-week-07"}>{lang === "tr" ? "Buildi oyna" : "Play the build"} <span aria-hidden="true">↗</span></a></div>
         </section>
 
+        <section class="vize-section" id={`vize-${lang}`} aria-label={lang === "tr" ? "Vize duyurusu" : "Midterm announcement"}>
+          <div class="vize-scanline" aria-hidden="true"></div>
+          <div class="vize-content">
+            <div class="vize-marker"><span class="vize-pulse"></span><span>{lang === "tr" ? "DURUM / HAZIRLANIYOR" : "STATUS / IN PREPARATION"}</span></div>
+            <p class="eyebrow">{lang === "tr" ? "THEOSDEV / VİZE" : "THEOSDEV / MIDTERM"}</p>
+            <h2>{lang === "tr" ? "Bir sonraki kayıt yükleniyor." : "The next record is loading."}</h2>
+            <p>{lang === "tr" ? "Vize versiyonu için yeni sayfalar, yeni sistemler ve gecenin henüz görünmeyen tarafı hazırlanıyor. Sinyal sabitlendiğinde bu alan açılacak; şimdilik ekranı açık bırakın." : "New pages, new systems, and the unseen side of the night are being prepared for the midterm version. This channel will open when the signal stabilizes. Keep the screen on."}</p>
+            <div class="vize-footer"><span>PROJECT: NIGHTWATCH</span><strong>COMING SOON</strong><span>/// 07—08</span></div>
+          </div>
+        </section>
+
         <section class="deck-section scope-section" id={`next-${lang}`}>
           <div class="section-heading">
             <div class="section-number">NEXT</div>
@@ -1514,6 +1525,21 @@ const versions = Object.entries(copy);
   .week7-validation strong { font-size: 9px; letter-spacing: .1em; }
   .week7-validation p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 0; }
   .week7-validation .text-link { font-size: 10px; }
+  .vize-section { position: relative; display: grid; place-items: center; min-height: 290px; margin: 0 0 clamp(48px, 7vw, 84px); overflow: hidden; background: #202a23; color: #eef2ea; isolation: isolate; }
+  .vize-section::before, .vize-section::after { position: absolute; content: ""; pointer-events: none; }
+  .vize-section::before { inset: 14px; border: 1px solid rgba(174, 204, 169, .22); }
+  .vize-section::after { width: 42%; height: 180%; right: -12%; top: -40%; background: linear-gradient(115deg, transparent 0 45%, rgba(166, 198, 161, .08) 49%, transparent 53%); transform: rotate(12deg); animation: vize-sweep 7s ease-in-out infinite; }
+  .vize-scanline { position: absolute; inset: 0; z-index: -1; opacity: .23; background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(184, 209, 179, .1) 6px, transparent 7px); }
+  .vize-content { position: relative; width: min(720px, 100%); padding: 38px clamp(24px, 6vw, 70px); text-align: center; }
+  .vize-marker { display: inline-flex; align-items: center; gap: 8px; color: #b6cdb1; font-size: 8px; letter-spacing: .14em; }
+  .vize-pulse { width: 6px; height: 6px; border-radius: 50%; background: #a8c7a2; box-shadow: 0 0 0 0 rgba(168, 199, 162, .55); animation: vize-pulse 2s infinite; }
+  .vize-content .eyebrow { color: #b6cdb1; margin: 23px 0 12px; }
+  .vize-content h2 { font-size: clamp(29px, 5vw, 52px); letter-spacing: -.06em; line-height: 1; margin: 0 0 15px; }
+  .vize-content > p:not(.eyebrow) { max-width: 570px; margin: 0 auto; color: #c6d3c3; font-size: 12px; line-height: 1.85; }
+  .vize-footer { display: flex; justify-content: space-between; gap: 15px; margin-top: 30px; padding-top: 13px; border-top: 1px solid rgba(184, 209, 179, .25); color: #9fb69b; font-size: 8px; letter-spacing: .12em; }
+  .vize-footer strong { color: #e4eee0; font-weight: 650; }
+  @keyframes vize-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(168, 199, 162, .5); } 50% { box-shadow: 0 0 0 6px rgba(168, 199, 162, 0); } }
+  @keyframes vize-sweep { 0%, 100% { transform: translateX(-30%) rotate(12deg); opacity: .35; } 50% { transform: translateX(100%) rotate(12deg); opacity: .9; } }
 
   @media (max-width: 900px) {
     .presentation-index-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1578,6 +1604,9 @@ const versions = Object.entries(copy);
     .week7-validation { grid-template-columns: auto minmax(0, 1fr); }
     .week7-validation p { grid-column: 1 / -1; }
     .week7-validation .text-link { grid-column: 1 / -1; }
+    .vize-section { min-height: 315px; }
+    .vize-content { padding: 39px 24px; }
+    .vize-footer { flex-wrap: wrap; justify-content: center; }
     .presentation-bar { padding: 13px 17px; align-items: flex-start; }
     .presentation-brand { font-size: 9px; gap: 7px; line-height: 1.6; max-width: calc(100% - 82px); }
     .bar-meta { width: 100%; }
