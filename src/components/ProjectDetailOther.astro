@@ -1,6 +1,6 @@
 ---
 interface Props {
-  slug: 'theos-tools' | 'the-doods-universe' | 'the-county-is-down' | 'sketch-em-up' | 'path-of-elements' | 'nightwalker-universe' | 'netrunners-vs-corpos' | 'is-takip';
+  slug: 'theos-tools' | 'the-doods-universe' | 'the-county-is-down' | 'sketch-em-up' | 'path-of-elements' | 'nightwalker-universe' | 'netrunners-vs-corpos' | 'is-takip' | 'shadow-shift';
   lang?: 'tr' | 'en';
 }
 
@@ -49,6 +49,13 @@ const projects = {
     intro: isEnglish ? 'A reusable universe and framework for walking, horror, and mystery experiments built around environmental interaction.' : 'Çevre etkileşimi etrafında yürüme simülasyonu, korku ve gizem denemeleri için geliştirilen yeniden kullanılabilir oyun çatısı.',
     sections: isEnglish ? [['A reusable universe', 'The project provides a setting and technical base for multiple atmospheric game ideas.'], ['Movement and atmosphere', 'Custom acceleration, stamina, slope-aware footsteps, fog shaders, and post-processing shape the first-person experience.'], ['Modular interaction', 'Event-driven interactions let lamps, doors, and written clues move between projects without rebuilding the system.']] : [['Yeniden kullanılabilir evren', 'Proje, farklı atmosferik oyun fikirleri için hem bir evren hem de teknik temel sağlar.'], ['Hareket ve atmosfer', 'Özel ivmelenme, stamina, eğime duyarlı adım sesleri, sis shaderları ve post-processing first-person deneyimi şekillendirir.'], ['Modüler etkileşim', 'Event-driven etkileşimler lamba, kapı ve yazılı ipuçlarını sistemi yeniden kurmadan projeler arasında taşır.']],
     facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo'], ['Engine', 'Unity3D / C#'], ['Systems', 'FPS movement, fog shaders, interaction'], ['Status', 'WIP framework']] : [['Rol', 'Nazım Beyaz / Solo'], ['Motor', 'Unity3D / C#'], ['Sistemler', 'FPS movement, fog shader, etkileşim'], ['Durum', 'Geliştirme aşamasında / Framework']],
+  },
+  'shadow-shift': {
+    title: 'Shadow Shift',
+    subtitle: isEnglish ? 'Project: Nightwatch Early Beta' : 'Project: Nightwatch Early Beta',
+    intro: isEnglish ? 'An atmospheric survival-horror build where observation, pressure, and the first Nightwatch systems meet in a playable desktop beta.' : 'Gözlem, baskı ve Nightwatch sistemlerinin ilk kez oynanabilir bir masaüstü beta buildinde buluştuğu atmosferik hayatta kalma korkusu deneyimi.',
+    sections: isEnglish ? [['A first playable shift', 'Shadow Shift turns the Nightwatch development process into a compact early beta built around tension and observation.'], ['Systems under pressure', 'The build brings together the project’s first gameplay, atmosphere, interaction, and facility ideas in one testable space.'], ['Early Beta release', 'The desktop build is now available as a downloadable snapshot of the project’s current direction.']] : [['İlk oynanabilir vardiya', 'Shadow Shift, Nightwatch geliştirme sürecini gerilim ve gözlem etrafında şekillenen kompakt bir early beta buildine dönüştürüyor.'], ['Baskı altındaki sistemler', 'Build; projenin ilk gameplay, atmosfer, etkileşim ve tesis fikirlerini test edilebilir tek bir alanda bir araya getiriyor.'], ['Early Beta yayını', 'Masaüstü buildi, projenin mevcut yönünü gösteren indirilebilir bir erken sürüm olarak yayında.']],
+    facts: isEnglish ? [['Role', 'Nazım Beyaz / Solo Programmer'], ['Engine', 'Unity 6 / URP'], ['Format', 'Desktop Early Beta'], ['Status', 'Available now']] : [['Rol', 'Nazım Beyaz / Solo Programmer'], ['Motor', 'Unity 6 / URP'], ['Format', 'Masaüstü Early Beta'], ['Durum', 'Yayında']],
   },
   'netrunners-vs-corpos': {
     title: 'Netrunners VS Corpos',

@@ -102,6 +102,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
 .featured-project p:not(.eyebrow) { color: #c6cbd4; line-height: 1.7; margin: 0 0 24px; max-width: 580px; }
 .featured-project .text-link { color: #f0a18b; }
 .home-project-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+ .selected-writing { display: grid; gap: 8px; margin-top: 18px; padding: 22px 24px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: border-color 180ms ease, transform 180ms ease; }
+ .selected-writing:hover { border-color: var(--accent); transform: translateY(-2px); }
+ .selected-writing .eyebrow { color: var(--accent-dark); margin: 0; }
+ .selected-writing strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; font-weight: 400; }
+ .selected-writing > span:last-child { color: var(--accent-dark); font-size: .78rem; font-weight: 800; }
 .capability-grid { display: grid; gap: 1px; grid-template-columns: repeat(3, 1fr); }
 .capability-grid article { background: var(--paper-bright); border: 1px solid var(--line); margin-right: -1px; padding: 26px; }
 .capability-grid article > span { color: var(--accent-dark); font-size: 0.72rem; font-weight: 800; }
