@@ -1012,9 +1012,9 @@ const versions = Object.entries(copy);
             <div class="section-heading-main"><p class="eyebrow">{lang === "tr" ? "CODE & MECHANICS / PHASE 19+" : "CODE & MECHANICS / PHASE 19+"}</p><h2>{lang === "tr" ? "Gölge vardiyayı sisteme dönüştürmek" : "Turning the shadow shift into a system"}</h2><p class="section-intro">{lang === "tr" ? "Phase 19 sonrasında Project: Nightwatch’ın kod ve mekanik entegrasyonu. Her slayt, tasarım problemini ve onu çözen Unity tabanlı teknik yaklaşımı birlikte gösterir." : "The post-Phase 19 code and mechanics integration for Project: Nightwatch. Each slide pairs a design problem with the Unity-based technical approach that solves it."}</p></div>
           </div>
           <div class="week7-video-block">
-            <div class="week7-video-copy"><p class="card-eyebrow">{lang === "tr" ? "HAFTA 07 / MODELLEME HIZLANDIRMASI" : "WEEK 07 / MODELING TIMELAPSE"}</p><h3>{lang === "tr" ? "Bir bilim insanının modellenme süreci" : "Modeling a scientist from blockout to asset"}</h3><p>{lang === "tr" ? "Bu kısa hızlandırılmış kayıt, bilim insanı karakterinin temel formlardan detaylandırılmış modele doğru ilerleyen 3D modelleme sürecini gösteriyor. Blockout, oran, siluet ve retro düşük poligonlu görsel dil adım adım şekilleniyor." : "This short timelapse follows a scientist character as the 3D model moves from basic forms to a more defined asset. Blockout, proportions, silhouette, and the retro low-poly visual language take shape step by step."}</p></div>
-            <video class="week7-video" controls preload="metadata" playsinline>
-              <source src="/media/nightwatch-week-07-demo.mp4" type="video/mp4" />
+            <div class="week7-video-copy"><p class="card-eyebrow">{lang === "tr" ? "SHADOW SHIFT / EARLY BETA" : "SHADOW SHIFT / EARLY BETA"}</p><h3>{lang === "tr" ? "Gölge vardiya başladı" : "The shadow shift is live"}</h3><p>{lang === "tr" ? "Bu kayıt, Shadow Shift Early Beta’nın atmosferini ve masaüstü buildindeki ilk oynanabilir deneyimi gösteriyor. Kontroller gizli; görüntü akarken buildin ses dünyası da duyulabilir." : "This recording captures the atmosphere and first playable experience of the Shadow Shift Early Beta desktop build. Controls stay hidden while the build’s soundscape plays with the footage."}</p></div>
+            <video class="week7-video" autoplay loop preload="metadata" playsinline aria-label={lang === "tr" ? "Shadow Shift Early Beta videosu" : "Shadow Shift Early Beta video"}>
+              <source src="/media/shadow-shift-early-beta.mp4" type="video/mp4" />
               {lang === "tr" ? "Tarayıcın video oynatmayı desteklemiyor." : "Your browser does not support video playback."}
             </video>
           </div>
@@ -1030,7 +1030,12 @@ const versions = Object.entries(copy);
               </article>
             ))}
           </div>
-          <div class="week7-validation"><span class="live-dot"></span><strong>{lang === "tr" ? "TEKNİK SONUÇ" : "TECHNICAL OUTCOME"}</strong><p>{lang === "tr" ? "Unity 6 LTS / URP uyumlu modüler C# mimarisi · 0 derleme hatası · yeni oynanabilir build Play sayfasında." : "Unity 6 LTS / URP-compatible modular C# architecture · 0 compilation errors · new playable build available on the Play page."}</p><a class="text-link" href={lang === "tr" ? "/play/nightwatch-week-07" : "/en/play/nightwatch-week-07"}>{lang === "tr" ? "Buildi oyna" : "Play the build"} <span aria-hidden="true">↗</span></a></div>
+          <div class="week7-validation beta-release">
+            <span class="live-dot"></span>
+            <div class="beta-release-copy"><strong>SHADOW SHIFT</strong><span>{lang === "tr" ? "EARLY BETA / OUT NOW" : "EARLY BETA / OUT NOW"}</span></div>
+            <p>{lang === "tr" ? "Nightwatch’ın gölgeleri artık masaüstünde oynanabilir. Yeni erken beta buildini indir; vardiya, sistemler ve gerilim için hazırlanan ilk oynanabilir sürümü keşfet." : "The shadows of Nightwatch are now playable on desktop. Download the new early beta and explore the first playable build shaped around the shift, its systems, and its tension."}</p>
+            <a class="text-link beta-download" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip">{lang === "tr" ? "Early Beta’yı indir" : "Download Early Beta"} <span aria-hidden="true">↓</span></a>
+          </div>
         </section>
 
         <section class="vize-section" id={`vize-${lang}`} aria-label={lang === "tr" ? "Vize duyurusu" : "Midterm announcement"}>
@@ -1154,6 +1159,17 @@ const versions = Object.entries(copy);
       });
     });
     update(1, false);
+  });
+
+  document.querySelectorAll<HTMLVideoElement>('.week7-video').forEach((video) => {
+    const startVideo = () => {
+      video.play().catch(() => {
+        video.dataset.awaitingInteraction = 'true';
+      });
+    };
+    startVideo();
+    window.addEventListener('pointerdown', startVideo, { once: true });
+    window.addEventListener('keydown', startVideo, { once: true });
   });
 </script>
 
@@ -1525,6 +1541,13 @@ const versions = Object.entries(copy);
   .week7-validation strong { font-size: 9px; letter-spacing: .1em; }
   .week7-validation p { color: var(--nw-muted); font-size: 10px; line-height: 1.6; margin: 0; }
   .week7-validation .text-link { font-size: 10px; }
+  .beta-release { position: relative; overflow: hidden; border-color: #839b83; background: linear-gradient(90deg, rgba(42, 59, 45, .16), transparent 68%); }
+  .beta-release::after { position: absolute; inset: 0 auto 0 -18%; width: 18%; content: ""; background: linear-gradient(90deg, transparent, rgba(187, 222, 181, .12), transparent); animation: beta-sweep 4.5s ease-in-out infinite; pointer-events: none; }
+  .beta-release-copy { display: grid; gap: 4px; }
+  .beta-release-copy strong { color: #d7e8d1; font-size: 12px; letter-spacing: .16em; }
+  .beta-release-copy span { color: #98c490; font-size: 8px; letter-spacing: .14em; }
+  .beta-download { white-space: nowrap; color: #d7e8d1; }
+  @keyframes beta-sweep { 0%, 35% { transform: translateX(0); } 70%, 100% { transform: translateX(700%); } }
   .vize-section { position: relative; display: grid; place-items: center; min-height: 290px; margin: 0 0 clamp(48px, 7vw, 84px); overflow: hidden; background: #202a23; color: #eef2ea; isolation: isolate; }
   .vize-section::before, .vize-section::after { position: absolute; content: ""; pointer-events: none; }
   .vize-section::before { inset: 14px; border: 1px solid rgba(174, 204, 169, .22); }
