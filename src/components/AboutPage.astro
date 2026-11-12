@@ -19,8 +19,13 @@ const isEnglish = lang === 'en';
     <div><p>{isEnglish ? 'I like the space between design intent and technical structure. I test the central interaction quickly, learn from the result, then build the architecture that can survive iteration.' : 'Tasarım fikri ile teknik yapı arasındaki alanı seviyorum. Temel etkileşimi hızlıca test eder, sonuçtan öğrenir ve iterasyonlara dayanacak mimariyi kurarım.'}</p><p>{isEnglish ? 'My main work is in Unity and C#: state-driven gameplay, combat loops, multiplayer state, editor tools, and the practical systems that keep a prototype moving.' : 'Ana çalışma alanım Unity ve C#: state-driven gameplay, savaş döngüleri, multiplayer state, editör araçları ve prototipi hareket halinde tutan pratik sistemler.'}</p></div>
   </section>
 
-  <figure class="about-feature-image">
-    <img src="/media/shadow-shift-early-beta-wide.png" alt={isEnglish ? 'Shadow Shift Pre-Alpha announcement scene' : 'Shadow Shift Pre-Alpha duyuru sahnesi'} loading="lazy" />
+  <figure class="about-feature-image" data-prealpha-gallery>
+    <div class="about-gallery-frame">
+      <img class="is-visible" src="/media/shadow-shift-prealpha-terminal.png" alt={isEnglish ? 'Shadow Shift Pre-Alpha terminal scene' : 'Shadow Shift Pre-Alpha terminal sahnesi'} />
+      <img src="/media/shadow-shift-prealpha-corridor.png" alt={isEnglish ? 'Shadow Shift Pre-Alpha corridor scene' : 'Shadow Shift Pre-Alpha koridor sahnesi'} />
+      <img src="/media/shadow-shift-prealpha-id-card.png" alt={isEnglish ? 'Shadow Shift Pre-Alpha identity card scene' : 'Shadow Shift Pre-Alpha kimlik kartı sahnesi'} />
+      <img src="/media/shadow-shift-prealpha-notice.png" alt={isEnglish ? 'Shadow Shift Pre-Alpha notice scene' : 'Shadow Shift Pre-Alpha duyuru sahnesi'} />
+    </div>
     <figcaption>{isEnglish ? 'Shadow Shift / Pre-Alpha — a first playable Nightwatch shift.' : 'Shadow Shift / Pre-Alpha — Nightwatch için ilk oynanabilir vardiya.'}</figcaption>
   </figure>
 
@@ -32,9 +37,23 @@ const isEnglish = lang === 'en';
       <article><span>03</span><h3>Tools and products</h3><p>Unity editor scripting, Flutter, Dart, SQLite, React, WebRTC, Socket.io, practical web tools.</p></article>
     </div>
 
+    <script>
+      document.querySelectorAll<HTMLElement>('[data-prealpha-gallery]').forEach((gallery) => {
+        const images = Array.from(gallery.querySelectorAll<HTMLImageElement>('.about-gallery-frame img'));
+        let activeIndex = 0;
+        window.setInterval(() => {
+          images[activeIndex]?.classList.remove('is-visible');
+          activeIndex = (activeIndex + 1) % images.length;
+          images[activeIndex]?.classList.add('is-visible');
+        }, 45000);
+      });
+    </script>
+
     <style>
       .about-feature-image { margin: 58px 0 0; }
-      .about-feature-image img { display: block; width: 100%; height: auto; }
+      .about-gallery-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #101311; }
+      .about-gallery-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1400ms ease; }
+      .about-gallery-frame img.is-visible { opacity: 1; }
       .about-feature-image figcaption { color: var(--muted); font-size: .78rem; margin-top: 10px; }
     </style>
   </section>

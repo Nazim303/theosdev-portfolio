@@ -14,4 +14,4 @@ This is not the final version of the project; it is an early snapshot prepared t
 
 <a class="download-cta" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip"><strong>Download Shadow Shift Pre-Alpha</strong><span>ZIP build / desktop release ↓</span></a>
 
-![Shadow Shift Pre-Alpha — key art](/media/shadow-shift-early-beta-square.png)
+![Shadow Shift Pre-Alpha — key art](/media/shadow-shift-prealpha-square.png)

@@ -14,4 +14,4 @@ Bu sürüm, projenin tamamlanmış son hali değil; mevcut yönü, sistemleri ve
 
 <a class="download-cta" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip"><strong>Shadow Shift Pre-Alpha'yı indir</strong><span>ZIP build / desktop release ↓</span></a>
 
-![Shadow Shift Pre-Alpha — key art](/media/shadow-shift-early-beta-square.png)
+![Shadow Shift Pre-Alpha — key art](/media/shadow-shift-prealpha-square.png)
