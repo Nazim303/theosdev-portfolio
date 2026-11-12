@@ -8,12 +8,10 @@ summary: "Project: Nightwatch'ın ilk masaüstü Early Beta buildi artık indiri
 
 # Shadow Shift Early Beta yayında
 
-![Shadow Shift Early Beta](/media/shadow-shift-early-beta-wide.png)
-
 Project: Nightwatch'ın ilk masaüstü Early Beta buildi artık indirilebilir. Shadow Shift; atmosfer, gözlem ve tesis içindeki gerilim fikrini ilk oynanabilir vardiyada bir araya getiriyor.
 
 Bu sürüm, projenin tamamlanmış son hali değil; mevcut yönü, sistemleri ve görsel dili test etmek için hazırlanan erken bir kayıt. Buildi indirip ilk vardiyaya katılabilir, geliştirme sürecinin bir sonraki adımına doğrudan göz atabilirsin.
 
-[Shadow Shift Early Beta'yı indir](/downloads/shadow-shift-early-beta.zip)
+<a class="download-cta" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip"><strong>Shadow Shift Early Beta'yı indir</strong><span>ZIP build / desktop release ↓</span></a>
 
 ![Shadow Shift Early Beta — key art](/media/shadow-shift-early-beta-square.png)

@@ -19,6 +19,11 @@ const isEnglish = lang === 'en';
     <div><p>{isEnglish ? 'I like the space between design intent and technical structure. I test the central interaction quickly, learn from the result, then build the architecture that can survive iteration.' : 'Tasarım fikri ile teknik yapı arasındaki alanı seviyorum. Temel etkileşimi hızlıca test eder, sonuçtan öğrenir ve iterasyonlara dayanacak mimariyi kurarım.'}</p><p>{isEnglish ? 'My main work is in Unity and C#: state-driven gameplay, combat loops, multiplayer state, editor tools, and the practical systems that keep a prototype moving.' : 'Ana çalışma alanım Unity ve C#: state-driven gameplay, savaş döngüleri, multiplayer state, editör araçları ve prototipi hareket halinde tutan pratik sistemler.'}</p></div>
   </section>
 
+  <figure class="about-feature-image">
+    <img src="/media/shadow-shift-early-beta-wide.png" alt={isEnglish ? 'Shadow Shift Early Beta announcement scene' : 'Shadow Shift Early Beta duyuru sahnesi'} loading="lazy" />
+    <figcaption>{isEnglish ? 'Shadow Shift / Early Beta — a first playable Nightwatch shift.' : 'Shadow Shift / Early Beta — Nightwatch için ilk oynanabilir vardiya.'}</figcaption>
+  </figure>
+
   <section class="resume-section" aria-labelledby="toolkit-title">
     <div class="section-label"><h2 id="toolkit-title">{isEnglish ? 'Toolkit' : 'Teknik araç seti'}</h2><span>02 — 04</span></div>
     <div class="resume-grid">
@@ -26,6 +31,12 @@ const isEnglish = lang === 'en';
       <article><span>02</span><h3>Networked play</h3><p>Netcode for GameObjects, asymmetric state sync, multiplayer lobbies, Vivox, UGS cloud replay.</p></article>
       <article><span>03</span><h3>Tools and products</h3><p>Unity editor scripting, Flutter, Dart, SQLite, React, WebRTC, Socket.io, practical web tools.</p></article>
     </div>
+
+    <style>
+      .about-feature-image { margin: 58px 0 0; }
+      .about-feature-image img { display: block; width: 100%; height: auto; }
+      .about-feature-image figcaption { color: var(--muted); font-size: .78rem; margin-top: 10px; }
+    </style>
   </section>
 
   <section class="about-columns resume-section" aria-labelledby="experience-title">
