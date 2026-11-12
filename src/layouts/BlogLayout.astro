@@ -3,7 +3,9 @@ import BaseLayout from './BaseLayout.astro';
 
 const { frontmatter } = Astro.props;
 const isEnglish = Astro.url.pathname.startsWith('/en/');
-const projectPath = isEnglish ? '/en/projects/celltest-positive' : '/projects/celltest-positive';
+const projectPath = Astro.url.pathname.includes('shadow-shift-early-beta')
+  ? (isEnglish ? '/en/projects/shadow-shift' : '/projects/shadow-shift')
+  : (isEnglish ? '/en/projects/celltest-positive' : '/projects/celltest-positive');
 ---
 
 <BaseLayout
