@@ -1,17 +1,17 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: "Shadow Shift Early Beta Yayında"
+title: "Shadow Shift Pre-Alpha Yayında"
 date: "2026-11-10"
 author: "TheosDev"
-summary: "Project: Nightwatch'ın ilk masaüstü Early Beta buildi artık indirilebilir."
+summary: "Project: Nightwatch'ın ilk masaüstü Pre-Alpha buildi artık indirilebilir."
 ---
 
-# Shadow Shift Early Beta yayında
+# Shadow Shift Pre-Alpha yayında
 
-Project: Nightwatch'ın ilk masaüstü Early Beta buildi artık indirilebilir. Shadow Shift; atmosfer, gözlem ve tesis içindeki gerilim fikrini ilk oynanabilir vardiyada bir araya getiriyor.
+Project: Nightwatch'ın ilk masaüstü Pre-Alpha buildi artık indirilebilir. Shadow Shift; atmosfer, gözlem ve tesis içindeki gerilim fikrini ilk oynanabilir vardiyada bir araya getiriyor.
 
 Bu sürüm, projenin tamamlanmış son hali değil; mevcut yönü, sistemleri ve görsel dili test etmek için hazırlanan erken bir kayıt. Buildi indirip ilk vardiyaya katılabilir, geliştirme sürecinin bir sonraki adımına doğrudan göz atabilirsin.
 
-<a class="download-cta" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip"><strong>Shadow Shift Early Beta'yı indir</strong><span>ZIP build / desktop release ↓</span></a>
+<a class="download-cta" href="/downloads/shadow-shift-early-beta.zip" download="shadow-shift-early-beta.zip"><strong>Shadow Shift Pre-Alpha'yı indir</strong><span>ZIP build / desktop release ↓</span></a>
 
-![Shadow Shift Early Beta — key art](/media/shadow-shift-early-beta-square.png)
+![Shadow Shift Pre-Alpha — key art](/media/shadow-shift-early-beta-square.png)
