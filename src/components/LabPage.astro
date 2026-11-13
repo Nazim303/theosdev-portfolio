@@ -39,6 +39,7 @@ const copy = {
       { id: "prototype", label: "04 / Prototype & Test" },
       { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
+      { id: "patch-notes", label: "09 / Yama notları ↘" },
       { id: "next", label: "Sonraki adım" }
     ],
     introTitle: "Bir fikrin üretim sürecine dönüşmesi",
@@ -328,6 +329,7 @@ const copy = {
       { id: "prototype", label: "04 / Prototype & Test" },
       { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
+      { id: "patch-notes", label: "09 / Patch Notes ↘" },
       { id: "next", label: "Next milestone" }
     ],
     introTitle: "Turning a concept into a production process",
@@ -627,6 +629,156 @@ const week7Slides = {
   ]
 } as const;
 const versions = Object.entries(copy);
+const patchNotes = {
+  en: {
+    number: "WEEK 09",
+    kicker: "PATCH NOTES / SINCE PRE-ALPHA",
+    title: "From a flat playthrough to a living night shift",
+    intro: "Since the Pre-Alpha build (the first TestScene with a complete, flat playthrough), development focused on deepening every part of the shift: who comes to the window, what they might be hiding, what happens after a wrong decision, and how the night feels to play. Below are the features added since then.",
+    note: "These notes list features implemented in the development build since Pre-Alpha. Balancing, broader playtesting, and polish are ongoing.",
+    groups: [
+      { title: "Checkpoint & identity", bullets: [
+        "Physical ID card: the visitor slides a real-size card through the window slot; the player lifts it to the camera to read it, and Skinwalker traces glow on the card under UV.",
+        "Desk control console with large PASS / DOOR push buttons and status lamps that show when each button is usable.",
+        "Security door: OPEN/CLOSE button on the booth side, automatic opening on the corridor side; a door left open from the booth stays open.",
+        "Door wait lamp: blinking orange with a chime when someone inside wants to leave, steady green when an admitted visitor waits to enter.",
+        "Queue at the door in real arrival order; staff leaving the facility wait behind the security door and do not block the window.",
+        "Procedural staff roster: every new run generates its own staff (name, ID number, unit, role, photo silhouette and photo color) that stays consistent through the run.",
+        "Card forgery system: forged cards carry one or two randomized faults across 12 fault types (name typos, ID digits / swaps / look-alike characters / prefix, date day / month / year, unit, photo silhouette, photo color). The first night shows obvious faults; later nights add subtle ones.",
+        "In-world calendar: the campaign starts on the night of 26.11.1991.",
+        "Physics-based ragdoll bodies that stay where they fall for the rest of the night."
+      ]},
+      { title: "Skinwalkers that hide in plain sight", bullets: [
+        "Disguised Skinwalkers with flawless cards, in three variants: one arrives while the real person is still inside (the terminal shows them as \"inside\"), one replaces the real person at their scheduled time, and one swaps with the real person on the way out. Only records, memory, and UV can expose them.",
+        "A disguised Skinwalker waiting in the queue strikes if nobody watches it for 25 seconds: it drops its disguise, kills the person in front, and opens the security door itself.",
+        "Admitted or infiltrating Skinwalkers give no warning: they walk like ordinary staff and only transform where the player cannot see them. The player learns about the mistake later.",
+        "No infiltration happens while the player is looking at, or UV-scanning, the person at the checkpoint.",
+        "Skinwalker body: the NPC rig deforms into a long-armed, hunched creature with a twitching head and glowing eyes."
+      ]},
+      { title: "Threats inside the facility", bullets: [
+        "Skinwalkers patrol the corridors on foot (no teleporting), react to sound, hunt staff, and lie in ambush in doorways.",
+        "Doorway ambush jumpscare: scream, camera lock, a heavy first hit and knockback.",
+        "A creature spotted nearby may vanish and attack from behind; one that chases the player to the booth kills someone in the queue first.",
+        "Creatures can follow the player through an open security door; a closed door stops them.",
+        "The number of loose Skinwalkers is driven only by player mistakes: missed feeding releases one cell, an unrepaired generator unlocks one cell, and admitted Skinwalkers join them. Loose creatures and empty cells persist across nights and are saved. If every cell is empty, the night is lost.",
+        "An escaped Skinwalker may hunt staff or take the identity of someone inside.",
+        "Player health with automatic regeneration, damage feedback, and a separate death ending."
+      ]},
+      { title: "Facility tasks", bullets: [
+        "Two-floor graybox facility with three containment cells and a runtime-generated NavMesh.",
+        "Per-cell feeding: a food crate holds one portion per cell, each fed cell shows its bowl, and an unlimited storage shelf provides crates. A yellow beacon lamp and chime announce the feeding task.",
+        "Hold-to-repair generator with a progress bar; each repair tool carries its own limited uses. A failure turns the facility red and sounds an alarm.",
+        "Fluorescent lamps, wall light switches, a brightness setting, and a sliding street gate with a dark night street outside."
+      ]},
+      { title: "Economy, equipment & upgrades", bullets: [
+        "Rebalanced token economy with rewards and fines (correct decisions, completed tasks, neutralized threats; wrong decisions, failed tasks, staff losses).",
+        "Equipment wear: the shotgun and the UV detector wear out with use and break if not maintained; maintenance is priced by wear.",
+        "Terminal orders: buy shells, repair kits, maintenance, or replacements; deliveries arrive as packages at the booth's exit door.",
+        "12 permanent upgrades: Patrol Boots, Cardio Training, Kevlar Vest, Duty Belt, Union Contract, Extended Tube, Reinforced Shotgun, Wide Collimator, UV Battery Pack, Repair Training, Express Courier, Supplier Contract.",
+        "Booth storage rack with placement slots for keeping equipment.",
+        "UV detector rework: a short battery, a beam that starts as a small spot, and an upgrade to widen it."
+      ]},
+      { title: "Shift flow & campaign", bullets: [
+        "Opening tutorial: the player walks into the booth, the phone rings, and the supervisor explains the job while the camera tours the checkpoint, terminal, UV, feeding, generator, and exit. It can be skipped by holding a button.",
+        "Security terminal drawn directly on the desk PC monitor, with tabs: PERSONNEL, SHIFT, E-MAIL, UPGRADES, ORDERS, STATUS.",
+        "Seeded, controlled-random shift plan: each run has its own nightly arrivals, forged cards, and disguised Skinwalkers; retrying a lost night reshuffles that night.",
+        "At 09:00 the clock stops and the shift ends only at the exit door (END SHIFT), followed by a shift report and a smooth transition into the next night.",
+        "Four campaign endings (Exemplary Promotion, Conditional Probation, Security Breach, Killed in Action); a typewritten ending screen presents the result with the shift record.",
+        "Save & continue: progress, equipment wear, rack contents, loose threats, upgrades, and scientist memories carry over."
+      ]},
+      { title: "Scientists", bullets: [
+        "Cinematic subtitle dialogue: the camera focuses on the scientist, text types out with a per-speaker \"voice babble\", and scientists turn to face the player.",
+        "Patience and reactions: too many questions, ID errors, and threats each trigger their own responses.",
+        "The four scientists appear across the campaign, and at least one returns from the previous night, so remembered answers can be tested."
+      ]},
+      { title: "Player feel & controls", bullets: [
+        "Reworked first-person controller: inertia, sprint with stamina, crouch, jump, zoom, step-synced head bob, breathing, landing dip, and item sway.",
+        "Flashlight on the right mouse button.",
+        "Full gamepad support across gameplay, menus, dialogue, terminal, and tutorial, with device-aware button prompts and vibration.",
+        "Booth life: sit on the office chair, smoke a cigarette (F), play darts, and drink coffee from the desk mug."
+      ]},
+      { title: "Menus & tools", bullets: [
+        "Main menu running on the security PC monitor in the booth, with a BIOS-style boot and a camera dive into the game.",
+        "CRT terminal-style pause menu with shared settings: volume, mouse sensitivity, stick look, vibration, terminal mouse speed, brightness, scanlines, FPS limit.",
+        "In-game debug panel (F3, editor/development builds only) with tabs for player, time, economy, items, threats, checkpoint, tasks, upgrades, and campaign testing."
+      ]}
+    ]
+  },
+  tr: {
+    number: "HAFTA 09",
+    kicker: "YAMA NOTLARI / PRE-ALPHA'DAN BERİ",
+    title: "Düz bir oynanıştan yaşayan bir gece vardiyasına",
+    intro: "Pre-Alpha sürümünden (baştan sona düz bir oynanış sunan ilk TestScene) bu yana geliştirme, vardiyanın her parçasını derinleştirmeye odaklandı: gişeye kim geliyor, ne saklıyor olabilir, yanlış bir karardan sonra ne oluyor ve gece oynarken nasıl hissettiriyor. Aşağıda o günden bu yana eklenen özellikler yer alıyor.",
+    note: "Bu notlar, Pre-Alpha'dan bu yana geliştirme sürümüne eklenen özellikleri listeler. Dengeleme, daha geniş oyun testleri ve cilalama sürüyor.",
+    groups: [
+      { title: "Kontrol noktası ve kimlik", bullets: [
+        "Fiziksel kimlik kartı: ziyaretçi gerçek boyutlu kartını gişenin gözünden içeri kaydırır; oyuncu kartı okumak için kameraya yaklaştırır, Skinwalker izleri UV altında kartın üstünde de parlar.",
+        "Masada büyük PASS / DOOR basma düğmeleri ve her düğmenin ne zaman kullanılabileceğini gösteren durum lambaları bulunan bir kontrol konsolu.",
+        "Güvenlik kapısı: kulübe tarafında OPEN/CLOSE düğmesi, koridor tarafında otomatik açılma; kulübeden açık bırakılan kapı açık kalır.",
+        "Kapıda bekleme lambası: içeriden çıkmak isteyen biri varsa turuncu yanıp söner ve zil çalar, içeri alınan biri kapıyı bekliyorsa sabit yeşil yanar.",
+        "Kapıda gerçek varış sırasına göre işleyen sıra; tesisten çıkacak personel güvenlik kapısının arkasında bekler ve gişeyi tutmaz.",
+        "Prosedürel personel kadrosu: her yeni oyun kendi personelini üretir (ad, sicil numarası, birim, görev, fotoğraf silüeti ve fotoğraf rengi); kadro o oyun boyunca değişmez.",
+        "Kart sahteciliği sistemi: sahte kartlarda 12 hata türünden rastgele bir veya iki hata bulunur (ad yazım hatası; sicilde rakam değişimi, yer değiştirme, benzer karakter veya önek; tarihte gün, ay veya yıl; birim; fotoğraf silüeti; fotoğraf rengi). İlk gece belirgin hatalar gelir, sonraki gecelerde incelikli hatalar da eklenir.",
+        "Oyun içi takvim: kampanya 26.11.1991 gecesi başlar.",
+        "Fizik tabanlı ragdoll cesetler, gece boyunca düştükleri yerde kalır."
+      ]},
+      { title: "Göz önünde saklanan Skinwalker'lar", bullets: [
+        "Kusursuz kartla gelen kılık değiştirmiş Skinwalker'lar, üç türde: biri gerçek kişi hâlâ içerideyken kapıya gelir (terminal kişiyi \"içeride\" gösterir), biri gerçek kişinin yerine onun saatinde gelir, biri de gerçek kişiyle çıkışta yer değiştirir. Onları yalnızca kayıtlar, hafıza ve UV ele verebilir.",
+        "Sırada bekleyen kılık değiştirmiş bir Skinwalker, 25 saniye boyunca kimse ona bakmazsa saldırır: kılığını atar, önündeki kişiyi öldürür ve güvenlik kapısını kendisi açar.",
+        "İçeri alınan veya sızan Skinwalker uyarı vermez: sıradan bir çalışan gibi yürür ve yalnızca oyuncunun göremediği bir yerde dönüşür. Oyuncu hatasını sonradan öğrenir.",
+        "Oyuncu kontrol noktasındaki kişiye bakarken veya onu UV ile tararken sızma gerçekleşmez.",
+        "Skinwalker bedeni: NPC iskeleti uzun kollu, kambur, başı seğiren ve gözleri parlayan bir yaratığa dönüşür."
+      ]},
+      { title: "Tesis içindeki tehditler", bullets: [
+        "Skinwalker'lar koridorlarda yürüyerek devriye gezer (ışınlanmaz), seslere tepki verir, personeli avlar ve kapı eşiklerinde pusu kurar.",
+        "Kapı eşiği pusu jumpscare'i: çığlık, kamera kilidi, ağır bir ilk vuruş ve geri itilme.",
+        "Yakında fark edilen bir yaratık gözden kaybolup arkadan saldırabilir; oyuncuyu kulübeye kadar kovalayan yaratık önce sıradaki birini öldürür.",
+        "Yaratıklar oyuncuyu açık güvenlik kapısından takip edebilir; kapalı kapı onları durdurur.",
+        "Serbest Skinwalker sayısını yalnızca oyuncunun hataları belirler: kaçırılan besleme bir hücreyi, tamir edilmeyen jeneratör bir hücrenin kilidini açar; içeri alınan Skinwalker'lar da onlara katılır. Serbest yaratıklar ve boş hücreler geceler boyunca korunur ve kaydedilir. Bütün hücreler boşalırsa gece kaybedilir.",
+        "Kaçan bir Skinwalker personeli avlayabilir ya da içerideki birinin kılığına girebilir.",
+        "Kendiliğinden yenilenen oyuncu canı, hasar geri bildirimi ve ayrı bir ölüm sonu."
+      ]},
+      { title: "Tesis görevleri", bullets: [
+        "Üç hücreli, iki katlı graybox tesis ve oyun açılışında oluşturulan NavMesh.",
+        "Hücre bazlı besleme: yemek kolisi her hücre için bir porsiyon içerir, beslenen her hücrede kabı görünür, tükenmeyen bir depo rafı koli verir. Besleme görevini sarı bir uyarı lambası ve zil duyurur.",
+        "Basılı tutarak ve ilerleme çubuğuyla yapılan jeneratör tamiri; her tamir aleti kendi sınırlı kullanım hakkını taşır. Arızada tesis kırmızıya döner ve alarm çalar.",
+        "Floresan lambalar, duvar ışık anahtarları, parlaklık ayarı ve dışarıda karanlık bir gece sokağına açılan sürgülü sokak kapısı."
+      ]},
+      { title: "Ekonomi, ekipman ve yükseltmeler", bullets: [
+        "Ödül ve cezalarla yeniden dengelenen token ekonomisi (doğru kararlar, tamamlanan görevler, etkisiz hale getirilen tehditler; yanlış kararlar, başarısız görevler, personel kayıpları).",
+        "Ekipman eskimesi: pompalı ve UV dedektörü kullandıkça eskir, bakımı yapılmazsa kırılır; bakım ücreti eskimeye göre belirlenir.",
+        "Terminal siparişleri: fişek, tamir kiti, bakım veya yeni ekipman alınır; siparişler kulübenin çıkış kapısına paket olarak gelir.",
+        "12 kalıcı yükseltme: Patrol Boots, Cardio Training, Kevlar Vest, Duty Belt, Union Contract, Extended Tube, Reinforced Shotgun, Wide Collimator, UV Battery Pack, Repair Training, Express Courier, Supplier Contract.",
+        "Ekipman saklamak için yerleştirme yuvaları olan kulübe rafı.",
+        "UV dedektörü yenilendi: kısa pil, küçük bir noktadan başlayan ışın ve ışını genişleten yükseltme."
+      ]},
+      { title: "Vardiya akışı ve kampanya", bullets: [
+        "Açılış tanıtımı: oyuncu kulübeye girer, telefon çalar ve amir işi anlatırken kamera kontrol noktasını, terminali, UV'yi, beslemeyi, jeneratörü ve çıkışı gezer. Bir tuşa basılı tutularak geçilebilir.",
+        "Doğrudan masadaki PC monitöründe çizilen güvenlik terminali; sekmeler: PERSONNEL, SHIFT, E-MAIL, UPGRADES, ORDERS, STATUS.",
+        "Tohum tabanlı, kontrollü rastgele vardiya planı: her oyunun kendi gece gelişleri, sahte kartları ve kılık değiştirmiş Skinwalker'ları vardır; kaybedilen gece yeniden denenince o gece yeniden karılır.",
+        "09:00'da saat durur ve vardiya yalnızca çıkış kapısında (END SHIFT) biter; ardından vardiya raporu ve sonraki geceye yumuşak bir geçiş gelir.",
+        "Dört kampanya sonu (Exemplary Promotion, Conditional Probation, Security Breach, Killed in Action); daktiloyla yazılan bir son ekranında vardiya kaydıyla birlikte sunulur.",
+        "Kaydet ve devam et: ilerleme, ekipman eskimesi, raf içeriği, serbest tehditler, yükseltmeler ve bilim insanı hafızaları korunur."
+      ]},
+      { title: "Bilim insanları", bullets: [
+        "Sinematik altyazılı diyalog: kamera bilim insanına odaklanır, yazı konuşmacıya özgü bir \"homurdanma\" sesiyle daktilo gibi akar, bilim insanları oyuncuya döner.",
+        "Sabır ve tepkiler: çok fazla soru, kimlik hataları ve tehditlerin her biri kendi tepkisini doğurur.",
+        "Dört bilim insanı kampanya boyunca gecelere dağılır ve önceki geceden en az biri geri döner; böylece hatırlanan cevaplar sınanabilir."
+      ]},
+      { title: "Oyuncu hissi ve kontroller", bullets: [
+        "Yenilenen birinci şahıs kontrolcü: atalet, dayanıklılıkla koşu, eğilme, zıplama, yakınlaştırma, adımla eşli kafa sallanması, nefes, iniş çökmesi ve eşya salınımı.",
+        "Farenin sağ tuşunda el feneri.",
+        "Oyun, menüler, diyalog, terminal ve tanıtım boyunca tam gamepad desteği; cihaza göre değişen tuş ipuçları ve titreşim.",
+        "Kulübede yaşam: ofis sandalyesine oturma, sigara içme (F), dart oynama ve masadaki fincandan kahve içme."
+      ]},
+      { title: "Menüler ve araçlar", bullets: [
+        "Kulübedeki güvenlik PC'sinin monitöründe çalışan ana menü; BIOS tarzı açılış ve kameranın ekrana dalarak oyuna girmesi.",
+        "Ortak ayarlara sahip CRT terminal tarzı duraklatma menüsü: ses, fare hassasiyeti, çubukla bakış, titreşim, terminal imleç hızı, parlaklık, tarama çizgileri, FPS sınırı.",
+        "Oyun içi debug paneli (F3, yalnızca editör ve development build): oyuncu, zaman, ekonomi, eşyalar, tehditler, kontrol noktası, görevler, yükseltmeler ve kampanya testleri için sekmeler."
+      ]}
+    ]
+  }
+} as const;
 ---
 
 <div class="nightwatch-presentation" data-project-presentation data-active-language={initialLanguage}>
@@ -670,6 +822,16 @@ const versions = Object.entries(copy);
         <span>07</span>
         <strong>{initialLanguage === "tr" ? "Kod ve mekanikler" : "Code & mechanics"}</strong>
         <small>{initialLanguage === "tr" ? "Hafta 07 ↘" : "Week 07 ↘"}</small>
+      </a>
+      <a href={`#vize-${initialLanguage}`} data-presentation-link="vize">
+        <span>08</span>
+        <strong>{initialLanguage === "tr" ? "Pre-Alpha yayını" : "Pre-Alpha release"}</strong>
+        <small>{initialLanguage === "tr" ? "HAFTA 08 ↘" : "WEEK 08 ↘"}</small>
+      </a>
+      <a href={`#patch-notes-${initialLanguage}`} data-presentation-link="patch-notes">
+        <span>09</span>
+        <strong>{initialLanguage === "tr" ? "Yama notları" : "Patch notes"}</strong>
+        <small>{initialLanguage === "tr" ? "PRE-ALPHA'DAN BERİ ↘" : "SINCE PRE-ALPHA ↘"}</small>
       </a>
     </div>
     <a class="scientist-archive-link" href={`#scientists-${initialLanguage}`} data-presentation-link="scientists">
@@ -1050,6 +1212,26 @@ const versions = Object.entries(copy);
           </div>
         </section>
 
+        <section class="deck-section patch-notes-section" id={`patch-notes-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{patchNotes[lang].number}</div>
+            <div class="section-heading-main">
+              <p class="eyebrow">{patchNotes[lang].kicker}</p>
+              <h2>{patchNotes[lang].title}</h2>
+              <p class="section-intro">{patchNotes[lang].intro}</p>
+            </div>
+          </div>
+          <div class="patch-notes-grid">
+            {patchNotes[lang].groups.map((group, index) => (
+              <article class="patch-note-card">
+                <div class="subsection-heading"><h3>{String(index + 1).padStart(2, "0")} — {group.title}</h3><span>{String(index + 1).padStart(2, "0")}</span></div>
+                <ul>{group.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+          <p class="patch-notes-footer">{patchNotes[lang].note}</p>
+        </section>
+
         <section class="deck-section scope-section" id={`next-${lang}`}>
           <div class="section-heading">
             <div class="section-number">NEXT</div>
@@ -1392,6 +1574,14 @@ const versions = Object.entries(copy);
   .test-field.expected p { color: var(--nw-muted); }
 
   .scope-section { padding-bottom: clamp(48px, 7vw, 84px); }
+  .patch-notes-section { padding-bottom: clamp(48px, 7vw, 84px); }
+  .patch-notes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .patch-note-card { background: var(--nw-panel); border: 1px solid var(--nw-line); padding: 22px 24px 24px; }
+  .patch-note-card .subsection-heading { align-items: flex-start; margin-bottom: 17px; }
+  .patch-note-card h3 { font-size: 15px; line-height: 1.35; margin: 0; }
+  .patch-note-card ul { display: grid; gap: 10px; margin: 0; padding-left: 18px; color: var(--nw-muted); font-size: 12px; line-height: 1.7; }
+  .patch-note-card li::marker { color: #9eb69e; }
+  .patch-notes-footer { border-top: 1px solid var(--nw-line); color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin: 22px 0 0; padding-top: 16px; }
   .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .week5-milestone { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 26px; background: var(--nw-dark); color: #f2f5ee; padding: 24px; margin-bottom: 40px; }
   .week5-milestone .card-eyebrow { color: #b8c8b5; }
@@ -1706,6 +1896,7 @@ const versions = Object.entries(copy);
     .test-card { padding: 15px; }
     .status-chip { margin-left: 0; }
     .scope-grid { grid-template-columns: 1fr; }
+    .patch-notes-grid { grid-template-columns: 1fr; }
     .scope-value { margin-top: 21px; }
     .next-steps-grid { grid-template-columns: 1fr; gap: 32px; }
     .deck-footer { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
