@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   lang?: 'tr' | 'en';
   currentPath?: string;
+  noIndex?: boolean;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   description = 'TheosDev is a game programmer focused on rapid prototyping, gameplay systems, and technical experiments.',
   lang = 'en',
   currentPath = Astro.url.pathname,
+  noIndex = false,
 } = Astro.props;
 
 const isEnglish = lang === 'en';
@@ -40,6 +42,7 @@ const englishPath = isEnglish
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, nofollow, noarchive" />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

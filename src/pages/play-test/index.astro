@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Shadow Shift Playtest"
+  description="Private Shadow Shift playtest download."
+  lang="en"
+  noIndex
+>
+  <section class="playtest-page" aria-labelledby="playtest-title">
+    <div class="playtest-shell">
+      <p class="eyebrow">PROJECT: NIGHTWATCH / PRIVATE PLAYTEST</p>
+      <h1 id="playtest-title">Shadow Shift<br /><span>Playtest Build</span></h1>
+      <p class="playtest-intro">
+        This build has continued evolving since Pre-Alpha. Enter the password shared with you to
+        download the current playtest and help shape the next night shift.
+      </p>
+
+      <form class="playtest-form" data-playtest-form>
+        <label for="playtest-password">Download password</label>
+        <div class="playtest-input-row">
+          <input id="playtest-password" name="password" type="password" autocomplete="off" required />
+          <button type="submit">Unlock build</button>
+        </div>
+        <p class="playtest-error" data-playtest-error role="alert" hidden>That password does not match.</p>
+      </form>
+
+      <div class="playtest-download" data-playtest-download hidden>
+        <p class="eyebrow">ACCESS GRANTED</p>
+        <h2>Ready for testing.</h2>
+        <p>Download the ZIP, extract it locally, and send feedback about anything unclear, broken, or interesting.</p>
+        <a class="playtest-button" href="/downloads/shadow-shift-playtest.zip" download="shadow-shift-playtest.zip">
+          Download Shadow Shift Playtest <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <p class="playtest-contact">
+        Feedback or questions?
+        <a href="mailto:nazimbeyaz11@gmail.com">nazimbeyaz11@gmail.com</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .playtest-page {
+    min-height: calc(100vh - 150px);
+    display: grid;
+    place-items: center;
+    padding: 72px 22px;
+    background: radial-gradient(circle at 75% 15%, rgba(119, 150, 112, .14), transparent 34%), #111612;
+    color: #eef2ea;
+  }
+  .playtest-shell { width: min(680px, 100%); }
+  .playtest-shell .eyebrow { color: #a9c49f; letter-spacing: .14em; }
+  h1 { margin: 22px 0 24px; font-size: clamp(42px, 8vw, 82px); line-height: .94; letter-spacing: -.07em; font-weight: 500; }
+  h1 span { color: #a9c49f; }
+  .playtest-intro { max-width: 560px; color: #aab4aa; font-size: 15px; line-height: 1.8; }
+  .playtest-form { margin-top: 42px; }
+  label { display: block; margin-bottom: 10px; color: #dce5d8; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .playtest-input-row { display: flex; gap: 10px; }
+  input { min-width: 0; flex: 1; border: 1px solid #536353; background: #192019; color: #f5f8f2; padding: 15px; font: inherit; }
+  button, .playtest-button { border: 0; background: #b6d2ad; color: #142016; padding: 15px 20px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; }
+  button:hover, .playtest-button:hover { background: #d4e5cf; }
+  .playtest-error { color: #e6a49a; font-size: 12px; }
+  .playtest-download { margin-top: 30px; border: 1px solid #536353; background: #1b251d; padding: 28px; }
+  .playtest-download h2 { margin: 8px 0 10px; font-size: 27px; font-weight: 500; }
+  .playtest-download p:not(.eyebrow) { color: #b9c3b8; font-size: 13px; line-height: 1.7; margin: 0 0 22px; }
+  .playtest-contact { margin-top: 55px; color: #8f9a90; font-size: 13px; }
+  .playtest-contact a { color: #d4e5cf; }
+  @media (max-width: 560px) {
+    .playtest-input-row { flex-direction: column; }
+    button { width: 100%; }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-playtest-form]');
+  const passwordInput = document.querySelector<HTMLInputElement>('#playtest-password');
+  const error = document.querySelector<HTMLElement>('[data-playtest-error]');
+  const download = document.querySelector<HTMLElement>('[data-playtest-download]');
+  const expectedHash = '494d083251eccaaac39e07a973cf94870260f3045c9585da9d2586ee5b321444';
+
+  const hashPassword = async (value: string) => {
+    const bytes = new TextEncoder().encode(value);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+  };
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!passwordInput || !error || !download) return;
+    const valid = (await hashPassword(passwordInput.value)) === expectedHash;
+    error.hidden = valid;
+    download.hidden = !valid;
+    if (valid) {
+      form.hidden = true;
+      download.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      passwordInput.select();
+    }
+  });
+</script>
