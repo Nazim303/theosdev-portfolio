@@ -40,6 +40,7 @@ const copy = {
       { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
       { id: "patch-notes", label: "09 / Yama notları ↘" },
+      { id: "week10", label: "10 / İçerik güncellemesi ↘" },
       { id: "next", label: "Sonraki adım" }
     ],
     introTitle: "Bir fikrin üretim sürecine dönüşmesi",
@@ -330,6 +331,7 @@ const copy = {
       { id: "week5", label: "05 / Core Loop & Game Feel" },
       { id: "engineering", label: "06 / Phase 12—19 Engineering Log" },
       { id: "patch-notes", label: "09 / Patch Notes ↘" },
+      { id: "week10", label: "10 / Content update ↘" },
       { id: "next", label: "Next milestone" }
     ],
     introTitle: "Turning a concept into a production process",
@@ -606,6 +608,42 @@ const scientistCards = {
     { name: "Dr. Walter Brooks", role: "Electrical & Generator Systems Research", code: "60519347", age: "44", height: "1.75 m / 5'9\"", appearance: "Pale olive skin, light brown eyes, thinning light brown hair, a long nose, and thick-framed glasses held with tape.", personality: "Tense, timid, and excessively polite. He tracks every sound, starts with 'um… I mean…', and even doubts his own identity.", memory: "His daughter Defne has a piano recital on Friday. He heard metal scraping in the generator room, and his replacement glasses still have not arrived.", mark: "TENSE / PARANOID" }
   ]
 } as const;
+const week10 = {
+  tr: {
+    eyebrow: "HAFTA 10",
+    category: "İÇERİK GÜNCELLEMESİ / BÖLÜM 1",
+    title: "Haritadan finale: ilk bölüm tamamlandı",
+    subtitle: "Bu hafta Shadow Shift'i tek bir test sahnesinden, başı ve sonu olan 7 gecelik bir demo bölümüne taşıdık. Yeni bir tesis, bir hikâye finali ve üç dil eklendi.",
+    stats: ["7 GECE: demo kampanyası", "3 DİL: Türkçe · English · 日本語", "1 FİNAL: Kafes olayı"],
+    cards: [
+      { title: "Yeni tam harita", body: "3 bölge, 4 seviye ve kafes bloklarından oluşan daha büyük bir tesis. Kulübedeki harita el çizimi ve gezdikçe açılıyor.", status: "YENİ" },
+      { title: "Bölüm 1 finali: Kafes olayı", body: "7. gecenin sonunda saat 09:00'da alarm çalar, ışıklar kırmızıya döner, kafesler açılır ve fazla mesai başlar. Serbest kalan yaratıklar daha hızlıdır ve oyuncuyu bırakmadan kovalar.", status: "YENİ" },
+      { title: "7 gecelik demo kampanyası", body: "4–7. gecelere yeni e-postalar eklendi. Kalabalık her gece artıyor ve gelişler 07:30'a kadar sürüyor. Kampanya bittiğinde son gece yeniden oynanabiliyor.", status: "TAMAMLANDI" },
+      { title: "Hikâye sinematikleri", body: "Açılıştaki telefon görüşmesi, kafeslerde bakışma ve fısıltı sahneleri, final girişi.", status: "YENİ" },
+      { title: "Kafesteki Skinwalker'lar", body: "Kafesler artık boş değil. Yaratıklar volta atıyor, bağırıyor, parmaklıklara vuruyor ve yemek kabına eğiliyor.", status: "YENİ" },
+      { title: "Üç dil ve yeni ayarlar", body: "Türkçe, İngilizce ve Japonca destekleniyor; dil oyun içinde anında değişiyor. Diyaloglar interkom altyazısıyla gösteriliyor. Ayarlara 5 ayrı ses kanalı, ekran ve görüş açısı seçenekleri, Y ekseni ters çevirme ve \"flaşları azalt\" eklendi.", status: "GENİŞLETİLDİ" }
+    ],
+    touches: ["NPC'ler oyuncuya bakar", "Sızan Skinwalker yakında saldırır", "Açılır masa çekmecesi", "2'lik mermi kutusu", "Bölgesel UV izi", "Daha keskin pusu jumpscare'i"],
+    closing: "Sıradaki adım: bölümü oyuncu gözünden test etmek ve tam sürüm planındaki 2. bölüme geçmek."
+  },
+  en: {
+    eyebrow: "WEEK 10",
+    category: "CONTENT UPDATE / CHAPTER 1",
+    title: "From map to finale: Chapter One comes together",
+    subtitle: "This week Shadow Shift grew from a single test scene into a 7-night demo chapter with a beginning and an end. It now has a new facility, a story finale and three languages.",
+    stats: ["7 NIGHTS: demo campaign", "3 LANGUAGES: Türkçe · English · 日本語", "1 FINALE: The Cage Incident"],
+    cards: [
+      { title: "New full map", body: "A larger facility with 3 zones, 4 levels and cell blocks. The map in the booth is hand-drawn and fills in as you explore.", status: "NEW" },
+      { title: "Chapter 1 finale: The Cage Incident", body: "At 09:00 at the end of night 7, the alarm goes off, the lights turn red, the cages open and overtime begins. The escaped creatures are faster and keep chasing the player.", status: "NEW" },
+      { title: "7-night demo campaign", body: "Nights 4–7 have new emails. The crowd grows each night, and arrivals continue until 07:30. When the campaign ends, the final night can be replayed.", status: "COMPLETE" },
+      { title: "Story cinematics", body: "The opening phone call, staring and whispering scenes at the cages, and the finale intro.", status: "NEW" },
+      { title: "Caged Skinwalkers", body: "The cages are no longer empty. The creatures pace, scream, bang on the bars and crouch over their food trays.", status: "NEW" },
+      { title: "Three languages and new settings", body: "Turkish, English and Japanese are supported, and the language switches instantly in-game. Dialogue is shown as intercom subtitles. Settings gained 5 separate audio channels, display and FOV options, Y-axis invert and \"reduce flashing\".", status: "EXPANDED" }
+    ],
+    touches: ["NPCs look at the player", "Infiltrated Skinwalkers strike up close", "Openable desk drawer", "2-shell ammo box", "Regional UV traces", "Sharper ambush jumpscare"],
+    closing: "Next: playtesting the chapter from the player's point of view, then moving on to Chapter 2 of the full release plan."
+  }
+} as const;
 const week7Slides = {
   tr: [
     { number: "01", title: "Koddan oynanabilir döngüye", points: ["Phase 19 sonrası hedef: Skinwalker dedüksiyonu ile tesis yönetimini aynı vardiyada birleştirmek.", "Unity 6 + URP üzerinde modüler C# sistemleriyle geliştirilen demo akışı.", "DemoFacility kapsam dışı bırakılarak oynanış kodunun entegrasyonuna odaklanıldı."], problem: "Kimlik kontrolü, görevler ve tehditler ayrı prototipler olarak kalıyordu.", solution: "Girişten çıkışa kadar bilgi, zaman ve kaynak baskısını tek oynanabilir vardiyada birleştiren sistem akışı.", note: "Bu haftanın ölçütü yeni özellik sayısı değil; mevcut mekaniklerin tek bir karar döngüsünde birlikte çalışmasıdır." },
@@ -832,6 +870,11 @@ const patchNotes = {
         <span>09</span>
         <strong>{initialLanguage === "tr" ? "Yama notları" : "Patch notes"}</strong>
         <small>{initialLanguage === "tr" ? "PRE-ALPHA'DAN BERİ ↘" : "SINCE PRE-ALPHA ↘"}</small>
+      </a>
+      <a href={`#week10-${initialLanguage}`} data-presentation-link="week10">
+        <span>10</span>
+        <strong>{initialLanguage === "tr" ? "Hafta 10" : "Week 10"}</strong>
+        <small>{initialLanguage === "tr" ? "İçerik güncellemesi ↘" : "Content update ↘"}</small>
       </a>
     </div>
     <a class="scientist-archive-link" href={`#scientists-${initialLanguage}`} data-presentation-link="scientists">
@@ -1248,6 +1291,37 @@ const patchNotes = {
           </div>
         </section>
 
+        <section class="deck-section week10-section" id={`week10-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">{week10[lang].eyebrow}</div>
+            <div class="section-heading-main">
+              <p class="eyebrow">{week10[lang].category}</p>
+              <h2>{week10[lang].title}</h2>
+              <p class="section-intro">{week10[lang].subtitle}</p>
+            </div>
+          </div>
+          <div class="week10-stats">
+            {week10[lang].stats.map((stat) => (
+              <div><strong>{stat}</strong></div>
+            ))}
+          </div>
+          <div class="week10-grid">
+            {week10[lang].cards.map((card, index) => (
+              <article class="week10-card">
+                <div class="subsection-heading">
+                  <h3>{String(index + 1).padStart(2, "0")} — {card.title}</h3>
+                  <span class="status-chip">{card.status}</span>
+                </div>
+                <p>{card.body}</p>
+              </article>
+            ))}
+          </div>
+          <div class="week10-touches" aria-label={lang === "tr" ? "Küçük dokunuşlar" : "Small touches"}>
+            {week10[lang].touches.map((touch) => <span>{touch}</span>)}
+          </div>
+          <p class="week10-closing">{week10[lang].closing}</p>
+        </section>
+
         <footer class="deck-footer">
           <div class="footer-main"><p class="eyebrow">{t.footer.eyebrow}</p><h2>{t.footer.title}</h2><p>{t.footer.body}</p><span class="footer-rule"></span><strong>{t.footer.close}</strong></div>
           <div class="footer-details">
@@ -1582,6 +1656,20 @@ const patchNotes = {
   .patch-note-card ul { display: grid; gap: 10px; margin: 0; padding-left: 18px; color: var(--nw-muted); font-size: 12px; line-height: 1.7; }
   .patch-note-card li::marker { color: #9eb69e; }
   .patch-notes-footer { border-top: 1px solid var(--nw-line); color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin: 22px 0 0; padding-top: 16px; }
+  .week10-section { padding-bottom: clamp(48px, 7vw, 84px); }
+  .week10-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--nw-line); margin-bottom: 12px; }
+  .week10-stats div { min-height: 72px; display: grid; align-items: center; padding: 15px 18px; border-right: 1px solid var(--nw-line); }
+  .week10-stats div:last-child { border-right: 0; }
+  .week10-stats strong { font-size: 10px; line-height: 1.5; letter-spacing: .07em; }
+  .week10-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .week10-card { background: var(--nw-panel); border: 1px solid var(--nw-line); padding: 20px 22px 22px; }
+  .week10-card .subsection-heading { align-items: flex-start; }
+  .week10-card h3 { font-size: 14px; line-height: 1.35; }
+  .week10-card .status-chip { margin-left: 0; flex-shrink: 0; }
+  .week10-card p { color: var(--nw-muted); font-size: 12px; line-height: 1.75; margin: 0; }
+  .week10-touches { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .week10-touches span { border: 1px solid var(--nw-line); color: var(--nw-muted); font-size: 9px; letter-spacing: .055em; padding: 7px 9px; }
+  .week10-closing { border-top: 1px solid var(--nw-line); color: var(--nw-muted); font-size: 11px; line-height: 1.7; margin: 22px 0 0; padding-top: 16px; }
   .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .week5-milestone { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 26px; background: var(--nw-dark); color: #f2f5ee; padding: 24px; margin-bottom: 40px; }
   .week5-milestone .card-eyebrow { color: #b8c8b5; }
@@ -1897,6 +1985,10 @@ const patchNotes = {
     .status-chip { margin-left: 0; }
     .scope-grid { grid-template-columns: 1fr; }
     .patch-notes-grid { grid-template-columns: 1fr; }
+    .week10-stats { grid-template-columns: 1fr; }
+    .week10-stats div { border-right: 0; border-bottom: 1px solid var(--nw-line); }
+    .week10-stats div:last-child { border-bottom: 0; }
+    .week10-grid { grid-template-columns: 1fr; }
     .scope-value { margin-top: 21px; }
     .next-steps-grid { grid-template-columns: 1fr; gap: 32px; }
     .deck-footer { grid-template-columns: 1fr; gap: 34px; padding-top: 28px; }
