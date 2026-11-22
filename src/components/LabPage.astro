@@ -1275,22 +1275,6 @@ const patchNotes = {
           <p class="patch-notes-footer">{patchNotes[lang].note}</p>
         </section>
 
-        <section class="deck-section scope-section" id={`next-${lang}`}>
-          <div class="section-heading">
-            <div class="section-number">NEXT</div>
-            <div class="section-heading-main"><p class="eyebrow">{t.scope.tag}</p><h2>{t.scope.title}</h2><p class="section-intro">{t.scope.intro}</p></div>
-          </div>
-          <div class="scope-grid">
-            {t.scope.cards.map((card, index) => (
-              <article class:list={["scope-card", index === 0 ? "scope-card-primary" : ""]}><p class="card-eyebrow">{card.label}</p><div class="scope-value">{card.value}</div><h3>{card.title}</h3><p>{card.body}</p></article>
-            ))}
-          </div>
-          <div class="next-steps-grid">
-            <article class="next-steps-card"><div class="subsection-heading"><h3>{t.scope.nextTitle}</h3><span>01—04</span></div><ol>{t.scope.nextSteps.map((step) => <li>{step}</li>)}</ol></article>
-            <article class="risks-card"><div class="subsection-heading"><h3>{t.scope.risksTitle}</h3><span>WATCHLIST</span></div>{t.scope.risks.map((risk) => <div class="risk-item"><strong>{risk.label}</strong><p>{risk.body}</p></div>)}</article>
-          </div>
-        </section>
-
         <section class="deck-section week10-section" id={`week10-${lang}`}>
           <div class="section-heading">
             <div class="section-number">{week10[lang].eyebrow}</div>
@@ -1320,6 +1304,22 @@ const patchNotes = {
             {week10[lang].touches.map((touch) => <span>{touch}</span>)}
           </div>
           <p class="week10-closing">{week10[lang].closing}</p>
+        </section>
+
+        <section class="deck-section scope-section" id={`next-${lang}`}>
+          <div class="section-heading">
+            <div class="section-number">NEXT</div>
+            <div class="section-heading-main"><p class="eyebrow">{t.scope.tag}</p><h2>{t.scope.title}</h2><p class="section-intro">{t.scope.intro}</p></div>
+          </div>
+          <div class="scope-grid">
+            {t.scope.cards.map((card, index) => (
+              <article class:list={["scope-card", index === 0 ? "scope-card-primary" : ""]}><p class="card-eyebrow">{card.label}</p><div class="scope-value">{card.value}</div><h3>{card.title}</h3><p>{card.body}</p></article>
+            ))}
+          </div>
+          <div class="next-steps-grid">
+            <article class="next-steps-card"><div class="subsection-heading"><h3>{t.scope.nextTitle}</h3><span>01—04</span></div><ol>{t.scope.nextSteps.map((step) => <li>{step}</li>)}</ol></article>
+            <article class="risks-card"><div class="subsection-heading"><h3>{t.scope.risksTitle}</h3><span>WATCHLIST</span></div>{t.scope.risks.map((risk) => <div class="risk-item"><strong>{risk.label}</strong><p>{risk.body}</p></div>)}</article>
+          </div>
         </section>
 
         <footer class="deck-footer">
